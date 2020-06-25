@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>上传二手书至书摊</title>
+	<title>出售物品</title>
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
 	<link rel="stylesheet" type="text/css" href="css/upload.css">
 </head>
@@ -18,62 +18,44 @@
 		</div><!-- nav-menu -->
 
 		<form class="nav-search">
-			<input type="search" class="searchIn" placeholder="搜图书...">
+			<input type="search" class="searchIn" placeholder="搜物品">
 			<button class="search-logo"><img src="img/search2.png"></button>
 		</form>
 
 		<div class="nav-info">
 			<a href="#" class="username">chieminchan</a>
-			<a href="myBookself.html" class="bookshelf">||&nbsp;&nbsp;&nbsp;我的书架</a>
+			<a href="myBookshelf.html" class="bookshelf">||&nbsp;&nbsp;&nbsp;我的书架</a>
 			<a href="#" class="logout">[ 退 出 ]</a>
 		</div> <!-- nav-info-end -->
 	</nav>
 	<div class="titleName">
-		<h3>上传二手书</h3>
-		<p>设置二手书信息</p>
+		<h3>出售二手物品</h3>
+		<p>设置二手物品相关信息</p>
 	</div>
 
 	<div class="container">
-		<form class="upload-form">
+		<form class="upload-form" action="#" method="get">
 			<p>
 				<span class="pic-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-				上传书图片： <input type="file" name="book-pic">
+				上传物品图片： <input type="file" name="book-pic">
 			</p>
 			<p>
 				<span class="name-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-				书&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：<input type="text" name="book-name">				
+				物&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：<input type="text" name="book-name">
 			</p>
-			<p>
-				<span class="author-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-				作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;者：<input type="text" name="book-author">
-			</p>
+
 			<p>
 				<span class="orign-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-				书&nbsp;本&nbsp;&nbsp;原&nbsp;价：<input type="text" name="book-orign">	
+				物&nbsp;品&nbsp;&nbsp;原&nbsp;价：<input type="text" name="book-orign">
 			</p>
 			<p>
 				<span class="price-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-				书&nbsp;本&nbsp;&nbsp;售&nbsp;价：<input type="text" name="book-price">	
+				物&nbsp;品&nbsp;&nbsp;售&nbsp;价：<input type="text" name="book-price">
 			</p>			
-			<p>
-				<span class="press-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-				出&nbsp;&nbsp;&nbsp;&nbsp;版&nbsp;&nbsp;&nbsp;社：<input type="text" name="book-press">	
-			</p>
-			<p>
-				<span class="time-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-				出&nbsp;版&nbsp;&nbsp;时&nbsp;间：<input type="month" name="book-time">	
-			</p>
-			<p>
-				<span class="version-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-				印&nbsp;刷&nbsp;&nbsp;版&nbsp;本：<input type="text" name="book-version">	
-			</p>
-			<p>
-				<span class="condition-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-				书&nbsp;本&nbsp;&nbsp;品&nbsp;相：<input type="text" name="book-condition">	
-			</p>
+
 			<p>
 				<span class="desc-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-				书&nbsp;本&nbsp;&nbsp;描&nbsp;述：<input type="text" name="book-desc">
+				物&nbsp;品&nbsp;&nbsp;描&nbsp;述：<textarea type="text" name="book-desc"></textarea>
 			</p>
 
 			<input type="submit" class="submit-btn" name="book-submit">															
@@ -91,6 +73,7 @@
 		
 	</dialog>
 	</div>
+
 	<footer>
 		<a href="#">©2018-2019 二手书交易</a>
 		<a href="#">意见反馈&nbsp;&nbsp;&nbsp;联系我们&nbsp;&nbsp;&nbsp;隐私权声明&nbsp;&nbsp;&nbsp;使用条款</a>
