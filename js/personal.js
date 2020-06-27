@@ -23,28 +23,28 @@ $(function(){
 
 
 	//选择对应书本进行选择删除操作
-	var bookIdArr=[],bookId;
+	var itemIdArr=[],itemId;
 	$("span.delete-btn").on("click",function(){
 
-		bookId = $(this).siblings("form").find(".book-id").attr("value");
-		//判断数组里是否有bookId,无则返回-1
-		if($.inArray(bookId ,bookIdArr) == - 1){ 
+		itemId = $(this).siblings("form").find(".item-id").attr("value");
+		//判断数组里是否有itemId,无则返回-1
+		if($.inArray(itemId ,itemIdArr) == - 1){ 
 			$(this).css("background-image","url(img/delete1.jpg)");
-			bookIdArr.push(bookId);
-			// console.log(bookIdArr);
+			itemIdArr.push(itemId);
+			// console.log(itemIdArr);
 		}else{
 			$(this).css("background-image","url(img/delete2.jpg)");
-			bookIdArr = $.grep(bookIdArr,function(val){
-				return val != bookId;
+			itemIdArr = $.grep(itemIdArr,function(val){
+				return val != itemId;
 			});
-			// console.log(bookIdArr);			
+			// console.log(itemIdArr);			
 		}		
 	});
 
 
 	//点击删除图标，确认是否删除
 	var flag  = false;
-	$("#delete-book").on("click",function(){
+	$("#delete-item").on("click",function(){
 		var flag = confirm("确定删除所选择的二手书吗？");
 	})
 
