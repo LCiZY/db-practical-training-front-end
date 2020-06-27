@@ -1,35 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>求书区</title>
+	<title>求物品</title>
 	<link rel="stylesheet" type="text/css" href="css/book.css">
 </head>
 <body>
 	<!-- 导航 -->
-	<header>
-		<nav class="navbar">
-			<div class="nav-info">
-				<a href="#" class="username">chieminchan</a>
-				<a href="myBookself.html" class="bookshelf">||&nbsp;&nbsp;&nbsp;我的书架</a>
-				<a href="#" class="logout">[ 退 出 ]</a>
-			</div> <!-- nav-info -->
-			<div class="nav-search">
-				<a href="index.html"><img class="logo" src="img/logo2.png"></a>
-				<div class="search-form">
-					<input type="search" class="searchIn" placeholder="搜图书...">
-					<a href="#" class="search-logo">| &nbsp;<img src="img/search.png"></a>
-					<button class="searchBtn"><a href="#">搜索</a></button>
-				</div>
-			</div><!--  nav-search -->
-			<ul class="menu">
-				<li><a href="index.html">首页</a></li>
-				<li><a href="bookStore.html">书籍良品</a></li>
-				<li><a  class="active" href="#">求书区</a></li>
-				<li><a href="#">服务区</a></li>
-			</ul>			
-		</nav>
-		<div class="askBook-pic"></div>
+	<header class="navbar">
+		<div class="nav-info" id="personal">
+			<span v-if="id==''">
+				<a href="login.html" class="username">前往登录</a>
+			</span>
+			<span v-else>
+				<a href="personal.html" class="username">{{name}}</a>
+				<a href="#" class="logout" onclick="logout()">[ 退出登录 ]</a>
+			</span>
+		</div> <!-- nav-info -->
+		<form class="nav-search">
+			<a href="index.html"><img class="logo" src="img/logo3.png"></a>
+			<div class="search-form">
+				<a href="#" class="search-logo">| &nbsp;<img src="img/search.png"></a>
+				<input type="search" class="searchIn" placeholder="搜物品">
+				<button class="searchBtn">搜索</button>
+			</div>
+		</form><!--  nav-search -->
+		<ul class="menu">
+			<li><a href="index.html">首页</a></li>
+			<li><a href="allItems.html">全部物品</a></li>
+			<li><a class="active" href="askItem.html">求物品</a></li>
+			<li><a href="#">购物车</a></li>
+			<li><a href="personal.html">个人中心</a></li>
+		</ul>
 	</header>
+
 	<!-- 图书分类 -->
 	<div id="container">
 		<div id="book-container">

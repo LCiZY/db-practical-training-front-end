@@ -189,7 +189,7 @@ table {
     justify-content: center;
 }
 
-.book-guide{
+.item-guide{
     width: 200px;
     height: 295px;
     border: 1px solid #ccc;
@@ -197,7 +197,7 @@ table {
     flex-direction: column;
 }
 
-.book-guide h4{
+.item-guide h4{
     height: 30px;
     width: 200px;
     text-align: center;
@@ -206,7 +206,7 @@ table {
     background-color: #4b4d52;
 }
 
-.book-class li{
+.item-class li{
     width: 150px;
     height: 28px;
     margin: 0 auto;
@@ -215,14 +215,14 @@ table {
     border-bottom: 1px solid #ccc;
 }
 
-.book-class li a{
+.item-class li a{
     text-decoration: none;
     color: gray;
     text-align: left;
     font-size: 14px;
 }
 
-.book-class li a:hover{
+.item-class li a:hover{
 	font-weight: 600;
 }
 
@@ -312,7 +312,7 @@ table {
 	/*background: #ccc;*/
 }
 
-.book-part{
+.item-part{
 	width:90%;
 	height: auto; 
 	display: flex;
@@ -321,7 +321,7 @@ table {
 	margin: 0 auto;
 }
 
-.book-part .book-title{
+.item-part .item-title{
 	text-decoration: none;
 	width: 99%;
 	height: 38px;
@@ -329,7 +329,7 @@ table {
 	border-bottom: 1px solid #ccc;
 	cursor: pointer;
 }
-.book-part .book-title a{
+.item-part .item-title a{
 	text-decoration: none;
 	font-weight: 600;
 	font-size: 20px;
@@ -338,7 +338,7 @@ table {
 
 
 
-.book-part .more{
+.item-part .more{
 	text-decoration:none;
 	position: absolute;
 	right: 1%;
@@ -349,7 +349,7 @@ table {
 
 
 
-.book-lists{
+.item-lists{
 	width: 100%;
 	height: auto;
 	/*background-color: #ccc;*/
@@ -360,7 +360,7 @@ table {
 	flex-wrap: wrap;
 }
 
-.book-list{
+.item-list{
 	/*width: 20%;*/
 	min-width: 16%;
 	height: 310px;
@@ -376,7 +376,7 @@ table {
 	position: relative;
 }
 
-.book-pic{
+.item-pic{
 	width: 80%;
 	height: 180px;
 	border-bottom: 1px solid gray;
@@ -386,12 +386,12 @@ table {
 	margin:2px auto;
 }
 
-.book-pic img{
+.item-pic img{
 	margin:auto;	
 	width: 150px;
 }
 
-.book-name{
+.item-name{
 	width: 100%;
 	line-height: 26px;
 	text-align: center;
@@ -399,7 +399,7 @@ table {
 	color: #ae6d6a;
 }
 
-.book-info{
+.item-info{
 	display: flex;
 	flex-direction: column;
 	text-decoration: none;
@@ -407,7 +407,7 @@ table {
 
 }
 
-.askbook-info span{
+.askitem-info span{
 	line-height: 23px;
 	margin-left: 27px;
 	color: #272222d6;
@@ -415,14 +415,14 @@ table {
 	word-wrap:break-word;
 }
 
-/*.book-name{
+/*.item-name{
 	line-height: 26px;
 	margin-left: 27px;
 	font-size: 17px;
 	color: #ae6d6a;
 }*/
 
-.book-detail{
+.item-detail{
 	width: 185px;
 	height: 34px;
 	line-height: 18px;
@@ -432,7 +432,7 @@ table {
 	word-wrap:break-word;
 }
 
-.book-price{
+.item-price{
 	width: 100%;
 	height: 34px;
 	font-size: 17px;
@@ -442,7 +442,7 @@ table {
 }
 
 
-.book-buy{
+.item-buy{
 	width: 40px;
 	height: 36px;
 	padding: 5px;
@@ -455,7 +455,7 @@ table {
 	background: #4b4d52;
 }
 
-.book-buy:hover{
+.item-buy:hover{
 	/*font-weight: 600;*/
 	background-color: #626a55;
 	border: 1px solid #626a55;

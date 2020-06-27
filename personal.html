@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>校园二手物品交易平台</title>
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+</head>
+<body>
+
+<!-- 导航 -->
+<header class="navbar">
+    <div class="nav-info" id="personal">
+			<span v-if="id==''">
+				<a href="login.html" class="username">前往登录</a>
+			</span>
+			<span v-else>
+				<a href="personal.html" class="username">{{name}}</a>
+				<a href="#" class="logout" onclick="logout()">[ 退出登录 ]</a>
+			</span>
+    </div> <!-- nav-info -->
+    <form class="nav-search">
+        <a href="index.html"><img class="logo" src="img/logo3.png"></a>
+        <div class="search-form">
+            <a href="#" class="search-logo">| &nbsp;<img src="img/search.png"></a>
+            <input type="search" class="searchIn" placeholder="搜物品">
+            <button class="searchBtn">搜索</button>
+        </div>
+    </form><!--  nav-search -->
+    <ul class="menu">
+        <li><a href="index.html">首页</a></li>
+        <li><a href="bookStore.html">全部物品</a></li>
+        <li><a href="askBook.html">求物品</a></li>
+        <li><a href="#">购物车</a></li>
+        <li><a class="active" href="personal.html">个人中心</a></li>
+    </ul>
+</header>
+
+
+<footer>
+    <a href="#">©2018-2019 二手书交易</a>
+    <a href="#">意见反馈&nbsp;&nbsp;&nbsp;联系我们&nbsp;&nbsp;&nbsp;隐私权声明&nbsp;&nbsp;&nbsp;使用条款</a>
+</footer>
+<script type="text/javascript" src="js/jquery-3.2.js"></script>
+<script type="text/javascript" src="js/xSlider.js"></script>
+<script type="text/javascript" src="js/vue.js"></script>
+<script type="text/javascript" src="js/personal.js"></script>
+
+</body>
+</html>
