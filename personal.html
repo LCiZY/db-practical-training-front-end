@@ -1,48 +1,249 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>校园二手物品交易平台</title>
-    <link rel="stylesheet" type="text/css" href="css/index.css">
+	<title>个人中心</title>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="js/vue.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+	<link rel="stylesheet" type="text/css" href="css/personal.css">
 </head>
 <body>
+	<!-- 导航条 -->
+	<nav class="navbar">
+		<div class="nav-menu">
+			<ul class="menu">
+				<li><a href="index.html">首页</a></li>
+				<li><a href="allItems.html">全部物品</a></li>
+				<li><a href="askItem.html">求物品</a></li>
+				<li><a href="shoppingCart.html">购物车</a></li>
+				<li><a class="active" href="personal.html">个人中心</a></li>
+			</ul>				
+		</div><!-- nav-menu -->
 
-<!-- 导航 -->
-<header class="navbar">
-    <div class="nav-info" id="personal">
+		<form class="nav-search">
+			<input type="search" class="searchIn" placeholder="搜物品">
+			<button class="search-logo"><img src="img/search2.png"></button>
+		</form>
+
+		<div class="nav-info" id="login_status">
 			<span v-if="id==''">
 				<a href="login.html" class="username">前往登录</a>
 			</span>
 			<span v-else>
 				<a href="personal.html" class="username">{{name}}</a>
-				<a href="#" class="logout" onclick="logout()">[ 退出登录 ]</a>
+				<a href="#" class="logout" v-on:click="logout()">[ 退出登录 ]</a>
 			</span>
-    </div> <!-- nav-info -->
-    <form class="nav-search">
-        <a href="index.html"><img class="logo" src="img/logo3.png"></a>
-        <div class="search-form">
-            <a href="#" class="search-logo">| &nbsp;<img src="img/search.png"></a>
-            <input type="search" class="searchIn" placeholder="搜物品">
-            <button class="searchBtn">搜索</button>
-        </div>
-    </form><!--  nav-search -->
-    <ul class="menu">
-        <li><a href="index.html">首页</a></li>
-        <li><a href="bookStore.html">全部物品</a></li>
-        <li><a href="askBook.html">求物品</a></li>
-        <li><a href="#">购物车</a></li>
-        <li><a class="active" href="personal.html">个人中心</a></li>
-    </ul>
-</header>
+		</div> <!-- nav-info -->
+	</nav>
 
+	<!-- 个人信息 -->
+	<div class="person-info">
+		<p>
+			<a href="#" class="name">chieminchan</a>
+		</p>
+		<p>
+			<a href="#" class="sex">女</a><img src="img/girl.png" id="sex-pic">
+		</p>
+		<p class="set">
+			<a href="#" class="edit">编辑个人主页</a>
+			<img class="set-icon" src="img/setting.png">
+		</p>
+		<div class="contact">
+			<p>
+				<span class="call-icon"></span>
+				联&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;系：
+				<a href="#" class="num">13222221111</a></p>
+			<p>
+				<span class="address-icon"></span>
+				住&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：<a href="#"  class="address">22栋B区777</a>
+			</p>
+			<p>
+				<span class="major-icon"></span>
+				年级专业：<a  href="#" class="major">15级信息管理与信息系统</a>
+			</p>
+		</div>
+	</div><!-- person-info-end -->
 
-<footer>
-    <a href="#">©2018-2019 二手书交易</a>
-    <a href="#">意见反馈&nbsp;&nbsp;&nbsp;联系我们&nbsp;&nbsp;&nbsp;隐私权声明&nbsp;&nbsp;&nbsp;使用条款</a>
-</footer>
-<script type="text/javascript" src="js/jquery-3.2.js"></script>
-<script type="text/javascript" src="js/xSlider.js"></script>
-<script type="text/javascript" src="js/vue.js"></script>
-<script type="text/javascript" src="js/personal.js"></script>
+	<!-- 书摊和求书选项卡 -->
+	<div class="card-btn">
+		<span title="sell-item" id="sell-btn" class="active">我的书摊</span>
+		<span title="ask-item" id="ask-btn">我的求书</span>
+		<p class="upload-icon"></p>
+		<a id="sell-upload" href="#">上传书至书摊</a>
+		<a id="ask-upload" href="#">上传求书信息</a>
+		<a id="delete-item" href="#">删除二手书</a>
+	</div>
 
+	<!-- 我的书摊 -->
+	<div id="container">
+		<div id="sell-item">
+			<ul class="item-ul">
+				<li class="item-list">
+					<p class="item-pic">
+						<img src="img/item-list/article/1.jpg">
+					</p>
+					<h5 class="item-name">白夜行</h5>
+					<form>
+						<input type="text" name="item-id" class="item-id" value="2">
+					</form>
+					<span class="delete-btn"></span>
+					<span class="edit-btn"></span>
+					<div class="item-detail">
+						<p>原&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="original-price">￥52.0</span></p>
+						<p>售&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="item-price">￥12.9</span></p>
+						<p>品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;相：<span class="item-condition">八五品</span></p>
+						<p>商品描述：<span class="item-desc">有点水印,但并不影响阅读</span></p>
+					</div>
+				</li>
+				<li class="item-list">
+					<p class="item-pic">
+						<img src="img/item-list/article/1.jpg">
+					</p>
+					<h5 class="item-name">白夜行</h5>
+					<form>
+						<input type="text" name="item-id" class="item-id" value="3">
+					</form>
+					<span class="delete-btn"></span>
+					<span class="edit-btn"></span>
+					<div class="item-detail">
+						<p>原&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="original-price">￥52.0</span></p>
+						<p>售&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="item-price">￥12.9</span></p>
+						<p>品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;相：<span class="item-condition">八五品</span></p>
+						<p>商品描述：<span class="item-desc">有点水印,但并不影响阅读</span></p>
+					</div>
+				</li>
+
+				<li class="item-list">
+					<p class="item-pic">
+						<img src="img/item-list/article/1.jpg">
+					</p>
+					<h5 class="item-name">白夜行</h5>
+					<form>
+						<input type="text" name="item-id" class="item-id" value="4">
+					</form>
+					<span class="delete-btn"></span>
+					<span class="edit-btn"></span>
+					<div class="item-detail">
+						<p>原&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="original-price">￥52.0</span></p>
+						<p>售&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="item-price">￥12.9</span></p>
+						<p>品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;相：<span class="item-condition">八五品</span></p>
+						<p>商品描述：<span class="item-desc">有点水印,但并不影响阅读</span></p>
+					</div>
+				</li>
+
+				<li class="item-list">
+					<p class="item-pic">
+						<img src="img/item-list/article/1.jpg">
+					</p>
+					<h5 class="item-name">白夜行</h5>
+					<form>
+						<input type="text" name="item-id" class="item-id" value="5">
+					</form>
+					<span class="delete-btn"></span>
+					<span class="edit-btn"></span>
+					<div class="item-detail">
+						<p>原&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="original-price">￥52.0</span></p>
+						<p>售&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="item-price">￥12.9</span></p>
+						<p>品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;相：<span class="item-condition">八五品</span></p>
+						<p>商品描述：<span class="item-desc">有点水印,但并不影响阅读</span></p>
+					</div>
+				</li>
+				
+				<li class="item-list">
+					<p class="item-pic">
+						<img src="img/item-list/article/1.jpg">
+					</p>
+					<h5 class="item-name">白夜行</h5>
+					<form>
+						<input type="text" name="item-id" class="item-id" value="1">
+					</form>
+					<span class="delete-btn"></span>
+					<span class="edit-btn"></span>
+					<div class="item-detail">
+						<p>原&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="original-price">￥52.0</span></p>
+						<p>售&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="item-price">￥12.9</span></p>
+						<p>品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;相：<span class="item-condition">八五品</span></p>
+						<p>商品描述：<span class="item-desc">有点水印,但并不影响阅读</span></p>
+					</div>
+				</li>
+			</ul>
+		</div> <!-- sell-item-end -->
+
+		<!-- 我的求书 -->
+		<div id="ask-item">
+			<ul class="item-ul">
+				<li class="item-list">
+					<p class="item-pic">
+						<img src="img/item-list/article/2.jpg">
+					</p>
+					<h5 class="item-name">简爱</h5>
+					<span class="edit-btn"></span>
+					<div class="item-detail">
+						<p>作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;者：<span class="item-author">夏洛特·勃朗特</span></p>
+						<p>出&nbsp; 版&nbsp;社：<span class="item-press">世界图书出版公司</span></p>
+						<p>品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;相：<span class="item-condition">八五品</span></p>
+					</div>
+				</li>
+				<li class="item-list">
+					<p class="item-pic">
+						<img src="img/item-list/article/2.jpg">
+					</p>
+					<h5 class="item-name">简爱</h5>
+					<span class="edit-btn"></span>
+					<div class="item-detail">
+						<p>作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;者：<span class="item-author">夏洛特·勃朗特</span></p>
+						<p>出&nbsp; 版&nbsp;社：<span class="item-press">世界图书出版公司</span></p>
+						<p>品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;相：<span class="item-condition">八五品</span></p>
+					</div>
+				</li>
+				<li class="item-list">
+					<p class="item-pic">
+						<img src="img/item-list/article/2.jpg">
+					</p>
+					<h5 class="item-name">简爱</h5>
+					<span class="edit-btn"></span>
+					<div class="item-detail">
+						<p>作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;者：<span class="item-author">夏洛特·勃朗特</span></p>
+						<p>出&nbsp; 版&nbsp;社：<span class="item-press">世界图书出版公司</span></p>
+						<p>品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;相：<span class="item-condition">八五品</span></p>
+					</div>
+				</li>
+				<li class="item-list">
+					<p class="item-pic">
+						<img src="img/item-list/article/2.jpg">
+					</p>
+					<h5 class="item-name">简爱</h5>
+					<span class="edit-btn"></span>
+					<div class="item-detail">
+						<p>作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;者：<span class="item-author">夏洛特·勃朗特</span></p>
+						<p>出&nbsp; 版&nbsp;社：<span class="item-press">世界图书出版公司</span></p>
+						<p>品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;相：<span class="item-condition">八五品</span></p>
+					</div>
+				</li>
+				<li class="item-list">
+					<p class="item-pic">
+						<img src="img/item-list/article/2.jpg">
+					</p>
+					<h5 class="item-name">简爱</h5>
+					<span class="edit-btn"></span>
+					<div class="item-detail">
+						<p>作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;者：<span class="item-author">夏洛特·勃朗特</span></p>
+						<p>出&nbsp; 版&nbsp;社：<span class="item-press">世界图书出版公司</span></p>
+						<p>品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;相：<span class="item-condition">八五品</span></p>
+					</div>
+				</li>												
+			</ul>
+		</div><!-- ask-item-end-->		
+	</div> <!-- container-end -->
+
+	<footer>
+		<a href="#">©2018-2019 二手书交易</a>
+		<a href="#">意见反馈&nbsp;&nbsp;&nbsp;联系我们&nbsp;&nbsp;&nbsp;隐私权声明&nbsp;&nbsp;&nbsp;使用条款</a>
+	</footer>
+	
+	<!-- javascript- -->
+	<script type="text/javascript" src="js/jquery-3.2.js"></script>
+	<script type="text/javascript" src="js/login_status.js"></script>
+			
 </body>
 </html>

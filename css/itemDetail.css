@@ -11,7 +11,7 @@
 	margin-bottom: 20px;
 }
 
-#book-pic{
+#item-pic{
 	width: 30%;
 	height: 400px;
 	margin-right: 5px;
@@ -21,7 +21,7 @@
 
 }
 
-.book-big{
+.item-big{
 	width: 76%;
 	height: 85%;
 	margin: 25px auto 15px;
@@ -35,7 +35,7 @@
 	align-content: center;
 }
 
-.book-big img{
+.item-big img{
 	width:240px;
 	margin:auto;
 }
@@ -52,7 +52,7 @@
 
 
 
-#book-info{
+#item-info{
 	width: 40%;
 	height: 400px;
 	/*margin-left: 20px;*/
@@ -64,7 +64,7 @@
 	justify-content: flex-start;
 }
 
-.book-name{
+.item-name{
 	margin: 35px 20px 5px 0px;	
 	font-family:  Helvetica,Arial,Microsoft YaHei,sans-serif;
 	font-size: 29px;
@@ -72,14 +72,14 @@
 	font-weight: 500;
 }
 
-.book-publish{
+.item-publish{
 	font-size: 14px;
 	line-height: 30px;
 	color: #846251;
 }
 
 
-.book-price{
+.item-price{
 	width: 95%;
 	height: 100px;
 	color: #333;
@@ -88,17 +88,17 @@
 	margin-top: 15px;
 }
 
-.book-price p ,.book-descr p{
+.item-price p ,.item-descr p{
 	margin-left: 15px;
 	line-height: 27px;
 	font-size: 13px;
 	color: gray;
 }
-.book-price p  a , .book-descr p a{
+.item-price p  a , .item-descr p a{
 	text-decoration: none;
 	margin-left: 25px; 
 }
-.book-price p .final-price{
+.item-price p .final-price{
 	font-size: 18px;
 	font-weight: 600;
 	color: #880b16;
@@ -116,11 +116,11 @@
 	font-weight: 600;
 }
 
-.book-descr p{
+.item-descr p{
 	margin-top: 5px;
 }
 
-.book-descr p a{
+.item-descr p a{
 	color: #846251;
 	font-size: 15px;
 }
@@ -216,7 +216,7 @@ a.upload-time {
 }
 
 
-#book-content{
+#item-content{
 	width: 82%;
 	height: 95px;
 	padding: 15px 3%;

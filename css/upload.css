@@ -71,7 +71,7 @@
 }
 
 .pic-icon{
-	background-image: url(../img/book.png);
+	background-image: url(../img/item.png);
 }
 
 .name-icon{
@@ -174,7 +174,7 @@
 
 
 /*/编辑页面*/
-#book-pic{
+#item-pic{
 	width: 200px;
 	height: 200px;
 	background-color: white;

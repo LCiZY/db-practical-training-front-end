@@ -1,11 +1,12 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-	<title>上传求物品信息</title>
+	<title>编辑书本信息</title>
 	<meta charset="utf-8">
 	<script type="text/javascript" src="js/vue.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
-	<link rel="stylesheet" type="text/css" href="css/upload.css">
+	<link rel="stylesheet" type="text/css" href="css/upload.css">	
 </head>
 <body>
 <!-- 导航条 -->
@@ -37,15 +38,15 @@
 </nav>
 
 	<div class="titleName">
-		<h3>上传求书信息</h3>
-		<p>设求书信息</p>
+		<h3>编辑二手书信息</h3>
 	</div>
 
-	<div class="ask container">
+	<div class="container">
 		<form>
 			<p>
 				<span class="pic-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-				上传书图片： <input type="file" name="item-pic">
+				修改书图片： <input type="file" name="item-pic" id="item-file">
+				<img id="item-pic" src="img/loadPic.png">
 			</p>
 			<p>
 				<span class="name-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -54,11 +55,36 @@
 			<p>
 				<span class="author-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 				作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;者：<input type="text" name="item-author">
-			</p>		
+			</p>
+			<p>
+				<span class="orign-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+				书&nbsp;本&nbsp;&nbsp;原&nbsp;价：<input type="text" name="item-orign">	
+			</p>
+			<p>
+				<span class="price-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+				书&nbsp;本&nbsp;&nbsp;售&nbsp;价：<input type="text" name="item-price">	
+			</p>			
 			<p>
 				<span class="press-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 				出&nbsp;&nbsp;&nbsp;&nbsp;版&nbsp;&nbsp;&nbsp;社：<input type="text" name="item-press">	
 			</p>
+			<p>
+				<span class="time-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+				出&nbsp;版&nbsp;&nbsp;时&nbsp;间：<input type="month" name="item-time">	
+			</p>
+			<p>
+				<span class="version-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+				印&nbsp;刷&nbsp;&nbsp;版&nbsp;本：<input type="text" name="item-version">	
+			</p>
+			<p>
+				<span class="condition-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+				书&nbsp;本&nbsp;&nbsp;品&nbsp;相：<input type="text" name="item-condition">	
+			</p>
+			<p>
+				<span class="desc-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+				书&nbsp;本&nbsp;&nbsp;描&nbsp;述：<input type="text" name="item-desc">
+			</p>
+
 			<input type="submit" class="submit-btn" name="item-submit">															
 		</form>
 	</div>
@@ -66,8 +92,24 @@
 		<a href="#">©2018-2019 二手书交易</a>
 		<a href="#">意见反馈&nbsp;&nbsp;&nbsp;联系我们&nbsp;&nbsp;&nbsp;隐私权声明&nbsp;&nbsp;&nbsp;使用条款</a>
 	</footer>
-
 	<!-- javascript- -->
 	<script type="text/javascript" src="js/login_status.js"></script>
+	<script type="text/javascript" src="js/jquery-3.2.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$("#item-file").change(function(){
+				var filePath = $(this).val().split("\\");
+				var len = filePath.length;
+				var file = filePath[len-1];
+				if (!file) {
+					filePath = "img/loadPic.png"
+				}
+				filePath = "img/"+file;
+				// console.log(filePath);
+				$("#item-pic").attr("src",filePath);
+
+			})
+		});
+	</script>
 </body>
 </html>

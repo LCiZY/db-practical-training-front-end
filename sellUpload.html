@@ -2,32 +2,40 @@
 <html>
 <head>
 	<title>出售物品</title>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="js/vue.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
 	<link rel="stylesheet" type="text/css" href="css/upload.css">
 </head>
 <body>
-	<!-- 导航条 -->
-	<nav class="navbar">
-		<div class="nav-menu">
-			<ul class="menu">
-				<li><a class="active" href="index.html">首页</a></li>
-				<li><a href="#">书籍良品</a></li>
-				<li><a href="#">求书区</a></li>
-				<li><a href="#">服务区</a></li>
-			</ul>				
-		</div><!-- nav-menu -->
+<!-- 导航条 -->
+<nav class="navbar">
+	<div class="nav-menu">
+		<ul class="menu">
+			<li><a href="index.html">首页</a></li>
+			<li><a href="allItems.html">全部物品</a></li>
+			<li><a href="askItem.html">求物品</a></li>
+			<li><a href="shoppingCart.html">购物车</a></li>
+			<li><a class="active" href="personal.html">个人中心</a></li>
+		</ul>
+	</div><!-- nav-menu -->
 
-		<form class="nav-search">
-			<input type="search" class="searchIn" placeholder="搜物品">
-			<button class="search-logo"><img src="img/search2.png"></button>
-		</form>
+	<form class="nav-search">
+		<input type="search" class="searchIn" placeholder="搜物品">
+		<button class="search-logo"><img src="img/search2.png"></button>
+	</form>
 
-		<div class="nav-info">
-			<a href="#" class="username">chieminchan</a>
-			<a href="myBookshelf.html" class="bookshelf">||&nbsp;&nbsp;&nbsp;我的书架</a>
-			<a href="#" class="logout">[ 退 出 ]</a>
-		</div> <!-- nav-info-end -->
-	</nav>
+	<div class="nav-info" id="login_status">
+			<span v-if="id==''">
+				<a href="login.html" class="username">前往登录</a>
+			</span>
+			<span v-else>
+				<a href="personal.html" class="username">{{name}}</a>
+				<a href="#" class="logout" v-on:click="logout()">[ 退出登录 ]</a>
+			</span>
+	</div> <!-- nav-info -->
+</nav>
+
 	<div class="titleName">
 		<h3>出售二手物品</h3>
 		<p>设置二手物品相关信息</p>
@@ -37,28 +45,28 @@
 		<form class="upload-form" action="#" method="get">
 			<p>
 				<span class="pic-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-				上传物品图片： <input type="file" name="book-pic">
+				上传物品图片： <input type="file" name="item-pic">
 			</p>
 			<p>
 				<span class="name-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-				物&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：<input type="text" name="book-name">
+				物&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：<input type="text" name="item-name">
 			</p>
 
 			<p>
 				<span class="orign-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-				物&nbsp;品&nbsp;&nbsp;原&nbsp;价：<input type="text" name="book-orign">
+				物&nbsp;品&nbsp;&nbsp;原&nbsp;价：<input type="text" name="item-orign">
 			</p>
 			<p>
 				<span class="price-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-				物&nbsp;品&nbsp;&nbsp;售&nbsp;价：<input type="text" name="book-price">
+				物&nbsp;品&nbsp;&nbsp;售&nbsp;价：<input type="text" name="item-price">
 			</p>			
 
 			<p>
 				<span class="desc-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-				物&nbsp;品&nbsp;&nbsp;描&nbsp;述：<textarea type="text" name="book-desc" ></textarea>
+				物&nbsp;品&nbsp;&nbsp;描&nbsp;述：<textarea type="text" name="item-desc" ></textarea>
 			</p>
 
-			<input type="submit" class="submit-btn" name="book-submit">															
+			<input type="submit" class="submit-btn" name="item-submit">															
 		</form>
 	</div>
 
@@ -78,6 +86,8 @@
 		<a href="#">©2018-2019 二手书交易</a>
 		<a href="#">意见反馈&nbsp;&nbsp;&nbsp;联系我们&nbsp;&nbsp;&nbsp;隐私权声明&nbsp;&nbsp;&nbsp;使用条款</a>
 	</footer>
+	<!-- javascript- -->
+	<script type="text/javascript" src="js/login_status.js"></script>
 	<script type="text/javascript" src="js/jquery-3.2.js"></script>
 	
 

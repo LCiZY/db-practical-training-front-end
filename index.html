@@ -15,7 +15,7 @@
 			</span>
 			<span v-else>
 				<a href="personal.html" class="username">{{name}}</a>
-				<a href="#" class="logout" onclick="logout()">[ 退出登录 ]</a>
+				<a href="#" class="logout" v-on:click="logout()">[ 退出登录 ]</a>
 			</span>
 		</div> <!-- nav-info -->
 		<form class="nav-search">
@@ -30,7 +30,7 @@
 			<li><a class="active" href="index.html">首页</a></li>
 			<li><a href="allItems.html">全部物品</a></li>
 			<li><a href="askItem.html">求物品</a></li>
-			<li><a href="#">购物车</a></li>
+			<li><a href="shoppingCart.html">购物车</a></li>
 			<li><a href="personal.html">个人中心</a></li>
 		</ul>			
 	</header>
@@ -64,7 +64,7 @@
 
 	<!-- 物品分类 -->
 	<div id="container">
-		<div class="item-part" id="textbook" v-for="(type,index) in classify" v-if="showing==index">
+		<div class="item-part"  v-for="(type,index) in classify" v-if="showing==index">
 			<h3 class="item-title"><a href="#">| {{type.title}}</a></h3>
 			<a class="more" href="#"> > > 更多</a>
 			<ul class="item-lists">

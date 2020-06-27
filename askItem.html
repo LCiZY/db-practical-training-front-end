@@ -2,111 +2,113 @@
 <html>
 <head>
 	<title>求物品</title>
-	<link rel="stylesheet" type="text/css" href="css/book.css">
+	<meta charset="utf-8">
+	<script type="text/javascript" src="js/vue.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/item.css">
 </head>
 <body>
-	<!-- 导航 -->
-	<header class="navbar">
-		<div class="nav-info" id="personal">
+<!-- 导航 -->
+<header class="navbar">
+	<div class="nav-info" id="login_status">
 			<span v-if="id==''">
 				<a href="login.html" class="username">前往登录</a>
 			</span>
 			<span v-else>
 				<a href="personal.html" class="username">{{name}}</a>
-				<a href="#" class="logout" onclick="logout()">[ 退出登录 ]</a>
+				<a href="#" class="logout" v-on:click="logout()">[ 退出登录 ]</a>
 			</span>
-		</div> <!-- nav-info -->
-		<form class="nav-search">
-			<a href="index.html"><img class="logo" src="img/logo3.png"></a>
-			<div class="search-form">
-				<a href="#" class="search-logo">| &nbsp;<img src="img/search.png"></a>
-				<input type="search" class="searchIn" placeholder="搜物品">
-				<button class="searchBtn">搜索</button>
-			</div>
-		</form><!--  nav-search -->
-		<ul class="menu">
-			<li><a href="index.html">首页</a></li>
-			<li><a href="allItems.html">全部物品</a></li>
-			<li><a class="active" href="askItem.html">求物品</a></li>
-			<li><a href="#">购物车</a></li>
-			<li><a href="personal.html">个人中心</a></li>
-		</ul>
-	</header>
+	</div> <!-- nav-info -->
+	<form class="nav-search">
+		<a href="index.html"><img class="logo" src="img/logo3.png"></a>
+		<div class="search-form">
+			<a href="#" class="search-logo">| &nbsp;<img src="img/search.png"></a>
+			<input type="search" class="searchIn" placeholder="搜物品">
+			<button class="searchBtn">搜索</button>
+		</div>
+	</form><!--  nav-search -->
+	<ul class="menu">
+		<li><a href="index.html">首页</a></li>
+		<li><a href="allItems.html">全部物品</a></li>
+		<li><a class="active" href="askItem.html">求物品</a></li>
+		<li><a href="shoppingCart.html">购物车</a></li>
+		<li><a href="personal.html">个人中心</a></li>
+	</ul>
+</header>
 
 	<!-- 图书分类 -->
 	<div id="container">
-		<div id="book-container">
-			<h3 class="book-title"><a href="#">| 所有求书信息</a></h3>
+		<div id="item-container">
+			<h3 class="item-title"><a href="#">| 所有求书信息</a></h3>
 
-			<ul class="book-lists">
-				<li class="book-list">
-					<a href="#" class="book-pic">
-						<img src="img/book-list/article/1.jpg">
+			<ul class="item-lists">
+				<li class="item-list">
+					<a href="#" class="item-pic">
+						<img src="img/item-list/article/1.jpg">
 					</a>
-					<a href="#" class="book-info askbook-info">
-						<h5 class="book-name">白夜行</h5>
-						<span class="book-auto">东野圭吾 著 </span>
-						<span class="book-press">南海出版公司 / 2008-09 / 平装</span>
+					<a href="#" class="item-info askitem-info">
+						<h5 class="item-name">白夜行</h5>
+						<span class="item-auto">东野圭吾 著 </span>
+						<span class="item-press">南海出版公司 / 2008-09 / 平装</span>
 					</a>
-					<a href="#" class="book-contact">立即联系求书者</a>
+					<a href="#" class="item-contact">立即联系求书者</a>
 				</li>
-				<li class="book-list">
-					<a href="#" class="book-pic">
-						<img src="img/book-list/article/1.jpg">
+				<li class="item-list">
+					<a href="#" class="item-pic">
+						<img src="img/item-list/article/1.jpg">
 					</a>
-					<a href="#" class="book-info askbook-info">
-						<h5 class="book-name">白夜行</h5>
-						<span class="book-auto">东野圭吾 著 </span>
-						<span class="book-press">南海出版公司 / 2008-09 / 平装</span>
+					<a href="#" class="item-info askitem-info">
+						<h5 class="item-name">白夜行</h5>
+						<span class="item-auto">东野圭吾 著 </span>
+						<span class="item-press">南海出版公司 / 2008-09 / 平装</span>
 					</a>
-					<a href="#" class="book-contact">立即联系求书者</a>
+					<a href="#" class="item-contact">立即联系求书者</a>
 				</li>
-				<li class="book-list">
-					<a href="#" class="book-pic">
-						<img src="img/book-list/article/1.jpg">
+				<li class="item-list">
+					<a href="#" class="item-pic">
+						<img src="img/item-list/article/1.jpg">
 					</a>
-					<a href="#" class="book-info askbook-info">
-						<h5 class="book-name">白夜行</h5>
-						<span class="book-auto">东野圭吾 著 </span>
-						<span class="book-press">南海出版公司 / 2008-09 / 平装</span>
+					<a href="#" class="item-info askitem-info">
+						<h5 class="item-name">白夜行</h5>
+						<span class="item-auto">东野圭吾 著 </span>
+						<span class="item-press">南海出版公司 / 2008-09 / 平装</span>
 					</a>
-					<a href="#" class="book-contact">立即联系求书者</a>
+					<a href="#" class="item-contact">立即联系求书者</a>
 				</li>
-				<li class="book-list">
-					<a href="#" class="book-pic">
-						<img src="img/book-list/article/1.jpg">
+				<li class="item-list">
+					<a href="#" class="item-pic">
+						<img src="img/item-list/article/1.jpg">
 					</a>
-					<a href="#" class="book-info askbook-info">
-						<h5 class="book-name">白夜行</h5>
-						<span class="book-auto">东野圭吾 著 </span>
-						<span class="book-press">南海出版公司 / 2008-09 / 平装</span>
+					<a href="#" class="item-info askitem-info">
+						<h5 class="item-name">白夜行</h5>
+						<span class="item-auto">东野圭吾 著 </span>
+						<span class="item-press">南海出版公司 / 2008-09 / 平装</span>
 					</a>
-					<a href="#" class="book-contact">立即联系求书者</a>
+					<a href="#" class="item-contact">立即联系求书者</a>
 				</li>
-				<li class="book-list">
-					<a href="#" class="book-pic">
-						<img src="img/book-list/article/1.jpg">
+				<li class="item-list">
+					<a href="#" class="item-pic">
+						<img src="img/item-list/article/1.jpg">
 					</a>
-					<a href="#" class="book-info askbook-info">
-						<h5 class="book-name">白夜行</h5>
-						<span class="book-auto">东野圭吾 著 </span>
-						<span class="book-press">南海出版公司 / 2008-09 / 平装</span>
+					<a href="#" class="item-info askitem-info">
+						<h5 class="item-name">白夜行</h5>
+						<span class="item-auto">东野圭吾 著 </span>
+						<span class="item-press">南海出版公司 / 2008-09 / 平装</span>
 					</a>
-					<a href="#" class="book-contact">立即联系求书者</a>
+					<a href="#" class="item-contact">立即联系求书者</a>
 				</li>
-				<li class="book-list">
-					<a href="#" class="book-pic">
-						<img src="img/book-list/article/1.jpg">
+				<li class="item-list">
+					<a href="#" class="item-pic">
+						<img src="img/item-list/article/1.jpg">
 					</a>
-					<a href="#" class="book-info askbook-info">
-						<h5 class="book-name">白夜行</h5>
-						<span class="book-auto">东野圭吾 著 </span>
-						<span class="book-press">南海出版公司 / 2008-09 / 平装</span>
+					<a href="#" class="item-info askitem-info">
+						<h5 class="item-name">白夜行</h5>
+						<span class="item-auto">东野圭吾 著 </span>
+						<span class="item-press">南海出版公司 / 2008-09 / 平装</span>
 					</a>
-					<a href="#" class="book-contact">立即联系求书者</a>
+					<a href="#" class="item-contact">立即联系求书者</a>
 				</li>																				
-			</ul><!--  book-list end -->
-		</div> <!-- book-container end-->
+			</ul><!--  item-list end -->
+		</div> <!-- item-container end-->
 
 		<span class="page-btn">
 			<a href="#" class="page-top">首页</a>
@@ -116,10 +118,14 @@
 		</span>			
 	</div><!-- container end-->	
 
-	<!-- 脚本 -->
 	<footer>
 		<a href="#">©2018-2019 二手书交易</a>
 		<a href="#">意见反馈&nbsp;&nbsp;&nbsp;联系我们&nbsp;&nbsp;&nbsp;隐私权声明&nbsp;&nbsp;&nbsp;使用条款</a>
-	</footer>	
+	</footer>
+
+
+	<!-- 脚本 -->
+	<script type="text/javascript" src="js/login_status.js"></script>
+
 </body>
 </html>

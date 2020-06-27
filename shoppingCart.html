@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>购物车</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="js/vue.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/index.css"><!--搬过来的-->
+</head>
+<body>
+
+<!-- 导航 -->
+<header class="navbar">
+    <div class="nav-info" id="login_status">
+			<span v-if="id==''">
+				<a href="login.html" class="username">前往登录</a>
+			</span>
+			<span v-else>
+				<a href="personal.html" class="username">{{name}}</a>
+				<a href="#" class="logout" v-on:click="logout()">[ 退出登录 ]</a>
+			</span>
+    </div> <!-- nav-info -->
+    <form class="nav-search">
+        <a href="index.html"><img class="logo" src="img/logo3.png"></a>
+        <div class="search-form">
+            <a href="#" class="search-logo">| &nbsp;<img src="img/search.png"></a>
+            <input type="search" class="searchIn" placeholder="搜物品">
+            <button class="searchBtn">搜索</button>
+        </div>
+    </form><!--  nav-search -->
+    <ul class="menu">
+        <li><a href="index.html">首页</a></li>
+        <li><a href="allItems.html">全部物品</a></li>
+        <li><a href="askItem.html">求物品</a></li>
+        <li><a class="active" href="shoppingCart.html">购物车</a></li>
+        <li><a href="personal.html">个人中心</a></li>
+    </ul>
+</header>
+
+
+<footer>
+    <a href="#">©2018-2019 二手书交易</a>
+    <a href="#">意见反馈&nbsp;&nbsp;&nbsp;联系我们&nbsp;&nbsp;&nbsp;隐私权声明&nbsp;&nbsp;&nbsp;使用条款</a>
+</footer>
+
+<script type="text/javascript" src="js/login_status.js"></script>
+
+</body>
+</html>

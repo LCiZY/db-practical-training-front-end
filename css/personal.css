@@ -156,14 +156,14 @@
 	position: relative;
 }
 
-#sell-book,
-#ask-book {
+#sell-item,
+#ask-item {
 	width: 80%;
 	height: auto;
 	margin:10px auto;
 }
 
-#ask-book{
+#ask-item{
 	display: none;
 }
 
@@ -191,7 +191,7 @@
 	font-size: 14px;
 }
 
-#sell-upload:hover,#ask-upload:hover,#delete-book:hover{
+#sell-upload:hover,#ask-upload:hover,#delete-item:hover{
 	border: 1px solid #ae6d6a;
 	background-color: #ae6d6a;
 	color: white;	
@@ -201,7 +201,7 @@
 	display: none;
 }
 
-#delete-book{
+#delete-item{
 	margin-top: 5px;
 	position: absolute;
 	right: 20px;
@@ -213,7 +213,7 @@
 	border-radius: 3px;	
 }
 
-.book-ul{
+.item-ul{
 	width: 100%;
 	height: auto;
 	/*border: 1px solid #ccc;*/
@@ -225,7 +225,7 @@
 	margin-top: 35px;
 }
 
-.book-list{
+.item-list{
 	width: 30%;
 	min-width: 30%;
 	height: 320px;
@@ -242,7 +242,7 @@
 	position: relative;
 }
 
-.book-pic{
+.item-pic{
 	width: 80%;
 	height: 180px;
 	border-bottom: 1px solid gray;
@@ -252,12 +252,12 @@
 	margin:2px auto;
 }
 
-.book-pic img{
+.item-pic img{
 	margin:auto;	
 	width: 150px;
 }
 
-.book-name{
+.item-name{
 	width: 100%;
 	line-height: 26px;
 	text-align: center;
@@ -265,7 +265,7 @@
 	color: #ae6d6a;
 }
 
-.book-detail{
+.item-detail{
 	width: 100%;
 	height: 34px;
 	line-height: 18px;
@@ -275,11 +275,11 @@
 	font-size: 14px;
 	word-wrap:break-word;
 }
-.book-detail p{
+.item-detail p{
 	line-height: 22px;
 }
 
-.book-price,.original-price{
+.item-price,.original-price{
 	width: 100%;
 	height: 34px;
 	font-size: 15px;
@@ -311,7 +311,7 @@
 	z-index: 9999 !important;
 }
 
-.book-id{
+.item-id{
 	display: none;
 }
 
