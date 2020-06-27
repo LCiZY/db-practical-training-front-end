@@ -1,8 +1,8 @@
 /**
  * Created by 14752 on 2020-06-27.
  */
-var personal = new Vue({
-    el:'#personal',
+var login_status = new Vue({
+    el:'#login_status',
     data:{
         id:'201830663124',
         name:'toddxxx'
@@ -13,7 +13,7 @@ var personal = new Vue({
 })
 
 function logout(){
-    personal.id=''
+    login_status.id=''
 }
 
 

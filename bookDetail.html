@@ -6,6 +6,23 @@
 	<link rel="stylesheet" type="text/css" href="css/bookDetail.css">
 </head>
 <body>
+<script>
+	var id = getParams("id");
+	console.log(id);
+
+
+	//获取传过来的值
+	function getParams(key) {
+		var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
+		var r = window.location.search.substr(1).match(reg);
+		if (r != null) {
+			return unescape(r[2]);
+		}
+		return null;
+	};
+
+</script>
+
 	<nav class="navbar">
 		<div class="nav-menu">
 			<ul class="menu">
