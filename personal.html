@@ -40,6 +40,7 @@
 	<div id="personal">
 	<!-- 个人信息 -->
 	<div class="person-info">
+		
 		<p>
 			<a href="#" class="name">{{nickname}}</a>
 		</p>
@@ -81,8 +82,8 @@
 		<a id="delete-item" href="#" hidden="true">删除二手物品</a>
 		-->
 
-		<a class="upload" href="sellUpload.html?open_type='sell'" v-if="sellItem" >上传出售物品</a>
-		<a class="upload" href="sellUpload.html?open_type='ask'" v-else>上传求物品信息</a>
+		<a class="upload" href="sellUpload.html" v-if="sellItem" >上传出售物品</a>
+		<a class="upload" href="askUpload.html" v-else>上传求物品信息</a>
 		<a class="delete" href="#" v-on:click="delete_item">删除二手物品</a>
 
 	</div>
@@ -125,9 +126,7 @@
 	
 	<!-- javascript- -->
 	<script type="text/javascript" src="js/jquery-3.2.js"></script>
-	<script type="text/javascript" src="js/login_status.js"></script>
-	<script type="text/javascript" src="js/personal.js" charset="gb2312">
-
-	</script>
+	<script type="text/javascript" src="js/login_status.js" charset="gb2312"></script>
+	<script type="text/javascript" src="js/personal.js" charset="gb2312"></script>
 </body>
 </html>

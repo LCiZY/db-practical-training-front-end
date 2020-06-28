@@ -1,21 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>校园二手书交易平台</title>
-	<link rel="stylesheet" type="text/css" href="css/reset.css">
+	<title>登录</title>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="js/vue.js"></script>
+
 	<link rel="stylesheet" type="text/css" href="css/login.css">
 </head>
 <body>
+
 	<div id="login-container">
-		<h3>校园二手书交易平台</h3>
-		<form>
-			<input type="text" name="userName" class="userName" placeholder="学号"><br/>
+		<h3>校园二手物品交易平台</h3>
+		<!--登录表单-->
+		<form v-if="type=='login'">
+			<input type="text" name="userName" class="userName" placeholder="账号"><br/>
 			<input type="password" name="password" class="password" placeholder="密码"><br/>
+			<a class="forgetPass" href="#" v-on:click="to_signUp">没有账号？前往注册</a> <br>
 			<a class="forgetPass" href="#">忘记密码?</a><br/>
-			<button class="loginBtn">
-				<a href="#">登录</a>
-			</button><br/>
+			<button class="loginBtn">登录</button><br/>
+			<button class="returnBtn"><a href="index.html">返回首页</a></button>
+
+		</form>
+		<!--注册表单-->
+		<form v-else>
+			<input type="text" name="userName" class="userName" placeholder="账号"><br/>
+			<input type="password" name="password1" class="password" placeholder="密码"><br/>
+			<input type="password" name="password2" class="password" placeholder="再次输入密码"><br/>
+			<a class="forgetPass" href="#" v-on:click="to_login">已有账号，前往登录</a> <br>
+			<button class="loginBtn">注册</button><br/>
+			<button class="returnBtn"><a href="index.html">返回首页</a></button>
 		</form>
 	</div>
+
+	<script type="text/javascript" src="js/login_status.js" charset="gb2312"></script>
+	<script type="text/javascript" src="js/login.js" charset="gb2312"></script>
 </body>
 </html>

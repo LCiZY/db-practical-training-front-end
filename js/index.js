@@ -17,7 +17,7 @@ var index = new Vue({
             this.showing=index
         },
         to_detail:function(id){
-            window.location.href="itemDetail.html?id="+id
+            window.location.href="itemDetail.html?open_type=sell&id="+id
         }
     }
 

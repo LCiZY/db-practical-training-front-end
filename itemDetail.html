@@ -9,19 +9,7 @@
 </head>
 <body>
 <script>
-	var id = getParams("id");
-	console.log(id);
 
-
-	//获取传过来的值
-	function getParams(key) {
-		var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
-		var r = window.location.search.substr(1).match(reg);
-		if (r != null) {
-			return unescape(r[2]);
-		}
-		return null;
-	};
 
 </script>
 
@@ -53,51 +41,75 @@
 	</div> <!-- nav-info -->
 </nav>
 
+<div id="itemDetail">
+	<div class="titleName">
+		<h3 v-if="open_type=='sell'">查看物品详情</h3>
+		<h3 v-else>所求物品详情</h3>
+	</div>
+
 	<div class="container">
 		<div id="item-pic">
 			<div class="item-big">
-				<img src="img/item-detail/1.jpg">
+				<img :src="cover">
 			</div>
 			<span class="tip"></span>
 		</div> <!-- item-pic-end -->
 
 		<div id="item-info">
-			<span class="item-name">二手书《目送》</span>
-			<span class="item-publish">龙应台 著</span>
-			<span class="item-price">
-				<p>售价 <a class="final-price">￥13.00</a></p>
-				<p>原价 <a class="orignal-price">￥39.00 </a></p>
+			<span class="item-name">{{title}}</span>
+			<span class="item-publish">所属类型：{{item_type}}</span>
+			<span class="item-price" v-if="open_type=='sell'">
+				<p>售价 <a class="final-price">￥{{now_price}}</a></p>
+				<p>原价 <a class="orignal-price">￥{{old_price}} </a></p>
 			</span>
 			<span class="item-descr">
-				<p>物品描述<a class="item-desc">有点水印,但并不影响阅读</a></p>
+				<p>物品描述<a class="item-desc">{{description}}</a></p>
 				<!--<p>上书时间<a class="upload-time">2018-03-20</a></p>-->
 			</span>
-			<span class="buy-now">立即联系卖家进行购买</span>
+
+
+
+			<span class="buy-now">立即联系</span>
 		</div> <!-- item-info-end -->
 
 		<div id="seller-info">
-			<a class="seller-name">骆小胖</a>
+			<a class="seller-name">{{nickname}}</a>
 			<span class="seller-span1">
-				联系<a class="seller-chat">在线联系</a>
+				在线联系<a class="seller-chat">在线联系</a>
 			</span>
 			<span class="seller-span2">
-				<p>电话<a class="seller-num">132-1234-1234</a></p>
-				<p>宿舍<a class="seller-adr">南校C10-101</a></p>
-				<p>好评率<a class="seller-appraise">90.5%</a></p>
+				<p>其他联系<a class="seller-num">{{contact}}</a></p>
+				<p>校区<a class="seller-adr">{{area}}1</a></p>
+				<p>宿舍<a class="seller-adr">{{dormitory}}1</a></p>
+				<p>学院<a class="seller-adr">{{department}}1</a></p>
+				<!--<p>好评率<a class="seller-appraise">90.5%</a></p>-->
 			</span>
+			<!--
 			<span class="seller-span3">
 				<p>[ 去看看卖家的其他商品 ]</p>
 			</span>
+			-->
 		</div><!-- seller-info-end -->
+
+		<h3>其他描述图片：</h3><br>
+		<p v-for="item in other_pic"><img  :src="item"><br></p>
+
+
+
+		<!--
 		<div id="item-content">
 			<span class="item-tip">目送共由七十四篇散文组成，是为一本极具亲情、感人至深的文集。由父亲的逝世、母亲的苍老、儿子的离开、朋友的牵挂、兄弟的携手共行，写出失败和脆弱、失落和放手，写出缠绵不舍和绝然的虚无。正如作者所说：“我慢慢地、慢慢地了解到，所谓父女母子一场，只不过意味着，你和他的缘分就是今生今世不断地在目送他的背影。</span>
 		</div>
+		-->
 	</div><!--  container -->
+</div>
+
 	<footer>
 		<a href="#">©2018-2019 二手书交易</a>
 		<a href="#">意见反馈&nbsp;&nbsp;&nbsp;联系我们&nbsp;&nbsp;&nbsp;隐私权声明&nbsp;&nbsp;&nbsp;使用条款</a>
 	</footer>
 	<!-- javascript- -->
-	<script type="text/javascript" src="js/login_status.js"></script>
+	<script type="text/javascript" src="js/login_status.js" charset="gb2312"></script>
+	<script type="text/javascript" src="js/itemDetail.js" charset="gb2312"></script>
 </body>
 </html>

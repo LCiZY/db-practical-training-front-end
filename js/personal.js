@@ -5,6 +5,7 @@ var personal = new Vue({
     el:'#personal',
     data:{
         //用户信息
+        edit:false,
         nickname:'骆小胖',
         contact:'123',//联系方式
         area:'南校区',//校区

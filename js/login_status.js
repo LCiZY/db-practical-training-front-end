@@ -6,7 +6,7 @@ var login_status = new Vue({
     data:{
         id:'201830663124',
         operation_code:'',
-        name:'toddxxx'
+        name:'ÂæÐ¡ÅÖ'
     },
     methods:{
         logout:function(){
