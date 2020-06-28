@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
 	<title>全部物品</title>
 	<meta charset="utf-8">
@@ -34,43 +34,39 @@
 		<li><a href="personal.html">个人中心</a></li>
 	</ul>
 </header>
-
-	<!-- 图书分类 -->
+<div id="allItems">
+	<!-- 物品分类 -->
 	<div id="container">
 		<div id="item-menu">
 			<ul class="item-class">
-				<li><a href="#article" title="article">小说 / 文学 / 语言文字</a></li>
-				<li><a href="#">历史 / 地理 / 艺术</a></li>
-				<li><a href="#">政治 / 法律 / 军事</a></li>					
-				<li><a href="#">哲学 / 心理 / 宗教</a></li>
-				<li><a href="#">经济 / 社科 / 综合</a></li>
-				<li><a href="#">童书 / 生活 / 体育</a></li>
-				<li><a href="#">教材 / 教辅 / 考试</a></li>					
-				<li><a href="#">工程技术 / 互联网</a></li>
-				<li><a href="#">自然科学 / 医药卫生</a></li>							
+				<li v-for="(item,index) in classify">
+					<a v-on:click="change_classify(index)">{{item}}</a>
+				</li>
+				<!--<li><a href="#">历史 / 地理 / 艺术</a></li>-->
 			</ul>			
 		</div>
 		<div id="item-menu-toggle">
-			查 看 菜 单
+			分 类 筛 选
 			<div id="toggle-btn"></div>
 		</div>
 
 		<div id="item-container">
-			<h3 class="item-title"><a href="#">| 所有二手书</a></h3>
+			<h3 class="item-title"><a href="#">| 所有物品</a></h3>
 			<ul class="item-lists">
-				<li class="item-list">
+				<li class="item-list" v-for="item in itemList" v-on:click="to_detail(item.id)">
 					<a href="#" class="item-pic">
-						<img src="img/item-list/article/1.jpg">
+						<img :src="item.cover">
 					</a>
 					<a href="#" class="item-info">
-						<h5 class="item-name">白夜行</h5>
-						<span class="item-detail">东野圭吾 著 / 南海出版公司 / 2008-09 / 平装</span>
+						<h5 class="item-name">{{item.title}}</h5>
+						<span class="item-detail"><b>校区：</b>{{item.area}}<br> <b>类型：</b>{{item.type}}</span>
 					</a>
-					<span class="item-price">￥12.9
-						<a href="#" class="item-buy">立即下单</a>
+					<span class="item-price">￥{{item.price}}
+						<a href="#" class="item-buy">查看详情</a>
 					</span>
 				</li>
 
+				<!--
 				<li class="item-list">
 					<a href="#" class="item-pic">
 						<img src="img/item-list/article/2.jpg">
@@ -169,22 +165,28 @@
 					<span class="item-price">￥11.2
 						<a href="#" class="item-buy">立即下单</a>
 					</span>
-				</li>										
+				</li>
+				-->
 			</ul><!--  item-list end -->
 		</div> <!-- item-container end-->
+		<!--
 		<span class="page-btn">
 			<a href="#" class="page-top">首页</a>
 			<a href="#" class="page-pre">上一页</a>
 			<a href="#" class="page-next">下一页</a>
 			<a href="#" class="page-end">尾页</a>
-		</span>			
-	</div><!-- container end-->	
+		</span>
+		-->
+	</div><!-- container end-->
+</div>
+
 	<footer>
 		<a href="#">©2018-2019 二手书交易</a>
 		<a href="#">意见反馈&nbsp;&nbsp;&nbsp;联系我们&nbsp;&nbsp;&nbsp;隐私权声明&nbsp;&nbsp;&nbsp;使用条款</a>
 	</footer>
 	<script type="text/javascript" src="js/jquery-3.2.js"></script>
-	<script type="text/javascript" src="js/login_status.js"></script>
+<script type="text/javascript" src="js/login_status.js"></script>
+	<script type="text/javascript" src="js/allItems.js" charset="gb2312"></script>
 	<script type="text/javascript">
 		$(function(){
 				//菜单特效

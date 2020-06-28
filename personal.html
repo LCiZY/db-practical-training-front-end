@@ -6,6 +6,7 @@
 	<script type="text/javascript" src="js/vue.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
 	<link rel="stylesheet" type="text/css" href="css/personal.css">
+
 </head>
 <body>
 	<!-- 导航条 -->
@@ -36,206 +37,87 @@
 		</div> <!-- nav-info -->
 	</nav>
 
+	<div id="personal">
 	<!-- 个人信息 -->
 	<div class="person-info">
 		<p>
-			<a href="#" class="name">chieminchan</a>
+			<a href="#" class="name">{{nickname}}</a>
 		</p>
 		<p>
-			<a href="#" class="sex">女</a><img src="img/girl.png" id="sex-pic">
+			<a href="#" class="title">用户信息</a>
 		</p>
 		<p class="set">
-			<a href="#" class="edit">编辑个人主页</a>
+			<a href="#" class="edit">编辑个人信息</a>
 			<img class="set-icon" src="img/setting.png">
 		</p>
 		<div class="contact">
 			<p>
 				<span class="call-icon"></span>
 				联&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;系：
-				<a href="#" class="num">13222221111</a></p>
+				<a href="#" class="num">{{contact}}</a></p>
 			<p>
 				<span class="address-icon"></span>
-				住&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：<a href="#"  class="address">22栋B区777</a>
+				校&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;区：<a href="#"  class="address">{{area}}</a>
+			</p>
+			<p>
+				<span class="dorm-icon"></span>
+				宿&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;舍：<a href="#"  class="address">{{dormitory}}</a>
 			</p>
 			<p>
 				<span class="major-icon"></span>
-				年级专业：<a  href="#" class="major">15级信息管理与信息系统</a>
+				学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;院：<a  href="#" class="major">{{department}}</a>
 			</p>
 		</div>
 	</div><!-- person-info-end -->
 
-	<!-- 书摊和求书选项卡 -->
+	<!-- 出售、求物品选项卡 -->
 	<div class="card-btn">
-		<span title="sell-item" id="sell-btn" class="active">我的书摊</span>
-		<span title="ask-item" id="ask-btn">我的求书</span>
+		<span title="sell-item" id="sell-btn" v-bind:class="{active:sellItem}" v-on:click="select_sell">我的出售</span>
+		<span title="ask-item" id="ask-btn" v-bind:class="{active:!sellItem}" v-on:click="select_ask">我的求物品</span>
 		<p class="upload-icon"></p>
-		<a id="sell-upload" href="#">上传书至书摊</a>
-		<a id="ask-upload" href="#">上传求书信息</a>
-		<a id="delete-item" href="#">删除二手书</a>
+		<!--
+		<a id="sell-upload" href="#" hidden="true">上传出售物品</a>
+		<a id="ask-upload" href="#" v-if="sellItem" >上传求物品信息</a>
+		<a id="delete-item" href="#" hidden="true">删除二手物品</a>
+		-->
+
+		<a class="upload" href="sellUpload.html?open_type='sell'" v-if="sellItem" >上传出售物品</a>
+		<a class="upload" href="sellUpload.html?open_type='ask'" v-else>上传求物品信息</a>
+		<a class="delete" href="#" v-on:click="delete_item">删除二手物品</a>
+
 	</div>
 
-	<!-- 我的书摊 -->
-	<div id="container">
-		<div id="sell-item">
+
+	<div id="container" >
+		<!-- 物品 -->
+		<div class="sell-item" >
 			<ul class="item-ul">
-				<li class="item-list">
+
+				<li class="item-list" v-for="(item,index) in showingList">
 					<p class="item-pic">
-						<img src="img/item-list/article/1.jpg">
+						<img :src="item.cover" v-on:click="to_detail(item.id)">
 					</p>
-					<h5 class="item-name">白夜行</h5>
-					<form>
-						<input type="text" name="item-id" class="item-id" value="2">
-					</form>
-					<span class="delete-btn"></span>
-					<span class="edit-btn"></span>
-					<div class="item-detail">
-						<p>原&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="original-price">￥52.0</span></p>
-						<p>售&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="item-price">￥12.9</span></p>
-						<p>品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;相：<span class="item-condition">八五品</span></p>
-						<p>商品描述：<span class="item-desc">有点水印,但并不影响阅读</span></p>
-					</div>
-				</li>
-				<li class="item-list">
-					<p class="item-pic">
-						<img src="img/item-list/article/1.jpg">
-					</p>
-					<h5 class="item-name">白夜行</h5>
-					<form>
-						<input type="text" name="item-id" class="item-id" value="3">
-					</form>
-					<span class="delete-btn"></span>
-					<span class="edit-btn"></span>
-					<div class="item-detail">
-						<p>原&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="original-price">￥52.0</span></p>
-						<p>售&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="item-price">￥12.9</span></p>
-						<p>品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;相：<span class="item-condition">八五品</span></p>
-						<p>商品描述：<span class="item-desc">有点水印,但并不影响阅读</span></p>
+					<h5 class="item-name">{{item.title}}</h5>
+					<span class="delete-btn-select" v-if="item.select" v-on:click="select_item(index)"></span>
+					<span class="delete-btn-blank" v-else v-on:click="select_item(index)"></span>
+
+					<span class="edit-btn" v-on:click="to_edit(item.id)"></span>
+
+					<div class="item-detail" v-on:click="to_detail(item.id)">
+						<p v-if="sellItem">原&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="original-price">￥{{item.old_price}}</span></p>
+						<p v-if="sellItem">售&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="item-price">￥{{item.now_price}}</span></p>
+						<p>校&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;区：<span class="item-condition">{{item.area}}</span></p>
+						<p>类&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;型：<span class="item-desc">{{item.type}}</span></p>
 					</div>
 				</li>
 
-				<li class="item-list">
-					<p class="item-pic">
-						<img src="img/item-list/article/1.jpg">
-					</p>
-					<h5 class="item-name">白夜行</h5>
-					<form>
-						<input type="text" name="item-id" class="item-id" value="4">
-					</form>
-					<span class="delete-btn"></span>
-					<span class="edit-btn"></span>
-					<div class="item-detail">
-						<p>原&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="original-price">￥52.0</span></p>
-						<p>售&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="item-price">￥12.9</span></p>
-						<p>品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;相：<span class="item-condition">八五品</span></p>
-						<p>商品描述：<span class="item-desc">有点水印,但并不影响阅读</span></p>
-					</div>
-				</li>
-
-				<li class="item-list">
-					<p class="item-pic">
-						<img src="img/item-list/article/1.jpg">
-					</p>
-					<h5 class="item-name">白夜行</h5>
-					<form>
-						<input type="text" name="item-id" class="item-id" value="5">
-					</form>
-					<span class="delete-btn"></span>
-					<span class="edit-btn"></span>
-					<div class="item-detail">
-						<p>原&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="original-price">￥52.0</span></p>
-						<p>售&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="item-price">￥12.9</span></p>
-						<p>品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;相：<span class="item-condition">八五品</span></p>
-						<p>商品描述：<span class="item-desc">有点水印,但并不影响阅读</span></p>
-					</div>
-				</li>
-				
-				<li class="item-list">
-					<p class="item-pic">
-						<img src="img/item-list/article/1.jpg">
-					</p>
-					<h5 class="item-name">白夜行</h5>
-					<form>
-						<input type="text" name="item-id" class="item-id" value="1">
-					</form>
-					<span class="delete-btn"></span>
-					<span class="edit-btn"></span>
-					<div class="item-detail">
-						<p>原&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="original-price">￥52.0</span></p>
-						<p>售&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="item-price">￥12.9</span></p>
-						<p>品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;相：<span class="item-condition">八五品</span></p>
-						<p>商品描述：<span class="item-desc">有点水印,但并不影响阅读</span></p>
-					</div>
-				</li>
 			</ul>
-		</div> <!-- sell-item-end -->
+		</div>
 
-		<!-- 我的求书 -->
-		<div id="ask-item">
-			<ul class="item-ul">
-				<li class="item-list">
-					<p class="item-pic">
-						<img src="img/item-list/article/2.jpg">
-					</p>
-					<h5 class="item-name">简爱</h5>
-					<span class="edit-btn"></span>
-					<div class="item-detail">
-						<p>作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;者：<span class="item-author">夏洛特·勃朗特</span></p>
-						<p>出&nbsp; 版&nbsp;社：<span class="item-press">世界图书出版公司</span></p>
-						<p>品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;相：<span class="item-condition">八五品</span></p>
-					</div>
-				</li>
-				<li class="item-list">
-					<p class="item-pic">
-						<img src="img/item-list/article/2.jpg">
-					</p>
-					<h5 class="item-name">简爱</h5>
-					<span class="edit-btn"></span>
-					<div class="item-detail">
-						<p>作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;者：<span class="item-author">夏洛特·勃朗特</span></p>
-						<p>出&nbsp; 版&nbsp;社：<span class="item-press">世界图书出版公司</span></p>
-						<p>品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;相：<span class="item-condition">八五品</span></p>
-					</div>
-				</li>
-				<li class="item-list">
-					<p class="item-pic">
-						<img src="img/item-list/article/2.jpg">
-					</p>
-					<h5 class="item-name">简爱</h5>
-					<span class="edit-btn"></span>
-					<div class="item-detail">
-						<p>作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;者：<span class="item-author">夏洛特·勃朗特</span></p>
-						<p>出&nbsp; 版&nbsp;社：<span class="item-press">世界图书出版公司</span></p>
-						<p>品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;相：<span class="item-condition">八五品</span></p>
-					</div>
-				</li>
-				<li class="item-list">
-					<p class="item-pic">
-						<img src="img/item-list/article/2.jpg">
-					</p>
-					<h5 class="item-name">简爱</h5>
-					<span class="edit-btn"></span>
-					<div class="item-detail">
-						<p>作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;者：<span class="item-author">夏洛特·勃朗特</span></p>
-						<p>出&nbsp; 版&nbsp;社：<span class="item-press">世界图书出版公司</span></p>
-						<p>品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;相：<span class="item-condition">八五品</span></p>
-					</div>
-				</li>
-				<li class="item-list">
-					<p class="item-pic">
-						<img src="img/item-list/article/2.jpg">
-					</p>
-					<h5 class="item-name">简爱</h5>
-					<span class="edit-btn"></span>
-					<div class="item-detail">
-						<p>作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;者：<span class="item-author">夏洛特·勃朗特</span></p>
-						<p>出&nbsp; 版&nbsp;社：<span class="item-press">世界图书出版公司</span></p>
-						<p>品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;相：<span class="item-condition">八五品</span></p>
-					</div>
-				</li>												
-			</ul>
-		</div><!-- ask-item-end-->		
+
 	</div> <!-- container-end -->
 
+</div>
 	<footer>
 		<a href="#">©2018-2019 二手书交易</a>
 		<a href="#">意见反馈&nbsp;&nbsp;&nbsp;联系我们&nbsp;&nbsp;&nbsp;隐私权声明&nbsp;&nbsp;&nbsp;使用条款</a>
@@ -244,6 +126,8 @@
 	<!-- javascript- -->
 	<script type="text/javascript" src="js/jquery-3.2.js"></script>
 	<script type="text/javascript" src="js/login_status.js"></script>
-	<script type="text/javascript" src="js/personal.js"></script>
+	<script type="text/javascript" src="js/personal.js" charset="gb2312">
+
+	</script>
 </body>
 </html>

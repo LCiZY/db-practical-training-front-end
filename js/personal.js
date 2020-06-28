@@ -1,51 +1,75 @@
-$(function(){
+/**
+ * Created by 14752 on 2020-06-27.
+ */
+var personal = new Vue({
+    el:'#personal',
+    data:{
+        //ÓÃ»§ĞÅÏ¢
+        nickname:'ÂæĞ¡ÅÖ',
+        contact:'123',//ÁªÏµ·½Ê½
+        area:'ÄÏĞ£Çø',//Ğ£Çø
+        dormitory:'C10',//ËŞÉá
+        department:'Èí¼şÑ§Ôº',
 
-	//æ ¹æ®æ€§åˆ«æ˜¾ç¤ºå›¾ç‰‡
-	var sex = $(".sex").text().trim();
-	if (sex === "å¥³") {
-		$("#sex-pic").attr("src","img/girl.png");
-	}else if (sex === "ç”·") {
-		$("#sex-pic").attr("src","img/boy.png");
-	}else{
-		$("#sex-pic").attr("src","img/sex-unknow.png");
-	};
+        sellItem:true,  //³öÊÛ¡¢ÇóÎïÆ·, Ñ¡Ôñ³öÊÛÎïÆ·Îªtrue£¬Ñ¡ÔñÇóÎïÆ·Îªfalse
+
+        sellList:[{title:'°×Ò¹ĞĞ',id:123,select:false,old_price:52.0,now_price:13.0,area:'ÄÏĞ£Çø',type:'·Ç½Ì¸¨ÀàÊé¼®',cover:'img/item-list/article/1.jpg'}],
+        askList:[],
+        showingList:[]
+
+    },
+    methods:{
+        //³öÊÛ¡¢ÇëÇóÎïÆ·µÄÇĞ»»
+        select_sell:function(){
+            this.sellItem = true;
+            this.showingList = this.sellList
+        },
+        select_ask:function(){
+            this.sellItem = false;
+            this.showingList = this.askList
+        },
+
+        //Ñ¡ÖĞÎïÆ·£¬ÓÃÓÚÉ¾³ı
+        select_item:function(index){
+
+            if(this.sellItem){
+                //Îª³öÊÛµÄÎïÆ·
+                this.sellList[index].select = !this.sellList[index].select;
+                this.showingList[index].select = this.sellList[index].select
+            }
+            else{
+                //ÎªÇëÇóµÄÎïÆ·
+                this.askList[index].select = !this.askList[index].select;
+                this.showingList[index].select = this.askList[index].select
+            }
+
+        },
+
+        //É¾³ı£¬´´½¨¸öÊı×é¼ÇÂ¼Ñ¡ÔñµÄÎïÆ·id
+        delete_item:function(){
+            var type;
+            if(this.sellItem){
+                //Îª³öÊÛµÄÎïÆ·
+            }
+            else{
+                //ÎªÇëÇóµÄÎïÆ·
+            }
+        },
+
+        to_edit:function(id){
+            alert('±à¼­')
+            if(this.sellItem){
+                //Îª³öÊÛµÄÎïÆ·
+            }
+            else{
+                //ÎªÇëÇóµÄÎïÆ·
+            }
+        }
 
 
-	//åˆ‡æ¢é€‰é¡¹å¡ï¼Œå¹¶æ ¹æ®å¯¹åº”é€‰å‹å¡æ˜¾ç¤ºæŒ‰é’®
-	$(".card-btn").find("span").on("click",function(){
-		var title = $(this).attr("title");
-		var name = $(this).attr("id");
-		var showName = name.split("-")[0];
-		$(this).addClass("active").siblings("span").removeClass("active");
-		$(this).parent().find("#"+showName+"-upload").show().siblings("a").hide();
-		$("#container").find("#"+title).show().siblings("div").hide();
-	});
 
-
-	//é€‰æ‹©å¯¹åº”ä¹¦æœ¬è¿›è¡Œé€‰æ‹©åˆ é™¤æ“ä½œ
-	var itemIdArr=[],itemId;
-	$("span.delete-btn").on("click",function(){
-
-		itemId = $(this).siblings("form").find(".item-id").attr("value");
-		//åˆ¤æ–­æ•°ç»„é‡Œæ˜¯å¦æœ‰itemId,æ— åˆ™è¿”å›-1
-		if($.inArray(itemId ,itemIdArr) == - 1){ 
-			$(this).css("background-image","url(img/delete1.jpg)");
-			itemIdArr.push(itemId);
-			// console.log(itemIdArr);
-		}else{
-			$(this).css("background-image","url(img/delete2.jpg)");
-			itemIdArr = $.grep(itemIdArr,function(val){
-				return val != itemId;
-			});
-			// console.log(itemIdArr);			
-		}		
-	});
-
-
-	//ç‚¹å‡»åˆ é™¤å›¾æ ‡ï¼Œç¡®è®¤æ˜¯å¦åˆ é™¤
-	var flag  = false;
-	$("#delete-item").on("click",function(){
-		var flag = confirm("ç¡®å®šåˆ é™¤æ‰€é€‰æ‹©çš„äºŒæ‰‹ä¹¦å—ï¼Ÿ");
-	})
-
-});
+    },
+    created:function(){
+        this.showingList = this.sellList
+    }
+})

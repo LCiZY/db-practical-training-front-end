@@ -172,7 +172,7 @@
 
 #item-menu{
 	width: 180px;
-	height: 290px;
+	height: 320px;/*290*/
 	/*background: red;*/
 	margin: 20px auto;
 	position: fixed;

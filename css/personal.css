@@ -72,7 +72,7 @@
 	height: 29px;
 }
 
-.person-info .sex{
+.person-info .title{
 	line-height: 36px;
 	/*margin-top: 15px;*/
 	margin-left: -15px;
@@ -81,7 +81,7 @@
 	font-weight: 600;
 }
 
-.person-info #sex-pic{
+.person-info #title-pic{
 	width: 27px;
 	height: 27px;
 	margin-top: 5px;
@@ -102,6 +102,7 @@
 }
 
 .address-icon,
+.dorm-icon,
 .call-icon,
 .major-icon {
 	width: 25px;
@@ -115,6 +116,10 @@
 
 .address-icon{
 	background-image: url(../img/address.png);
+}
+
+.dorm-icon{
+	background-image: url(../img/dorm.png);
 }
 
 .call-icon{
@@ -156,8 +161,8 @@
 	position: relative;
 }
 
-#sell-item,
-#ask-item {
+.sell-item,
+.ask-item {
 	width: 80%;
 	height: auto;
 	margin:10px auto;
@@ -191,6 +196,19 @@
 	font-size: 14px;
 }
 
+.upload{
+	text-decoration: none;
+	padding: 3px 10px;
+	border: 2px solid #ae6d6a;
+	background-color: white;
+	color: #ae6d6a;
+	border-radius: 3px;
+	position: absolute;
+	right: 140px;
+	margin-top: 5px;
+	font-size: 14px;
+}
+
 #sell-upload:hover,#ask-upload:hover,#delete-item:hover{
 	border: 1px solid #ae6d6a;
 	background-color: #ae6d6a;
@@ -211,6 +229,18 @@
 	font-size: 14px;
 	color: #ae6d6a;
 	border-radius: 3px;	
+}
+
+.delete{
+	margin-top: 5px;
+	position: absolute;
+	right: 20px;
+	text-decoration: none;
+	padding: 3px 10px;
+	border: 2px solid #ae6d6a;
+	font-size: 14px;
+	color: #ae6d6a;
+	border-radius: 3px;
 }
 
 .item-ul{
@@ -298,10 +328,23 @@
 	cursor: pointer;
 }
 
-.delete-btn{
+.delete-btn-blank{
 	width: 28px;
 	height: 28px;
 	background-image: url(../img/delete2.jpg);
+	background-size: cover;
+	background-position: center;
+	position: absolute;
+	left: 3px;
+	top: 4px;
+	cursor: pointer;
+	z-index: 9999 !important;
+}
+
+.delete-btn-select{
+	width: 28px;
+	height: 28px;
+	background-image: url(../img/delete1.jpg);
 	background-size: cover;
 	background-position: center;
 	position: absolute;

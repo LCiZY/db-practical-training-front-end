@@ -4,7 +4,7 @@
     <title>购物车</title>
     <meta charset="utf-8">
     <script type="text/javascript" src="js/vue.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/index.css"><!--搬过来的-->
+    <link rel="stylesheet" type="text/css" href="css/item.css">
 </head>
 <body>
 
@@ -36,6 +36,27 @@
     </ul>
 </header>
 
+<!-- 购物车 -->
+<div id="container" >
+    <div id="item-container">
+        <h3 class="item-title"><a href="#">| 购物车</a></h3>
+
+        <ul class="item-lists">
+            <li class="item-list" v-for="item in itemList">
+                <a href="#" class="item-pic">
+                    <img :src="item.cover">
+                </a>
+                <a href="#" class="item-info askitem-info">
+                    <h5 class="item-name">{{item.title}}</h5>
+                    <span class="item-auto">校区：{{item.area}}</span>
+                    <span class="item-press">物品类型：{{item.type}}</span>
+                </a>
+                <a href="#" class="item-contact">移出购物车</a>
+            </li>
+
+        </ul><!--  item-list end -->
+    </div> <!-- item-container end-->
+</div>
 
 <footer>
     <a href="#">©2018-2019 二手书交易</a>
@@ -43,6 +64,7 @@
 </footer>
 
 <script type="text/javascript" src="js/login_status.js"></script>
+<script type="text/javascript" src="js/shoppingCart.js" charset="gb2312"></script>
 
 </body>
 </html>
