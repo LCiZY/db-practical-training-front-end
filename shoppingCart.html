@@ -43,16 +43,16 @@
         <h3 class="item-title"><a href="#">| 购物车</a></h3>
 
         <ul class="item-lists">
-            <li class="item-list" v-for="item in itemList">
-                <a href="#" class="item-pic">
+            <li class="item-list" v-for="item in itemList" >
+                <a href="#" class="item-pic" v-on:click="to_detail(item.id)">
                     <img :src="item.cover">
                 </a>
-                <a href="#" class="item-info askitem-info">
+                <a href="#" class="item-info askitem-info" v-on:click="to_detail(item.id)">
                     <h5 class="item-name">{{item.title}}</h5>
-                    <span class="item-auto">校区：{{item.area}}</span>
-                    <span class="item-press">物品类型：{{item.type}}</span>
+                    <span class="item-auto"><b>校区：</b>{{item.area}}</span>
+                    <span class="item-press"><b>类型：</b>{{item.type}}</span>
                 </a>
-                <a href="#" class="item-contact">移出购物车</a>
+                <a href="#" class="item-contact" v-on:click="outCart(item.id)">移出购物车</a>
             </li>
 
         </ul><!--  item-list end -->
@@ -65,6 +65,7 @@
 </footer>
 
 <script type="text/javascript" src="js/login_status.js" charset="gb2312"></script>
+<script type="text/javascript" src="js/search.js" charset="gb2312"></script>
 <script type="text/javascript" src="js/shoppingCart.js" charset="gb2312"></script>
 
 </body>

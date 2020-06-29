@@ -4,7 +4,7 @@
 var login_status = new Vue({
     el:'#login_status',
     data:{
-        id:'201830663124',
+        id:'',
         operation_code:'',
         name:'ÂæĞ¡ÅÖ'
     },

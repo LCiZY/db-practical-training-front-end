@@ -39,8 +39,50 @@
 	</nav>
 
 	<div id="personal">
-	<!-- 个人信息 -->
-	<div class="person-info">
+
+		<!-- 个人信息编辑 -->
+		<form class="person-info" v-if="edit">
+
+			<p>
+				<a href="#" class="name">{{nickname}}</a>
+			</p>
+			<p>
+				<a href="#" class="title">编辑个人信息</a>
+			</p>
+			<p class="set">
+				<a href="#" class="edit" v-on:click="edit_submit">提交</a>
+				<img class="set-icon" src="img/setting.png">
+			</p>
+			<div class="contact">
+				<p>
+					用&nbsp;&nbsp;&nbsp;户&nbsp;&nbsp;&nbsp;名：
+					<input class="num" type="text" v-model="e_nickname"></p>
+				<p>
+				<p>
+					联&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;系：
+					<input class="num" type="text" v-model="e_contact"></p>
+				<p>
+					校&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;区：
+					<select  class="address" v-model="e_area">
+						<option disabled value="">请选择校区</option>
+						<option value="北校区">北校区</option>
+						<option value="南校区">南校区</option>
+						<option value="国际校区">国际校区</option>
+					</select>
+				</p>
+				<p>
+					宿&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;舍：
+					<input class="address" type="text" v-model="e_dormitory">
+				</p>
+				<p>
+					学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;院：
+					<input class="major" type="text" v-model="e_department">
+				</p>
+			</div>
+		</form><!-- person-info-end -->
+
+	<!-- 个人信息展示 -->
+	<div class="person-info" v-else>
 
 		<p>
 			<a href="#" class="name">{{nickname}}</a>
@@ -49,7 +91,7 @@
 			<a href="#" class="title">用户信息</a>
 		</p>
 		<p class="set">
-			<a href="#" class="edit">编辑个人信息</a>
+			<a href="#" class="edit" v-on:click="to_edit_info">编辑个人信息</a>
 			<img class="set-icon" src="img/setting.png">
 		</p>
 		<div class="contact">
@@ -71,6 +113,8 @@
 			</p>
 		</div>
 	</div><!-- person-info-end -->
+
+
 
 	<!-- 出售、求物品选项卡 -->
 	<div class="card-btn">
@@ -103,7 +147,7 @@
 					<span class="delete-btn-select" v-if="item.select" v-on:click="select_item(index)"></span>
 					<span class="delete-btn-blank" v-else v-on:click="select_item(index)"></span>
 
-					<span class="edit-btn" v-on:click="to_edit(item.id)"></span>
+					<span class="edit-btn" v-on:click="to_edit_item(item.id)"></span>
 
 					<div class="item-detail" v-on:click="to_detail(item.id)">
 						<p v-if="sellItem">原&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="original-price">￥{{item.old_price}}</span></p>
@@ -128,6 +172,7 @@
 	<!-- javascript- -->
 	<script type="text/javascript" src="js/jquery-3.2.js"></script>
 	<script type="text/javascript" src="js/login_status.js" charset="gb2312"></script>
+	<script type="text/javascript" src="js/search.js" charset="gb2312"></script>
 	<script type="text/javascript" src="js/personal.js" charset="gb2312"></script>
 </body>
 </html>

@@ -55,12 +55,20 @@ var allItems = new Vue({
         }
     },
     created:function(){
-        //从首页跳转传index
-        var index= this.getParams("index")
-        if(index==null){//如果是点击导航过来，index==null，获取全部分类
-            index=0
+        if(this.getParams("open_type")=='search'){
+            //通过搜索跳转的
+            var keyWord=search.keyWord
+            console.log('搜索'+keyWord)
         }
-        this.change_classify(index)
+        else{
+            //从首页跳转传index
+            var index= this.getParams("index")
+            if(index==null){//如果是点击导航过来，index==null，获取全部分类
+                index=0
+            }
+            this.change_classify(index)
+        }
+
 
     }
 

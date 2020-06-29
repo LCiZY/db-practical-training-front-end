@@ -71,7 +71,7 @@
 
 
 			<span class="buy-now">立即联系</span>
-			<span class="buy-now" v-if="open_type=='sell'" v-on:click="addCart">加入购物车</span>
+			<span class="buy-now" v-if="open_type=='sell'" v-on:click="addCart">{{cart_status}}</span>
 		</div> <!-- item-info-end -->
 
 		<div id="seller-info">
@@ -81,9 +81,9 @@
 			</span>
 			<span class="seller-span2">
 				<p>其他联系<a class="seller-num">{{contact}}</a></p>
-				<p>校区<a class="seller-adr">{{area}}1</a></p>
-				<p>宿舍<a class="seller-adr">{{dormitory}}1</a></p>
-				<p>学院<a class="seller-adr">{{department}}1</a></p>
+				<p>校区<a class="seller-adr">{{area}}</a></p>
+				<p>宿舍<a class="seller-adr">{{dormitory}}</a></p>
+				<p>学院<a class="seller-adr">{{department}}</a></p>
 				<!--<p>好评率<a class="seller-appraise">90.5%</a></p>-->
 			</span>
 			<!--
@@ -112,6 +112,7 @@
 	</footer>
 	<!-- javascript- -->
 	<script type="text/javascript" src="js/login_status.js" charset="gb2312"></script>
+	<script type="text/javascript" src="js/search.js" charset="gb2312"></script>
 	<script type="text/javascript" src="js/itemDetail.js" charset="gb2312"></script>
 </body>
 </html>

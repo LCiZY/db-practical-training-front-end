@@ -5,12 +5,19 @@ var personal = new Vue({
     el:'#personal',
     data:{
         //用户信息
-        edit:false,
         nickname:'骆小胖',
         contact:'123',//联系方式
         area:'南校区',//校区
         dormitory:'C10',//宿舍
         department:'软件学院',
+
+        edit:false,//个人信息是否为编辑状态
+        //下面的是编辑的，用于提交http
+        e_nickname:'',
+        e_contact:'',//联系方式
+        e_area:'',//校区
+        e_dormitory:'',//宿舍
+        e_department:'',
 
         sellItem:true,  //出售、求物品, 选择出售物品为true，选择求物品为false
 
@@ -18,8 +25,40 @@ var personal = new Vue({
         askList:[],
         showingList:[]
 
+
     },
     methods:{
+        to_edit_info:function(){
+            this.edit=true
+        },
+        //提交修改的个人信息
+        edit_submit:function(){
+            axios.get('server/test.php', {
+                params: {
+                    user_id:login_status.id,
+                    operation_code:login_status.operation_code,
+
+                    nickname:this.e_nickname,
+                    contact:this.e_contact,
+                    area:this.e_area,
+                    dormitory:this.e_dormitory,
+                    department:this.e_department
+                }
+            })
+                .then(function (response) {
+                    console.log(response);
+                    this.nickname=this.e_nickname;
+                    this.contact=this.e_contact;
+                    this.area=this.e_area;
+                    this.dormitory=this.e_dormitory;
+                    this.department=this.e_department
+
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+            this.edit=false
+        },
         //出售、请求物品的切换
         select_sell:function(){
             this.sellItem = true;
@@ -50,20 +89,43 @@ var personal = new Vue({
         delete_item:function(){
             var type;
             if(this.sellItem){
-                //为出售的物品
+                //删除出售的物品，返回物品列表
+                //发送用户id，物品id字符串，用空格隔开
+                var idList='';
+                for(var i=0; i<this.sellList.length; i++){
+                    if(this.sellList[i].select=true){
+                        idList += this.sellList[i].id
+                    }
+                }
+                axios.get('server/test.php', {
+                    params: {
+                        user_id:login_status.id,
+                        operation_code:login_status.operation_code,
+                        idList:idList
+                    }
+                })
+                    .then(function (response) {
+                        console.log(response);
+                        //this.sellList=response.data.
+                        //this.showingList = this.sellList
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
             }
             else{
-                //为请求的物品
+                //删除请求的物品
             }
         },
 
-        to_edit:function(id){
+        //编辑功能还没写
+        to_edit_item:function(id){
             alert('编辑')
             if(this.sellItem){
-                //为出售的物品
+                //编辑出售的物品
             }
             else{
-                //为请求的物品
+                //编辑请求的物品
             }
         }
 
@@ -71,6 +133,59 @@ var personal = new Vue({
 
     },
     created:function(){
-        this.showingList = this.sellList
+        if(login_status.id==''){
+            alert('当前未登录！')
+        }
+        else{
+            //获取用户信息
+            axios.get('server/test.php', {
+                params: {
+                    user_id:login_status.id,
+                    operation_code:login_status.operation_code
+                }
+            })
+                .then(function (response) {
+                    console.log(response);
+                    //this.nickname=response.data.
+                    //this.contact=response.data.
+                    //this.area=response.data.
+                    //this.dormitory=response.data.
+                    //this.department=response.data.
+
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+            //用户创建的出售物品列表,select统一设为false
+            axios.get('server/test.php', {
+                params: {
+                    user_id:login_status.id,
+                    operation_code:login_status.operation_code
+                }
+            })
+                .then(function (response) {
+                    console.log(response);
+                    //this.sellList=response.data.
+                    this.showingList = this.sellList
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+            //用户创建的请求物品列表,select统一设为false
+            axios.get('server/test.php', {
+                params: {
+                    user_id:login_status.id,
+                    operation_code:login_status.operation_code
+                }
+            })
+                .then(function (response) {
+                    console.log(response);
+                    //this.askList=response.data.
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        }
+
     }
 })

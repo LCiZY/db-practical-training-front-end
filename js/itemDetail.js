@@ -22,7 +22,8 @@ var itemDetail = new Vue({
         now_price:13.00,
         old_price:39.00,
         description:'有点水印,但并不影响阅读',
-        other_pic:['img/item-detail/1.jpg','img/item-detail/1.jpg','img/item-detail/1.jpg']
+        other_pic:['img/item-detail/1.jpg','img/item-detail/1.jpg','img/item-detail/1.jpg'],
+        cart_status:'加入购物车'
 
     },
     methods:{
@@ -42,20 +43,45 @@ var itemDetail = new Vue({
                 alert('请先登录')
             }
             else{
-                //发送用户id和code，物品id，加入购物车
-                axios.get('server/test.php', {
-                    params: {
-                        user_id:login_status.id,
-                        operation_code:login_status.operation_code,
-                        item_id:this.item_id
-                    }
-                })
-                    .then(function (response) {
-                        console.log(response);
+                //发送用户id和code，物品id，加入/移出购物车
+                if(this.cart_status=='加入购物车'){
+                    //加入购物车
+                    axios.get('server/test.php', {
+                        params: {
+                            user_id:login_status.id,
+                            operation_code:login_status.operation_code,
+                            item_id:this.item_id
+                        }
                     })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
+                        .then(function (response) {
+                            console.log(response);
+                            this.cart_status='移出购物车'
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+
+                }
+                else{
+                    //移出购物车
+                    axios.get('server/test.php', {
+                        params: {
+                            user_id:login_status.id,
+                            operation_code:login_status.operation_code,
+                            item_id:this.item_id
+                        }
+                    })
+                        .then(function (response) {
+                            console.log(response);
+                            this.cart_status='加入购物车'
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+
+
+                }
+
             }
         }
     },

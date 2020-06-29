@@ -43,22 +43,23 @@
 	</div>
 
 	<div class="container">
-		<form class="upload-form" action="#" method="get">
+		<form class="upload-form" action="server/test.php" method="post" name="sellItem">
 			<p>
 				<span class="pic-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-				封面图： <input type="file" name="item-cover">
+				封面图： <input type="file" name="item_cover">
 			</p>
 			<p>
 				<span class="name-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-				物&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：<input type="text" name="item-name">
+				物&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：<input type="text" name="item_name">
 			</p>
 			<p>
 				所属类型：
 				<select name="item_type">
+					<option disabled value="">请选择</option>
 					<option value="二手教辅">二手教辅</option>
 					<option value="非教辅类书籍">非教辅类书籍</option>
 					<option value="学习用具">学习用具</option>
-					<option value="技能服务"  selected>技能服务</option>
+					<option value="技能服务" >技能服务</option>
 					<option value="手机数码">手机数码</option>
 					<option value="服饰/美妆">服饰/美妆</option>
 					<option value="零食/饮品/水果">零食/饮品/水果</option>
@@ -69,28 +70,28 @@
 
 			<p>
 				<span class="orign-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-				物&nbsp;品&nbsp;&nbsp;原&nbsp;价：<input type="text" name="item-orign">
+				物&nbsp;品&nbsp;&nbsp;原&nbsp;价：<input type="text" name="item_old_price">
 			</p>
 			<p>
 				<span class="price-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-				物&nbsp;品&nbsp;&nbsp;售&nbsp;价：<input type="text" name="item-price">
+				物&nbsp;品&nbsp;&nbsp;售&nbsp;价：<input type="text" name="item_now_price">
 			</p>			
 
 			<p>
 				<span class="desc-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-				物&nbsp;品&nbsp;&nbsp;描&nbsp;述：<textarea type="text" name="item-desc" ></textarea>
+				物&nbsp;品&nbsp;&nbsp;描&nbsp;述：<textarea type="text" name="item_desc" ></textarea>
 			</p>
 			<p>
 				<span class="pic-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-				描述图片1： <input type="file" name="item-pci">
+				描述图片1： <input type="file" name="item_pci1">
 			</p>
 			<p>
 				<span class="pic-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-				描述图片2： <input type="file" name="item-pci">
+				描述图片2： <input type="file" name="item_pci2">
 			</p>
 			<p>
 				<span class="pic-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-				描述图片3： <input type="file" name="item-pci">
+				描述图片3： <input type="file" name="item_pci3">
 			</p>
 
 
@@ -116,6 +117,7 @@
 	</footer>
 	<!-- javascript- -->
 	<script type="text/javascript" src="js/login_status.js" charset="gb2312"></script>
+	<script type="text/javascript" src="js/search.js" charset="gb2312"></script>
 	<script type="text/javascript" src="js/jquery-3.2.js"></script>
 	
 
