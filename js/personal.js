@@ -21,7 +21,7 @@ var personal = new Vue({
 
         sellItem:true,  //出售、求物品, 选择出售物品为true，选择求物品为false
 
-        sellList:[{title:'白夜行',id:123,select:false,old_price:52.0,now_price:13.0,area:'南校区',type:'非教辅类书籍',cover:'img/item-list/article/1.jpg'}],
+        sellList:[{title:'白夜行',id:123,finished:'N',select:false,old_price:52.0,now_price:13.0,type:'非教辅类书籍',cover:'img/item-list/article/1.jpg'}],
         askList:[],
         showingList:[]
 
@@ -83,6 +83,35 @@ var personal = new Vue({
                 this.showingList[index].select = this.askList[index].select
             }
 
+        },
+        //完成交易，发送物品id
+        deal_finished:function(index){
+            var type;
+            var itemID;
+            if(this.sellItem){
+                //出售的物品
+                itemID=this.sellList[index].id;
+                //发送用户id，物品id字符串，用空格隔开
+                axios.get('server/test.php', {
+                    params: {
+                        user_id:login_status.id,
+                        operation_code:login_status.operation_code,
+                        itemID:itemID
+                    }
+                })
+                    .then(function (response) {
+                        console.log(response);
+                        this.sellList[index].finished='Y';
+                        this.showingList = this.sellList
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            }
+            else{
+                //请求的物品
+                itemID=this.askList[index].id;
+            }
         },
 
         //删除，创建个数组记录选择的物品id

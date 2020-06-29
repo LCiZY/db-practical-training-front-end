@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
 	<title>个人中心</title>
 	<meta charset="utf-8">
@@ -152,8 +152,10 @@
 					<div class="item-detail" v-on:click="to_detail(item.id)">
 						<p v-if="sellItem">原&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="original-price">￥{{item.old_price}}</span></p>
 						<p v-if="sellItem">售&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="item-price">￥{{item.now_price}}</span></p>
-						<p>校&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;区：<span class="item-condition">{{item.area}}</span></p>
+						<p v-if="item.finished=='N'">交易进度：<span class="item-condition">未完成交易</span></p>
+						<p v-if="item.finished=='Y'">交易进度：<span class="item-condition">已完成交易</span></p>
 						<p>类&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;型：<span class="item-desc">{{item.type}}</span></p>
+						<button v-if="item.finished=='N'" v-on:click="deal_finished(index)">完成交易</button>
 					</div>
 				</li>
 
