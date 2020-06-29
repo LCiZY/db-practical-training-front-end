@@ -5,8 +5,9 @@
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="css/index.css">
 	<script type="text/javascript" src="js/vue.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
-<body onload="get1()">
+<body>
 	<!-- 导航 -->
 	<header class="navbar">
 		<div class="nav-info" id="login_status">
@@ -66,7 +67,7 @@
 	<div id="container">
 		<div class="item-part"  v-for="(type,index) in classify" v-if="showing==index">
 			<h3 class="item-title"><a href="#">| {{type.title}}</a></h3>
-			<a class="more" href="#"> > > 更多</a>	<!--跳转到全部物品页，传下标-->
+			<a class="more" href="#" v-on:click="getMore(index)" > > > 更多</a>	<!--跳转到全部物品页，传下标-->
 			<ul class="item-lists">
 				<li class="item-list" v-for="item in type.itemList" v-on:click="to_detail(item.id)">
 					<a href="#" class="item-pic">

@@ -5,7 +5,7 @@ var itemDetail = new Vue({
     el:'#itemDetail',
     data:{
         open_type:'sell',
-        item_id:0,
+        item_id:null,
 
 
         //创建者信息
@@ -34,14 +34,52 @@ var itemDetail = new Vue({
                 return unescape(r[2]);
             }
             return null;
+        },
+
+        addCart:function(){
+            //加入购物车
+            if(login_status.id=''){
+                alert('请先登录')
+            }
+            else{
+                //发送用户id和code，物品id，加入购物车
+                axios.get('server/test.php', {
+                    params: {
+                        user_id:login_status.id,
+                        operation_code:login_status.operation_code,
+                        item_id:this.item_id
+                    }
+                })
+                    .then(function (response) {
+                        console.log(response);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            }
         }
     },
+
     created:function(){
         this.item_id = this.getParams("id");
         console.log(this.item_id);
         this.open_type = this.getParams("open_type");
         console.log(this.open_type);
 
+        //发送类型：请求物品ask/出售物品sell，和物品id，获取创建者信息和物品信息。请求物品没有价格信息
+        axios.get('server/test.php', {
+            params: {
+                type:this.open_type,
+                item_id:this.item_id
+            }
+        })
+            .then(function (response) {
+                console.log(response);
+                //this.=
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
 
 
     }

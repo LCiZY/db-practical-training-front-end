@@ -13,13 +13,37 @@ var askItem = new Vue({
     methods:{
         change_classify:function(index){
             //index是classify的下标，发送请求，获取itemList信息
+            var type;
+            if(index==0) {
+                //获取全部类型的全部物品信息，
+                type='all'
+            }
+            else{
+                //否则获取某一类型的全部物品信息
+                type=this.classify[index]
+            }
+
+            axios.get('server/test.php', {
+                params: {
+                    item_type:type
+                }
+            })
+                .then(function (response) {
+                    console.log(response);
+                    //this.itemList=
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+
         },
         to_detail:function(id){
-            window.location.href="itemDetail.html?id="+id
+            window.location.href="itemDetail.html?open_type=ask&id="+id
         }
     },
     created:function(){
         //下标为0发送请求
+        this.change_classify(0)
     }
 
 })

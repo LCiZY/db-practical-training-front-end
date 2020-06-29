@@ -4,6 +4,7 @@
 	<title>物品详情</title>
 	<meta charset="utf-8">
 	<script type="text/javascript" src="js/vue.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
 	<link rel="stylesheet" type="text/css" href="css/itemDetail.css">
 </head>
@@ -70,6 +71,7 @@
 
 
 			<span class="buy-now">立即联系</span>
+			<span class="buy-now" v-if="open_type=='sell'" v-on:click="addCart">加入购物车</span>
 		</div> <!-- item-info-end -->
 
 		<div id="seller-info">

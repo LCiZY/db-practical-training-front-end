@@ -15,10 +15,44 @@ var index = new Vue({
     methods:{
         change_classify:function(index){
             this.showing=index
+            //发送分类类型，获取物品List，信息见上面数据：id,title,area,cover封面图,price是现价。
+            // 获取少部分物品展示，点击“更多”跳转全部物品页才获取全部物品
+            axios.get('server/test.php', {
+                params: {
+                    item_type:this.classify[index].title
+                }
+            })
+                .then(function (response) {
+                    console.log(response);
+                    //this.classify[index].itemList=response.data.
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        },
+        //点击更多，跳转全部物品页
+        getMore:function(index){
+            var newIndex=index+1
+            window.location.href="allItems.html?index="+newIndex
         },
         to_detail:function(id){
             window.location.href="itemDetail.html?open_type=sell&id="+id
         }
+    },
+    created:function(){
+        //初始化，获取二手教辅分类的itemList
+        axios.get('server/test.php', {
+            params: {
+                item_type:'二手教辅'
+            }
+        })
+            .then(function (response) {
+                console.log(response);
+                //this.classify[0].itemList=
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     }
 
 })
