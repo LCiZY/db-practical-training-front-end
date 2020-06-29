@@ -113,6 +113,16 @@ var personal = new Vue({
                 itemID=this.askList[index].id;
             }
         },
+        to_detail:function(id){
+            if(this.sellItem){
+                //出售的物品
+                window.location.href="itemDetail.html?open_type=sell&id="+id
+            }
+            else{
+                //请求的物品
+                window.location.href="itemDetail.html?open_type=ask&id="+id
+            }
+        },
 
         //删除，创建个数组记录选择的物品id
         delete_item:function(){
