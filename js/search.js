@@ -8,9 +8,8 @@ var search = new Vue({
     },
     methods:{
         search:function(){
-            login_status.id='3234'
-            //window.location.href="allItems.html?open_type=search";
-
+            window.location.href="allItems.html?open_type=search";
+            document.cookie = "keyWord="+this.keyWord;//设置缓存。因为页面传值那个函数无法识别中文
         }
     }
 

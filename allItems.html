@@ -55,7 +55,7 @@
 		<div id="item-container">
 			<h3 class="item-title"><a href="#">| 所有物品</a></h3>
 			<ul class="item-lists">
-				<li class="item-list" v-for="item in itemList" v-on:click="to_detail(item.id)">
+				<li class="item-list" v-for="item in itemList" v-on:click="to_detail(item.id,item.requestType)">
 					<a href="#" class="item-pic">
 						<img :src="item.cover">
 					</a>

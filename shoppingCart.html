@@ -20,14 +20,15 @@
 				<a href="#" class="logout" v-on:click="logout()">[ 退出登录 ]</a>
 			</span>
     </div> <!-- nav-info -->
-    <form class="nav-search">
+    <!--搜索框-->
+    <div class="nav-search" id="search" >
         <a href="index.html"><img class="logo" src="img/logo3.png"></a>
         <div class="search-form">
             <a href="#" class="search-logo">| &nbsp;<img src="img/search.png"></a>
-            <input type="search" class="searchIn" placeholder="搜物品">
-            <button class="searchBtn">搜索</button>
+            <input type="search" class="searchIn" placeholder="搜物品" v-model="keyWord">
+            <button class="searchBtn" v-on:click="search">搜索</button>
         </div>
-    </form><!--  nav-search -->
+    </div><!--  nav-search -->
     <ul class="menu">
         <li><a href="index.html">首页</a></li>
         <li><a href="allItems.html">全部物品</a></li>

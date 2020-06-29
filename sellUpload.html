@@ -21,10 +21,11 @@
 		</ul>
 	</div><!-- nav-menu -->
 
-	<form class="nav-search">
-		<input type="search" class="searchIn" placeholder="搜物品">
-		<button class="search-logo"><img src="img/search2.png"></button>
-	</form>
+	<!--搜索框-->
+	<div class="nav-search" id="search">
+		<input type="search" class="searchIn" placeholder="搜物品" v-model="keyWord">
+		<button class="search-logo" v-on:click="search"><img src="img/search2.png"></button>
+	</div>
 
 	<div class="nav-info" id="login_status">
 			<span v-if="id==''">
