@@ -42,7 +42,9 @@ var login = new Vue({
         login:function(){
             //以下为测试代码。放到登录成功的.then里
             var temp_name='骆小胖';
+            console.log(this.userID)
             this.setCookie("user_id",this.userID);
+            console.log( this.getCookie("user_id"));
             this.setCookie("operation_code",this.operation_code);
             this.setCookie("nickname",temp_name);
 
