@@ -33,21 +33,31 @@ var login_status = new Vue({
             this.id='';
             this.operation_code='';
             this.name='';
-            this.setCookie("user_id",'');
-            this.setCookie("operation_code",'');
-            this.setCookie("nickname",'');
+            localStorage.setItem('user_id','');
+            localStorage.setItem('operation_code','');
+            localStorage.setItem('nickname','');
         }
     },
     created:function(){
-        console.log('id'+this.getCookie("user_id"))
-        //创建实例时,通过cookie获取id，name，code
-        if(this.getCookie("user_id")!=null){//考虑当cookie不存在的情况？
-            this.id=this.getCookie("user_id");
-            this.operation_code=this.getCookie("operation_code");
-            this.name=this.getCookie("nickname")
-        }
+        console.log('id:'+localStorage.user_id)
+        //创建实例时,通过本地缓存获取id，name，code
+        if(localStorage.user_id==null||localStorage.user_id=='') return//考虑当cookie不存在的情况？
+        this.id=localStorage.user_id
+        this.operation_code=localStorage.operation_code
+        this.name=localStorage.nickname
+        
 
+    },
+    mounted:function(){
 
+    },
+    beforeMount:function(){
+
+    },
+    beforeUpdate:function(){
+
+    },
+    updated:function(){
 
     }
 })

@@ -1,6 +1,7 @@
 /**
  * Created by 14752 on 2020-06-29.
  */
+
 var search = new Vue({
     el:'#search',
     data:{

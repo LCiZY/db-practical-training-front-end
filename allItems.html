@@ -55,15 +55,15 @@
 		<div id="item-container">
 			<h3 class="item-title"><a href="#">| 所有物品</a></h3>
 			<ul class="item-lists">
-				<li class="item-list" v-for="item in itemList" v-on:click="to_detail(item.id,item.requestType)">
+				<li class="item-list" v-for="item in itemList" v-on:click="to_detail(item.id,item.requestType)" v-if="itemList.length>0">
 					<a href="#" class="item-pic">
-						<img :src="item.cover">
+						<img :src="item.commodity_cover_pic_url">
 					</a>
 					<a href="#" class="item-info">
-						<h5 class="item-name">{{item.title}}</h5>
-						<span class="item-detail"><b>校区：</b>{{item.area}}<br> <b>类型：</b>{{item.type}}</span>
+						<h5 class="item-name">{{item.commodity_name}}</h5>
+						<span class="item-detail"><b>校区：</b>{{item.area}}<br> <b>类型：</b>{{item.commodity_type}}</span>
 					</a>
-					<span class="item-price">￥{{item.price}}
+					<span class="item-price">￥{{item.commodity_price}}
 						<a href="#" class="item-buy">查看详情</a>
 					</span>
 				</li>

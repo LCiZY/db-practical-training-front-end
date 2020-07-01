@@ -2,9 +2,7 @@
  * Created by 14752 on 2020-06-28.
  */
 
-const serverUrl='http://localhost:8080/'
-
-//cookieµÄnameÉèÖÃ£ºuser_id, operation_code, nickname, keyWord
+//cookieçš„nameè®¾ç½®ï¼šuser_id, operation_code, nickname, keyWord
 var login = new Vue({
     el:'#login-container',
     data:{
@@ -16,11 +14,11 @@ var login = new Vue({
 
     },
     methods:{
-        //ÉèÖÃcookieµÄº¯Êı
+        //è®¾ç½®cookieçš„å‡½æ•°
         setCookie:function(cname,cvalue){
             document.cookie = cname + "=" + cvalue;
         },
-        //»ñÈ¡cookieº¯Êı
+        //è·å–cookieå‡½æ•°
         getCookie:function(cname){
             var name = cname + "=";
             var ca = document.cookie.split(';');
@@ -38,44 +36,40 @@ var login = new Vue({
             this.type='login'
         },
 
-        //µÇÂ¼£¬·¢ËÍÕËºÅÃÜÂë£¬·µ»Ø²Ù×÷ÓÃµÄcode£¬ºÍÓÃ»§nickname
+        //ç™»å½•ï¼Œå‘é€è´¦å·å¯†ç ï¼Œè¿”å›æ“ä½œç”¨çš„codeï¼Œå’Œç”¨æˆ·nickname
         login:function(){
-            //ÒÔÏÂÎª²âÊÔ´úÂë¡£·Åµ½µÇÂ¼³É¹¦µÄ.thenÀï
-            var temp_name='ÂæĞ¡ÅÖ';
-            console.log(this.userID)
-            this.setCookie("user_id",this.userID);
-            console.log( this.getCookie("user_id"));
-            this.setCookie("operation_code",this.operation_code);
-            this.setCookie("nickname",temp_name);
-
-            axios.post('server/test.php', {
-                userID:this.userID,
-                password:this.password
-            })
+            let param = new URLSearchParams();
+            param.append("user_id",this.userID)
+            param.append("user_password",this.password)
+            let self=this
+            axios.post(localStorage.serverUrl+'User/login', param)
                 .then(function (response) {
+                    console.log('res:')
                     console.log(response);
-                    //ÏÂÃæÉèÖÃÓÃ»§µÇÂ¼Ì¬
-                    //this.setCookie("user_id",this.userID);
-                    //this.setCookie("operation_code",response.data.);
-                    //this.setCookie("nickname",response.data.);
-
+                    //ä¸‹é¢è®¾ç½®ç”¨æˆ·ç™»å½•æ€
+                    localStorage.setItem('user_id',response.data.map.user_id);
+                    localStorage.setItem('operation_code',response.data.opcode);
+                    localStorage.setItem('nickname',response.data.map.user_name);
+                    window.location.href="index.html";
                 })
                 .catch(function (error) {
                     console.log(error);
                 });
 
         },
-        //×¢²á£¬·¢ËÍÕËºÅÃÜÂëêÇ³Æ£¬ÒªÅĞ¶¨ÊÇ·ñÕËºÅÒÑ´æÔÚ
+        //æ³¨å†Œï¼Œå‘é€è´¦å·å¯†ç æ˜µç§°ï¼Œè¦åˆ¤å®šæ˜¯å¦è´¦å·å·²å­˜åœ¨
         signUp:function(){
             if(this.password==this.password2){
-                axios.post(serverUrl+'User/addUser', {
-                    user_id:this.userID,
-                    user_password:this.password,
-                    user_name:'ĞÂÓÃ»§'+this.userID
-                })
+                let param = new URLSearchParams();
+                param.append("user_id",this.userID)
+                param.append("user_password",this.password)
+                param.append("user_name",'æ–°ç”¨æˆ·'+this.userID)
+                axios.post(localStorage.serverUrl+'User/addUser',param)
                     .then(function (response) {
-                        console.log(response);
-                        //»Øµ½µÇÂ¼Ò³
+                        if(response.data=='-1') {}     //ç”¨æˆ·å·²å­˜åœ¨ï¼Œæ³¨å†Œå¤±è´¥
+                        else if(response.data=='0'){}  //æ³¨å†Œå¤±è´¥
+                        else if(response.data=='1')//æ³¨å†ŒæˆåŠŸ
+                        //å›åˆ°ç™»å½•é¡µ
                         window.location.href="login.html";
                     })
                     .catch(function (error) {
@@ -83,7 +77,7 @@ var login = new Vue({
                     });
             }
             else{
-                alert('Á½´ÎÊäÈëÃÜÂë²»Ò»ÖÂ£¡')
+                alert('ä¸¤æ¬¡è¾“å…¥å¯†ç ä¸ä¸€è‡´ï¼')
             }
 
         }
