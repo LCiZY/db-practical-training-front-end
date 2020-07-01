@@ -2,22 +2,22 @@
  * Created by 14752 on 2020-06-27.
  */
 
-//cookieµÄnameÉèÖÃ£ºuser_id, operation_code, nickname, keyWord
+//cookieçš„nameè®¾ç½®ï¼šuser_id, operation_code, nickname, keyWord
 
 var login_status = new Vue({
     el:'#login_status',
     data:{
-        //Ã¿¸öÒ³Ãæ¶¼»á´´½¨Ò»¸ö×Ô¼ºµÄvueÊµÀı£¬ÏÂÃæµÄÊı¾İÃ¿¸öÒ³Ãæ²»Ò»Ñù
+        //æ¯ä¸ªé¡µé¢éƒ½ä¼šåˆ›å»ºä¸€ä¸ªè‡ªå·±çš„vueå®ä¾‹ï¼Œä¸‹é¢çš„æ•°æ®æ¯ä¸ªé¡µé¢ä¸ä¸€æ ·
         id:'',
         operation_code:'',
         name:''
     },
     methods:{
-        //ÉèÖÃcookieµÄº¯Êı
+        //è®¾ç½®cookieçš„å‡½æ•°
         setCookie:function(cname,cvalue){
             document.cookie = cname + "=" + cvalue;
         },
-        //»ñÈ¡cookieº¯Êı
+        //è·å–cookieå‡½æ•°
         getCookie:function(cname){
             var name = cname + "=";
             var ca = document.cookie.split(';');
@@ -28,7 +28,7 @@ var login_status = new Vue({
             }
             return "";
         },
-        //ÍË³öµÇÂ¼
+        //é€€å‡ºç™»å½•
         logout:function(){
             this.id='';
             this.operation_code='';
@@ -40,8 +40,8 @@ var login_status = new Vue({
     },
     created:function(){
         console.log('id'+this.getCookie("user_id"))
-        //´´½¨ÊµÀıÊ±,Í¨¹ıcookie»ñÈ¡id£¬name£¬code
-        if(this.getCookie("user_id")!=null){//¿¼ÂÇµ±cookie²»´æÔÚµÄÇé¿ö£¿
+        //åˆ›å»ºå®ä¾‹æ—¶,é€šè¿‡cookieè·å–idï¼Œnameï¼Œcode
+        if(this.getCookie("user_id")!=null){//è€ƒè™‘å½“cookieä¸å­˜åœ¨çš„æƒ…å†µï¼Ÿ
             this.id=this.getCookie("user_id");
             this.operation_code=this.getCookie("operation_code");
             this.name=this.getCookie("nickname")

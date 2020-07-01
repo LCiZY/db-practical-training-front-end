@@ -4,16 +4,16 @@
 var allItems = new Vue({
     el:'#allItems',
     data:{
-        classify:['È«²¿', '¶şÊÖ½Ì¸¨', '·Ç½Ì¸¨ÀàÊé¼®','Ñ§Ï°ÓÃ¾ß', '¼¼ÄÜ·şÎñ','ÊÖ»úÊıÂë',
-            '·şÊÎ/ÃÀ×±','ÁãÊ³/ÒûÆ·/Ë®¹û', 'Íæ¾ß/ÓÎÏ·½»Ò×','ÆäËû'],
+        classify:['å…¨éƒ¨', 'äºŒæ‰‹æ•™è¾…', 'éæ•™è¾…ç±»ä¹¦ç±','å­¦ä¹ ç”¨å…·', 'æŠ€èƒ½æœåŠ¡','æ‰‹æœºæ•°ç ',
+            'æœé¥°/ç¾å¦†','é›¶é£Ÿ/é¥®å“/æ°´æœ', 'ç©å…·/æ¸¸æˆäº¤æ˜“','å…¶ä»–'],
 
-        itemList:[{ requestType:'sell',id:0,title:'°×Ò¹ĞĞ',area:'ÄÏĞ£Çø',type:'·Ç½Ì¸¨ÀàÊé¼®',
+        itemList:[{ requestType:'sell',id:0,title:'ç™½å¤œè¡Œ',area:'å—æ ¡åŒº',type:'éæ•™è¾…ç±»ä¹¦ç±',
             cover:'https://img1.doubanio.com/view/subject/l/public/s24514468.jpg',price:'12.9'}]
 
 
     },
     methods:{
-        //»ñÈ¡Ò³Ãæ´«Öµ
+        //è·å–é¡µé¢ä¼ å€¼
         getParams:function(key){
             var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
             var r = window.location.search.substr(1).match(reg);
@@ -22,7 +22,7 @@ var allItems = new Vue({
             }
             return null;
         },
-        //»ñÈ¡cookieº¯Êı
+        //è·å–cookieå‡½æ•°
         getCookie:function(cname){
             var name = cname + "=";
             var ca = document.cookie.split(';');
@@ -33,16 +33,16 @@ var allItems = new Vue({
             }
             return "";
         },
-        //¸Ä±ä·ÖÀà
+        //æ”¹å˜åˆ†ç±»
         change_classify:function(index){
-            //indexÊÇclassifyµÄÏÂ±ê£¬·¢ËÍÇëÇó£¬»ñÈ¡itemListĞÅÏ¢.requestTypeÍ³Ò»ÉèÎªsell
+            //indexæ˜¯classifyçš„ä¸‹æ ‡ï¼Œå‘é€è¯·æ±‚ï¼Œè·å–itemListä¿¡æ¯.requestTypeç»Ÿä¸€è®¾ä¸ºsell
             var type;
             if(index==0) {
-                //»ñÈ¡È«²¿ÀàĞÍµÄÈ«²¿ÎïÆ·ĞÅÏ¢£¬
+                //è·å–å…¨éƒ¨ç±»å‹çš„å…¨éƒ¨ç‰©å“ä¿¡æ¯ï¼Œ
                 type='all'
             }
             else{
-                //·ñÔò»ñÈ¡Ä³Ò»ÀàĞÍµÄÈ«²¿ÎïÆ·ĞÅÏ¢
+                //å¦åˆ™è·å–æŸä¸€ç±»å‹çš„å…¨éƒ¨ç‰©å“ä¿¡æ¯
                 type=this.classify[index]
             }
 
@@ -64,16 +64,16 @@ var allItems = new Vue({
 
         },
         to_detail:function(id,requestType){
-            //requestTypeÎªsell»òask
+            //requestTypeä¸ºsellæˆ–ask
             window.location.href="itemDetail.html?open_type="+requestType+"&id="+id
         }
     },
     created:function(){
         if(this.getParams("open_type")=='search'){
-            //Í¨¹ıËÑË÷Ìø×ªµÄ
+            //é€šè¿‡æœç´¢è·³è½¬çš„
             var keyWord=this.getCookie("keyWord");
             search.keyWord=keyWord;
-            //·¢ËÍ¹Ø¼ü×Ö£¬ËÑË÷ÎïÆ·£¬»ñÈ¡ÎïÆ·ÁĞ±í£¬requestTypeÎªsell»òask
+            //å‘é€å…³é”®å­—ï¼Œæœç´¢ç‰©å“ï¼Œè·å–ç‰©å“åˆ—è¡¨ï¼ŒrequestTypeä¸ºsellæˆ–ask
             axios.get('server/test.php', {
                 params: {
                     item_type:type
@@ -88,9 +88,9 @@ var allItems = new Vue({
                 });
         }
         else{
-            //´ÓÊ×Ò³Ìø×ª´«index
+            //ä»é¦–é¡µè·³è½¬ä¼ index
             var index= this.getParams("index")
-            if(index==null){//Èç¹ûÊÇµã»÷µ¼º½¹ıÀ´£¬index==null£¬»ñÈ¡È«²¿·ÖÀà
+            if(index==null){//å¦‚æœæ˜¯ç‚¹å‡»å¯¼èˆªè¿‡æ¥ï¼Œindex==nullï¼Œè·å–å…¨éƒ¨åˆ†ç±»
                 index=0
             }
             this.change_classify(index)

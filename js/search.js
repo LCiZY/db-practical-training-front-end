@@ -9,7 +9,7 @@ var search = new Vue({
     methods:{
         search:function(){
             window.location.href="allItems.html?open_type=search";
-            document.cookie = "keyWord="+this.keyWord;//ÉèÖÃ»º´æ¡£ÒòÎªÒ³Ãæ´«ÖµÄÇ¸öº¯ÊıÎŞ·¨Ê¶±ğÖĞÎÄ
+            document.cookie = "keyWord="+this.keyWord;//è®¾ç½®ç¼“å­˜ã€‚å› ä¸ºé¡µé¢ä¼ å€¼é‚£ä¸ªå‡½æ•°æ— æ³•è¯†åˆ«ä¸­æ–‡
         }
     }
 

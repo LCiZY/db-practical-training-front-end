@@ -5,18 +5,18 @@ var index = new Vue({
     el:'#index',
     data:{
         classify:[
-            {title:'¶şÊÖ½Ì¸¨',itemList:[{id:0,title:'°×Ò¹ĞĞ',area:'ÄÏĞ£Çø',cover:'https://img1.doubanio.com/view/subject/l/public/s24514468.jpg',price:'12.9'}]},
-            {title:'·Ç½Ì¸¨ÀàÊé¼®',itemList:[]},{title:'Ñ§Ï°ÓÃ¾ß',itemList:[]},
-            {title:'¼¼ÄÜ·şÎñ',itemList:[]},{title:'ÊÖ»úÊıÂë',itemList:[]},
-            {title:'·şÊÎ/ÃÀ×±',itemList:[]},{title:'ÁãÊ³/ÒûÆ·/Ë®¹û',itemList:[]},
-            {title:'Íæ¾ß/ÓÎÏ·½»Ò×',itemList:[]},{title:'ÆäËû',itemList:[]}],
+            {title:'äºŒæ‰‹æ•™è¾…',itemList:[{id:0,title:'ç™½å¤œè¡Œ',area:'å—æ ¡åŒº',cover:'https://img1.doubanio.com/view/subject/l/public/s24514468.jpg',price:'12.9'}]},
+            {title:'éæ•™è¾…ç±»ä¹¦ç±',itemList:[]},{title:'å­¦ä¹ ç”¨å…·',itemList:[]},
+            {title:'æŠ€èƒ½æœåŠ¡',itemList:[]},{title:'æ‰‹æœºæ•°ç ',itemList:[]},
+            {title:'æœé¥°/ç¾å¦†',itemList:[]},{title:'é›¶é£Ÿ/é¥®å“/æ°´æœ',itemList:[]},
+            {title:'ç©å…·/æ¸¸æˆäº¤æ˜“',itemList:[]},{title:'å…¶ä»–',itemList:[]}],
         showing:0
     },
     methods:{
         change_classify:function(index){
             this.showing=index
-            //·¢ËÍ·ÖÀàÀàĞÍ£¬»ñÈ¡ÎïÆ·List£¬ĞÅÏ¢¼ûÉÏÃæÊı¾İ£ºid,title,area,cover·âÃæÍ¼,priceÊÇÏÖ¼Û¡£
-            // »ñÈ¡ÉÙ²¿·ÖÎïÆ·Õ¹Ê¾£¬µã»÷¡°¸ü¶à¡±Ìø×ªÈ«²¿ÎïÆ·Ò³²Å»ñÈ¡È«²¿ÎïÆ·
+            //å‘é€åˆ†ç±»ç±»å‹ï¼Œè·å–ç‰©å“Listï¼Œä¿¡æ¯è§ä¸Šé¢æ•°æ®ï¼šid,title,area,coverå°é¢å›¾,priceæ˜¯ç°ä»·ã€‚
+            // è·å–å°‘éƒ¨åˆ†ç‰©å“å±•ç¤ºï¼Œç‚¹å‡»â€œæ›´å¤šâ€è·³è½¬å…¨éƒ¨ç‰©å“é¡µæ‰è·å–å…¨éƒ¨ç‰©å“
             axios.get('server/test.php', {
                 params: {
                     item_type:this.classify[index].title
@@ -30,7 +30,7 @@ var index = new Vue({
                     console.log(error);
                 });
         },
-        //µã»÷¸ü¶à£¬Ìø×ªÈ«²¿ÎïÆ·Ò³
+        //ç‚¹å‡»æ›´å¤šï¼Œè·³è½¬å…¨éƒ¨ç‰©å“é¡µ
         getMore:function(index){
             var newIndex=index+1
             window.location.href="allItems.html?index="+newIndex
@@ -40,10 +40,10 @@ var index = new Vue({
         }
     },
     created:function(){
-        //³õÊ¼»¯£¬»ñÈ¡¶şÊÖ½Ì¸¨·ÖÀàµÄitemList
+        //åˆå§‹åŒ–ï¼Œè·å–äºŒæ‰‹æ•™è¾…åˆ†ç±»çš„itemList
         axios.get('server/test.php', {
             params: {
-                item_type:'¶şÊÖ½Ì¸¨'
+                item_type:'äºŒæ‰‹æ•™è¾…'
             }
         })
             .then(function (response) {

@@ -2,6 +2,8 @@
  * Created by 14752 on 2020-06-28.
  */
 
+const serverUrl='http://localhost:8080/'
+
 //cookie的name设置：user_id, operation_code, nickname, keyWord
 var login = new Vue({
     el:'#login-container',
@@ -66,10 +68,10 @@ var login = new Vue({
         //注册，发送账号密码昵称，要判定是否账号已存在
         signUp:function(){
             if(this.password==this.password2){
-                axios.post('server/test.php', {
-                    userId:this.userID,
-                    password:this.password,
-                    nickname:'新用户'+this.userID
+                axios.post(serverUrl+'User/addUser', {
+                    user_id:this.userID,
+                    user_password:this.password,
+                    user_name:'新用户'+this.userID
                 })
                     .then(function (response) {
                         console.log(response);

@@ -4,7 +4,7 @@
 var shoppingCart = new Vue({
     el:'#container',
     data:{
-        itemList:[{id:0,title:'°×Ò¹ĞĞ',area:'ÄÏĞ£Çø',type:'·Ç½Ì¸¨ÀàÊé¼®',
+        itemList:[{id:0,title:'ç™½å¤œè¡Œ',area:'å—æ ¡åŒº',type:'éæ•™è¾…ç±»ä¹¦ç±',
             cover:'https://img1.doubanio.com/view/subject/l/public/s24514468.jpg',price:'12.9'}]
     },
     methods:{
@@ -12,7 +12,7 @@ var shoppingCart = new Vue({
             window.location.href="itemDetail.html?open_type=sell&id="+id
         },
         outCart:function(){
-            //ÒÆ³ö¹ºÎï³µ,·µ»Ø×îĞÂµÄ¹ºÎï³µÎïÆ·ÁĞ±í£¬Ò³ÃæÖØĞÂäÖÈ¾
+            //ç§»å‡ºè´­ç‰©è½¦,è¿”å›æœ€æ–°çš„è´­ç‰©è½¦ç‰©å“åˆ—è¡¨ï¼Œé¡µé¢é‡æ–°æ¸²æŸ“
             axios.get('server/test.php', {
                 params: {
                     user_id:login_status.id,
@@ -31,10 +31,10 @@ var shoppingCart = new Vue({
     },
     created:function(){
         if(login_status.id==''){
-            alert('µ±Ç°Î´µÇÂ¼')
+            alert('å½“å‰æœªç™»å½•')
         }
         else{
-            //·¢ËÍÓÃ»§id£¬»ñÈ¡¹ºÎï³µÎïÆ·ÁĞ±í
+            //å‘é€ç”¨æˆ·idï¼Œè·å–è´­ç‰©è½¦ç‰©å“åˆ—è¡¨
             axios.get('server/test.php', {
                 params: {
                     user_id:login_status.id,

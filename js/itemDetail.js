@@ -8,26 +8,26 @@ var itemDetail = new Vue({
         item_id:null,
 
 
-        //´´½¨ÕßĞÅÏ¢
-        nickname:'ÂæĞ¡ÅÖ',
+        //åˆ›å»ºè€…ä¿¡æ¯
+        nickname:'éª†å°èƒ–',
         contact:213432,
-        area:'ÄÏĞ£Çø',
+        area:'å—æ ¡åŒº',
         dormitory:'C10',
-        department:'Èí¼şÑ§Ôº',
+        department:'è½¯ä»¶å­¦é™¢',
 
-        //ÎïÆ·ĞÅÏ¢
-        title:'¶şÊÖÊé¡¶Ä¿ËÍ¡·',
+        //ç‰©å“ä¿¡æ¯
+        title:'äºŒæ‰‹ä¹¦ã€Šç›®é€ã€‹',
         cover:'img/item-detail/1.jpg',
-        item_type:'·Ç½Ì¸¨ÀàÊé¼®',
+        item_type:'éæ•™è¾…ç±»ä¹¦ç±',
         now_price:13.00,
         old_price:39.00,
-        description:'ÓĞµãË®Ó¡,µ«²¢²»Ó°ÏìÔÄ¶Á',
+        description:'æœ‰ç‚¹æ°´å°,ä½†å¹¶ä¸å½±å“é˜…è¯»',
         other_pic:['img/item-detail/1.jpg','img/item-detail/1.jpg','img/item-detail/1.jpg'],
-        cart_status:'¼ÓÈë¹ºÎï³µ'
+        cart_status:'åŠ å…¥è´­ç‰©è½¦'
 
     },
     methods:{
-        //»ñÈ¡Ò³Ãæ´«Öµ
+        //è·å–é¡µé¢ä¼ å€¼
         getParams:function(key){
             var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
             var r = window.location.search.substr(1).match(reg);
@@ -38,14 +38,14 @@ var itemDetail = new Vue({
         },
 
         addCart:function(){
-            //¼ÓÈë¹ºÎï³µ
+            //åŠ å…¥è´­ç‰©è½¦
             if(login_status.id=''){
-                alert('ÇëÏÈµÇÂ¼')
+                alert('è¯·å…ˆç™»å½•')
             }
             else{
-                //·¢ËÍÓÃ»§idºÍcode£¬ÎïÆ·id£¬¼ÓÈë/ÒÆ³ö¹ºÎï³µ
-                if(this.cart_status=='¼ÓÈë¹ºÎï³µ'){
-                    //¼ÓÈë¹ºÎï³µ
+                //å‘é€ç”¨æˆ·idå’Œcodeï¼Œç‰©å“idï¼ŒåŠ å…¥/ç§»å‡ºè´­ç‰©è½¦
+                if(this.cart_status=='åŠ å…¥è´­ç‰©è½¦'){
+                    //åŠ å…¥è´­ç‰©è½¦
                     axios.get('server/test.php', {
                         params: {
                             user_id:login_status.id,
@@ -55,7 +55,7 @@ var itemDetail = new Vue({
                     })
                         .then(function (response) {
                             console.log(response);
-                            this.cart_status='ÒÆ³ö¹ºÎï³µ'
+                            this.cart_status='ç§»å‡ºè´­ç‰©è½¦'
                         })
                         .catch(function (error) {
                             console.log(error);
@@ -63,7 +63,7 @@ var itemDetail = new Vue({
 
                 }
                 else{
-                    //ÒÆ³ö¹ºÎï³µ
+                    //ç§»å‡ºè´­ç‰©è½¦
                     axios.get('server/test.php', {
                         params: {
                             user_id:login_status.id,
@@ -73,7 +73,7 @@ var itemDetail = new Vue({
                     })
                         .then(function (response) {
                             console.log(response);
-                            this.cart_status='¼ÓÈë¹ºÎï³µ'
+                            this.cart_status='åŠ å…¥è´­ç‰©è½¦'
                         })
                         .catch(function (error) {
                             console.log(error);
@@ -92,7 +92,7 @@ var itemDetail = new Vue({
         this.open_type = this.getParams("open_type");
         console.log(this.open_type);
 
-        //·¢ËÍÀàĞÍ£ºÇëÇóÎïÆ·ask/³öÊÛÎïÆ·sell£¬ºÍÎïÆ·id£¬»ñÈ¡´´½¨ÕßĞÅÏ¢ºÍÎïÆ·ĞÅÏ¢¡£ÇëÇóÎïÆ·Ã»ÓĞ¼Û¸ñĞÅÏ¢
+        //å‘é€ç±»å‹ï¼šè¯·æ±‚ç‰©å“ask/å‡ºå”®ç‰©å“sellï¼Œå’Œç‰©å“idï¼Œè·å–åˆ›å»ºè€…ä¿¡æ¯å’Œç‰©å“ä¿¡æ¯ã€‚è¯·æ±‚ç‰©å“æ²¡æœ‰ä»·æ ¼ä¿¡æ¯
         axios.get('server/test.php', {
             params: {
                 type:this.open_type,

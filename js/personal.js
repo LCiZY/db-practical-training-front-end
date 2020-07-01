@@ -4,24 +4,24 @@
 var personal = new Vue({
     el:'#personal',
     data:{
-        //ÓÃ»§ĞÅÏ¢
-        nickname:'ÂæĞ¡ÅÖ',
-        contact:'123',//ÁªÏµ·½Ê½
-        area:'ÄÏĞ£Çø',//Ğ£Çø
-        dormitory:'C10',//ËŞÉá
-        department:'Èí¼şÑ§Ôº',
+        //ç”¨æˆ·ä¿¡æ¯
+        nickname:'éª†å°èƒ–',
+        contact:'123',//è”ç³»æ–¹å¼
+        area:'å—æ ¡åŒº',//æ ¡åŒº
+        dormitory:'C10',//å®¿èˆ
+        department:'è½¯ä»¶å­¦é™¢',
 
-        edit:false,//¸öÈËĞÅÏ¢ÊÇ·ñÎª±à¼­×´Ì¬
-        //ÏÂÃæµÄÊÇ±à¼­µÄ£¬ÓÃÓÚÌá½»http
+        edit:false,//ä¸ªäººä¿¡æ¯æ˜¯å¦ä¸ºç¼–è¾‘çŠ¶æ€
+        //ä¸‹é¢çš„æ˜¯ç¼–è¾‘çš„ï¼Œç”¨äºæäº¤http
         e_nickname:'',
-        e_contact:'',//ÁªÏµ·½Ê½
-        e_area:'',//Ğ£Çø
-        e_dormitory:'',//ËŞÉá
+        e_contact:'',//è”ç³»æ–¹å¼
+        e_area:'',//æ ¡åŒº
+        e_dormitory:'',//å®¿èˆ
         e_department:'',
 
-        sellItem:true,  //³öÊÛ¡¢ÇóÎïÆ·, Ñ¡Ôñ³öÊÛÎïÆ·Îªtrue£¬Ñ¡ÔñÇóÎïÆ·Îªfalse
+        sellItem:true,  //å‡ºå”®ã€æ±‚ç‰©å“, é€‰æ‹©å‡ºå”®ç‰©å“ä¸ºtrueï¼Œé€‰æ‹©æ±‚ç‰©å“ä¸ºfalse
 
-        sellList:[{title:'°×Ò¹ĞĞ',id:123,finished:'N',select:false,old_price:52.0,now_price:13.0,type:'·Ç½Ì¸¨ÀàÊé¼®',cover:'img/item-list/article/1.jpg'}],
+        sellList:[{title:'ç™½å¤œè¡Œ',id:123,finished:'N',select:false,old_price:52.0,now_price:13.0,type:'éæ•™è¾…ç±»ä¹¦ç±',cover:'img/item-list/article/1.jpg'}],
         askList:[],
         showingList:[]
 
@@ -31,7 +31,7 @@ var personal = new Vue({
         to_edit_info:function(){
             this.edit=true
         },
-        //Ìá½»ĞŞ¸ÄµÄ¸öÈËĞÅÏ¢
+        //æäº¤ä¿®æ”¹çš„ä¸ªäººä¿¡æ¯
         edit_submit:function(){
             axios.get('server/test.php', {
                 params: {
@@ -59,7 +59,7 @@ var personal = new Vue({
                 });
             this.edit=false
         },
-        //³öÊÛ¡¢ÇëÇóÎïÆ·µÄÇĞ»»
+        //å‡ºå”®ã€è¯·æ±‚ç‰©å“çš„åˆ‡æ¢
         select_sell:function(){
             this.sellItem = true;
             this.showingList = this.sellList
@@ -69,29 +69,29 @@ var personal = new Vue({
             this.showingList = this.askList
         },
 
-        //Ñ¡ÖĞÎïÆ·£¬ÓÃÓÚÉ¾³ı
+        //é€‰ä¸­ç‰©å“ï¼Œç”¨äºåˆ é™¤
         select_item:function(index){
 
             if(this.sellItem){
-                //Îª³öÊÛµÄÎïÆ·
+                //ä¸ºå‡ºå”®çš„ç‰©å“
                 this.sellList[index].select = !this.sellList[index].select;
                 this.showingList[index].select = this.sellList[index].select
             }
             else{
-                //ÎªÇëÇóµÄÎïÆ·
+                //ä¸ºè¯·æ±‚çš„ç‰©å“
                 this.askList[index].select = !this.askList[index].select;
                 this.showingList[index].select = this.askList[index].select
             }
 
         },
-        //Íê³É½»Ò×£¬·¢ËÍÎïÆ·id
+        //å®Œæˆäº¤æ˜“ï¼Œå‘é€ç‰©å“id
         deal_finished:function(index){
             var type;
             var itemID;
             if(this.sellItem){
-                //³öÊÛµÄÎïÆ·
+                //å‡ºå”®çš„ç‰©å“
                 itemID=this.sellList[index].id;
-                //·¢ËÍÓÃ»§id£¬ÎïÆ·id×Ö·û´®£¬ÓÃ¿Õ¸ñ¸ô¿ª
+                //å‘é€ç”¨æˆ·idï¼Œç‰©å“idå­—ç¬¦ä¸²ï¼Œç”¨ç©ºæ ¼éš”å¼€
                 axios.get('server/test.php', {
                     params: {
                         user_id:login_status.id,
@@ -109,27 +109,27 @@ var personal = new Vue({
                     });
             }
             else{
-                //ÇëÇóµÄÎïÆ·
+                //è¯·æ±‚çš„ç‰©å“
                 itemID=this.askList[index].id;
             }
         },
         to_detail:function(id){
             if(this.sellItem){
-                //³öÊÛµÄÎïÆ·
+                //å‡ºå”®çš„ç‰©å“
                 window.location.href="itemDetail.html?open_type=sell&id="+id
             }
             else{
-                //ÇëÇóµÄÎïÆ·
+                //è¯·æ±‚çš„ç‰©å“
                 window.location.href="itemDetail.html?open_type=ask&id="+id
             }
         },
 
-        //É¾³ı£¬´´½¨¸öÊı×é¼ÇÂ¼Ñ¡ÔñµÄÎïÆ·id
+        //åˆ é™¤ï¼Œåˆ›å»ºä¸ªæ•°ç»„è®°å½•é€‰æ‹©çš„ç‰©å“id
         delete_item:function(){
             var type;
             if(this.sellItem){
-                //É¾³ı³öÊÛµÄÎïÆ·£¬·µ»ØÎïÆ·ÁĞ±í
-                //·¢ËÍÓÃ»§id£¬ÎïÆ·id×Ö·û´®£¬ÓÃ¿Õ¸ñ¸ô¿ª
+                //åˆ é™¤å‡ºå”®çš„ç‰©å“ï¼Œè¿”å›ç‰©å“åˆ—è¡¨
+                //å‘é€ç”¨æˆ·idï¼Œç‰©å“idå­—ç¬¦ä¸²ï¼Œç”¨ç©ºæ ¼éš”å¼€
                 var idList='';
                 for(var i=0; i<this.sellList.length; i++){
                     if(this.sellList[i].select=true){
@@ -153,18 +153,18 @@ var personal = new Vue({
                     });
             }
             else{
-                //É¾³ıÇëÇóµÄÎïÆ·
+                //åˆ é™¤è¯·æ±‚çš„ç‰©å“
             }
         },
 
-        //±à¼­¹¦ÄÜ»¹Ã»Ğ´
+        //ç¼–è¾‘åŠŸèƒ½è¿˜æ²¡å†™
         to_edit_item:function(id){
-            alert('±à¼­')
+            alert('ç¼–è¾‘')
             if(this.sellItem){
-                //±à¼­³öÊÛµÄÎïÆ·
+                //ç¼–è¾‘å‡ºå”®çš„ç‰©å“
             }
             else{
-                //±à¼­ÇëÇóµÄÎïÆ·
+                //ç¼–è¾‘è¯·æ±‚çš„ç‰©å“
             }
         }
 
@@ -173,10 +173,10 @@ var personal = new Vue({
     },
     created:function(){
         if(login_status.id==''){
-            alert('µ±Ç°Î´µÇÂ¼£¡')
+            alert('å½“å‰æœªç™»å½•ï¼')
         }
         else{
-            //»ñÈ¡ÓÃ»§ĞÅÏ¢
+            //è·å–ç”¨æˆ·ä¿¡æ¯
             axios.get('server/test.php', {
                 params: {
                     user_id:login_status.id,
@@ -195,7 +195,7 @@ var personal = new Vue({
                 .catch(function (error) {
                     console.log(error);
                 });
-            //ÓÃ»§´´½¨µÄ³öÊÛÎïÆ·ÁĞ±í,selectÍ³Ò»ÉèÎªfalse
+            //ç”¨æˆ·åˆ›å»ºçš„å‡ºå”®ç‰©å“åˆ—è¡¨,selectç»Ÿä¸€è®¾ä¸ºfalse
             axios.get('server/test.php', {
                 params: {
                     user_id:login_status.id,
@@ -210,7 +210,7 @@ var personal = new Vue({
                 .catch(function (error) {
                     console.log(error);
                 });
-            //ÓÃ»§´´½¨µÄÇëÇóÎïÆ·ÁĞ±í,selectÍ³Ò»ÉèÎªfalse
+            //ç”¨æˆ·åˆ›å»ºçš„è¯·æ±‚ç‰©å“åˆ—è¡¨,selectç»Ÿä¸€è®¾ä¸ºfalse
             axios.get('server/test.php', {
                 params: {
                     user_id:login_status.id,
