@@ -18,11 +18,10 @@ var index = new Vue({
             var self=this
             //发送分类类型，获取物品List，信息见上面数据：id,title,area,cover封面图,price是现价。
             // 获取少部分物品展示，点击“更多”跳转全部物品页才获取全部物品
-            axios.get(localStorage.serverUrl+'commodity/queryCommoditiesByType?commodity_type='+this.classify[this.showing].title)
+            axios.get(localStorage.serverUrl+'commodity/queryCommoditiesByType?commodity_type='+this.classify[this.showing])
                 .then(function (response) {
                     console.log(response);
-                    self.classify[self.showing].itemList=response.data
-                    //this.classify[index].itemList=response.data.
+                    self.itemList=response.data
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -40,7 +39,7 @@ var index = new Vue({
     created:function(){
         var self=this
         //初始化，获取二手教辅分类的itemList
-        axios.get(localStorage.serverUrl+'commodity/queryCommoditiesByType?commodity_type='+this.classify[0].title)
+        axios.get(localStorage.serverUrl+'commodity/queryCommoditiesByType?commodity_type='+this.classify[0])
             .then(function (response) {
                 self.itemList=response.data
             })

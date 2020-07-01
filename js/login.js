@@ -50,6 +50,8 @@ var login = new Vue({
                     localStorage.setItem('user_id',response.data.map.user_id);
                     localStorage.setItem('operation_code',response.data.opcode);
                     localStorage.setItem('nickname',response.data.map.user_name);
+                    localStorage.setItem('userInfo',JSON.stringify(response.data.map));
+
                     window.location.href="index.html";
                 })
                 .catch(function (error) {

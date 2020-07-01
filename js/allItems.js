@@ -43,23 +43,26 @@ var allItems = new Vue({
             if(this.chooseIndex==index) return
             this.chooseIndex=index
             this.alreadyGot=0
+            this.count=0
+            var self=this
             //index是classify的下标，发送请求，获取itemList信息.requestType统一设为sell
             if(index==0) {
                 //获取全部类型的全部物品信息，
-                axios.get(localStorage.serverUrl+'commodity/getCommodities', {})  
+                axios.get(localStorage.serverUrl+'commodity/getCommodities')  
                     .then(function (response) {
-                       this.itemList=response.data.list;this.count=res.data.count; if(response.data.list.length) this.alreadyGot+=response.data.list.length 
-                       console.log(response);
+                        self.itemList=response.data.list; self.count=response.data.count; if(response.data.list.length) self.alreadyGot+=response.data.list.length 
+                       //console.log(response);
+                       console.log( self.itemList);
                     })
                     .catch(function (error) {
-                       // console.log(error);
+                        console.log(error);
                     });
             }
             else{
                 //否则获取某一类型的全部物品信息
-                axios.get(localStorage.serverUrl+'commodity/getCommodities', { params: {commodity_type:this.classify[index]} } )  
+                axios.get(localStorage.serverUrl+'commodity/queryCommoditiesByType?commodity_type='+self.classify[self.chooseIndex] )  
                     .then(function (response) {
-                       this.itemList=response.data ; if(res.data.length) this.alreadyGot+=response.data.length
+                       self.itemList=response.data ; if(response.data.length) self.alreadyGot+=response.data.length
                        console.log(response);
                     })
                     .catch(function (error) {
