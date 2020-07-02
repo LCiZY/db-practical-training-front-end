@@ -24,7 +24,7 @@ var askItem = new Vue({
             var self=this;
             if(index==0) {
                 //获取全部类型的全部物品信息，
-                axios.get(localStorage.serverUrl+'')
+                axios.get(localStorage.serverUrl+'commodity/getRequiredCommodities')
                     .then(function (response) {
                         self.itemList=response.data.list; self.count=response.data.count;
                         if(response.data.list.length) self.alreadyGot+=response.data.list.length;
@@ -36,16 +36,29 @@ var askItem = new Vue({
                     });
             }
             else{
-                //否则获取某一类型的全部物品信息
-                axios.get(localStorage.serverUrl+'?commodity_type='+self.classify[self.chooseIndex] )
+                //获取全部类型的全部物品信息，
+                axios.get(localStorage.serverUrl+'commodity/getRequiredCommodities')
                     .then(function (response) {
-                        self.itemList=response.data ;
-                        if(response.data.length) self.alreadyGot+=response.data.length;
-                        console.log(response);
+                        self.itemList=response.data.list; self.count=response.data.count;
+                        if(response.data.list.length) self.alreadyGot+=response.data.list.length;
+                        //console.log(response);
+                        console.log( self.itemList);
                     })
                     .catch(function (error) {
-                        // console.log(error);
+                        console.log(error);
                     });
+
+
+                //否则获取某一类型的全部物品信息
+                //axios.get(localStorage.serverUrl+'queryRequiredCommoditiesByType?commodity_type='+self.classify[self.chooseIndex] )
+                //    .then(function (response) {
+                //        self.itemList=response.data ;
+                //        if(response.data.length) self.alreadyGot+=response.data.length;
+                //        console.log(response);
+                //    })
+                //    .catch(function (error) {
+                //        // console.log(error);
+                //    });
             }
 
         },

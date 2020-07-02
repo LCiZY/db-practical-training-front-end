@@ -45,18 +45,15 @@ var itemDetail = new Vue({
             }
             else{
                 //发送用户id和code，物品id，加入/移出购物车
+                var self=this;
                 if(this.cart_status=='加入购物车'){
                     //加入购物车
-                    axios.get('server/test.php', {
-                        params: {
-                            user_id:login_status.id,
-                            operation_code:login_status.operation_code,
-                            item_id:this.item_id
-                        }
-                    })
+                    axios.get(localStorage.serverUrl+'shop/addShopCartItem?user_id='+login_status.id+'&user_login_code='+login_status.operation_code+'&commodity_id='+this.itemList[index].commodity_id)
                         .then(function (response) {
                             console.log(response);
-                            this.cart_status='移出购物车'
+                            //删除该物品
+                            self.itemList.splice(index,1);
+                            self.cart_status='移出购物车'
                         })
                         .catch(function (error) {
                             console.log(error);
@@ -65,20 +62,17 @@ var itemDetail = new Vue({
                 }
                 else{
                     //移出购物车
-                    axios.get('server/test.php', {
-                        params: {
-                            user_id:login_status.id,
-                            operation_code:login_status.operation_code,
-                            item_id:this.item_id
-                        }
-                    })
+                    axios.get(localStorage.serverUrl+'shop/deleteShopCartItem?user_id='+login_status.id+'&user_login_code='+login_status.operation_code+'&commodity_id='+this.itemList[index].commodity_id)
                         .then(function (response) {
                             console.log(response);
-                            this.cart_status='加入购物车'
+                            //删除该物品
+                            self.itemList.splice(index,1);
+                            self.cart_status='加入购物车'
                         })
                         .catch(function (error) {
                             console.log(error);
                         });
+
 
 
                 }
@@ -92,21 +86,65 @@ var itemDetail = new Vue({
         console.log(this.item_id);
         this.open_type = this.getParams("open_type");
         console.log(this.open_type);
-
+        var self=this;
         //发送类型：请求物品ask/出售物品sell，和物品id，获取创建者信息和物品信息。请求物品没有价格信息
-        axios.get('server/test.php', {
-            params: {
-                type:this.open_type,
-                item_id:this.item_id
-            }
-        })
-            .then(function (response) {
-                console.log(response);
-                //this.=
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        if(this.open_type=='sell'){
+            //出售物品
+
+            axios.get(localStorage.serverUrl+'getCommodityById?commodity_id='+self.item_id)
+                .then(function (response) {
+                    console.log(response);
+                    //创建者信息
+                    self.nickname=response.data.user_name;
+                    self.contact=response.data.tel;
+                    self.area=response.data.area;
+                    self.dormitory=response.data.dormitory;
+                    self.department=response.data.academy;
+                    //物品信息
+                    self.title=response.data.commodity_name;
+                    self.cover=response.data.commodity_cover_pic_url;
+                    self.item_type=response.data.commodity_type;
+                    self.now_price=response.data.commodity_price;
+                    self.old_price=response.data.commodity_original_price;
+                    self.description=response.data.commodity_description;
+                    self.other_pic=response.data.image_url;
+                    self.cart_status='加入购物车'
+
+
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        }
+        else{
+            //求物品
+
+            axios.get(localStorage.serverUrl+'getRequiredCommodityById?commodity_id='+self.item_id)
+                .then(function (response) {
+                    console.log(response);
+                    //创建者信息
+                    self.nickname=response.data.user_name;
+                    self.contact=response.data.tel;
+                    self.area=response.data.area;
+                    self.dormitory=response.data.dormitory;
+                    self.department=response.data.academy;
+                    //物品信息
+                    self.title=response.data.commodity_name;
+                    self.cover=response.data.commodity_cover_pic_url;
+                    self.item_type=response.data.commodity_type;
+                    //self.now_price=response.data.commodity_price;
+                    //self.old_price=response.data.commodity_original_price;
+                    self.description=response.data.commodity_description;
+                    self.other_pic=response.data.image_url;
+                    //self.cart_status='加入购物车'
+
+
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        }
+
 
 
     }

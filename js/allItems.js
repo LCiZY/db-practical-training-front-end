@@ -84,8 +84,8 @@ var allItems = new Vue({
             var keyWord=this.getParams("keyWord");
             var self=this;
             search.keyWord=keyWord;
-            //发送关键字，搜索物品，获取物品列表，requestType为sell或ask!!!!!!!!!!??????keyWord????????
-            axios.get(localStorage.serverUrl+'commodity/queryCommoditiesByKeyword?keyWord='+keyWord)
+            //发送关键字，搜索物品，获取物品列表，requestType为sell或ask
+            axios.get(localStorage.serverUrl+'commodity/queryCommoditiesByKeyword?keyword='+keyWord)
                 .then(function (response) {
                    // console.log(response);
                     self.itemList=response.data;
