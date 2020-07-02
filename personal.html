@@ -101,7 +101,7 @@
 				<a href="#" class="num">{{contact}}</a></p>
 			<p>
 				<span class="address-icon"></span>
-				校&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;区：<a href="#"  class="address">{{area}}</a>
+				校&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;区：<a href="#"  class="address">{{user_area}}</a>
 			</p>
 			<p>
 				<span class="dorm-icon"></span>
@@ -141,7 +141,7 @@
 
 				<li class="item-list" v-for="(item,index) in showingList">
 					<p class="item-pic">
-						<img :src="commodity_cover_pic_url" v-on:click="to_detail(item.commodity_id)">
+						<img :src="item.commodity_cover_pic_url" v-on:click="to_detail(item.commodity_id)">
 					</p>
 					<h5 class="item-name">{{item.commodity_name}}</h5>
 					<span class="delete-btn-select" v-if="item.select" v-on:click="select_item(index)"></span>

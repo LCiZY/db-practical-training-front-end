@@ -8,7 +8,7 @@ var personal = new Vue({
         //用户信息
         nickname:'未登录',
         contact:'',//联系方式
-        area:'',//校区
+        user_area:'',//校区
         dormitory:'',//宿舍
         department:'',
 
@@ -48,7 +48,7 @@ var personal = new Vue({
                     console.log(response);
                     self.nickname=self.e_nickname;
                     self.contact=self.e_contact;
-                    self.area=self.e_area;
+                    self.user_area=self.e_area;
                     self.dormitory=self.e_dormitory;
                     self.department=self.e_department
                     login_status.name=self.nickname
@@ -92,7 +92,7 @@ var personal = new Vue({
                 //出售的物品
                 itemID=this.sellList[index].commodity_id;
                 //发送用户id，物品id字符串，用空格隔开
-                axios.get(localStorage.serverUrl+'?user_id='+login_status.id+'&user_login_code='+login_status.operation_code+'&commodity_id='+itemID)
+                axios.get(localStorage.serverUrl+'commodity/transactionDone?user_id='+login_status.id+'&user_login_code='+login_status.operation_code+'&commodity_id='+itemID)
                     .then(function (response) {
                         console.log(response);
                         self.sellList[index].finished='Y';
@@ -134,39 +134,39 @@ var personal = new Vue({
             var idList='';
             if(this.sellItem){
                 //删除出售的物品，返回物品列表
-                //发送用户id，物品id字符串，用空格隔开
-
+                
                 for(var i=0; i<this.sellList.length; i++){
-                    if(this.sellList[i].select=true){
-                        idList += this.sellList[i].commodity_id
+                    if(this.sellList[i].select){
+                        axios.get(localStorage.serverUrl+'commodity/deleteUsersCommodity?user_id='+login_status.id+'&user_login_code='+login_status.operation_code+'&commodity_id='+this.sellList[i].commodity_id)
+                        .then(function (response) {
+                            console.log(response);
+                            //粘贴created的函数
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+
                     }
                 }
-                axios.get(localStorage.serverUrl+'?user_id='+login_status.id+'&user_login_code='+login_status.operation_code+'&commodity_idList='+idList)
-                    .then(function (response) {
-                        console.log(response);
-                        //粘贴created的函数
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
+               
             }
             else{
                 //删除请求的物品
-                //发送用户id，物品id字符串，用空格隔开
+            
                 idList='';
                 for(var j=0; j<this.sellList.length; j++){
-                    if(this.sellList[j].select=true){
-                        idList += this.sellList[j].commodity_id
+                    if(this.sellList[j].select){
+                        axios.get(localStorage.serverUrl+'commodity/deleteUsersRequiredCommodity?user_id='+login_status.id+'&user_login_code='+login_status.operation_code+'&commodity_id='+this.sellList[j].commodity_id)
+                        .then(function (response) {
+                            console.log(response);
+                            //粘贴created的函数
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
                     }
                 }
-                axios.get(localStorage.serverUrl+'?user_id='+login_status.id+'&user_login_code='+login_status.operation_code+'&commodity_idList='+idList)
-                    .then(function (response) {
-                        console.log(response);
-                        //粘贴created的函数
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
+               
             }
         },
 
@@ -185,6 +185,10 @@ var personal = new Vue({
 
     },
     created:function(){
+       
+
+    },
+    mounted:function(){
         if(login_status.id==''){
             alert('当前未登录！')
         }
@@ -201,28 +205,34 @@ var personal = new Vue({
             }
             //用户创建的出售物品列表,select统一设为false
             var self=this;
-            axios.get(localStorage.serverUrl+'getUsersCommodities?user_id='+login_status.id+'&user_login_code='+login_status.operation_code)
+            console.log(self)
+            axios.get(localStorage.serverUrl+'User/getUsersCommodities?user_id='+login_status.id+'&user_login_code='+login_status.operation_code)
                 .then(function (response) {
                     console.log(response);
                     self.sellList=response.data;
-                    self.sellList['select']=false;
+                    for(i=0;i<self.sellList.length;i++) self.sellList[i]['select']=false;
                     self.showingList = self.sellList
+                    console.log('***************************')
+                    console.log(self.showingList)
+                    self.sellItem = true;
                 })
                 .catch(function (error) {
                     console.log(error);
                 });
+               
+               setTimeout(this.select_sell(),2000)
+           
             //用户创建的请求物品列表,select统一设为false
-            axios.get(localStorage.serverUrl+'getUsersRequiredCommodities?user_id='+login_status.id+'&user_login_code='+login_status.operation_code)
+            axios.get(localStorage.serverUrl+'User/getUsersRequiredCommodities?user_id='+login_status.id+'&user_login_code='+login_status.operation_code)
                 .then(function (response) {
                     console.log(response);
                     self.askList=response.data;
-                    self.askList['select']=false;
+                    for(i=0;i<self.askList.length;i++) self.askList[i]['select']=false;
                     self.showingList = self.askList
                 })
                 .catch(function (error) {
                     console.log(error);
                 });
         }
-
-    }
+    },
 })

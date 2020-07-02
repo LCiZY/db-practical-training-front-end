@@ -91,13 +91,13 @@ var itemDetail = new Vue({
         if(this.open_type=='sell'){
             //出售物品
 
-            axios.get(localStorage.serverUrl+'getCommodityById?commodity_id='+self.item_id)
+            axios.get(localStorage.serverUrl+'commodity/getCommodityById?commodity_id='+self.item_id)
                 .then(function (response) {
                     console.log(response);
                     //创建者信息
                     self.nickname=response.data.user_name;
                     self.contact=response.data.tel;
-                    self.area=response.data.area;
+                    self.area=response.data.user_area;
                     self.dormitory=response.data.dormitory;
                     self.department=response.data.academy;
                     //物品信息
@@ -119,13 +119,13 @@ var itemDetail = new Vue({
         else{
             //求物品
 
-            axios.get(localStorage.serverUrl+'getRequiredCommodityById?commodity_id='+self.item_id)
+            axios.get(localStorage.serverUrl+'commodity/getRequiredCommodityById?commodity_id='+self.item_id)
                 .then(function (response) {
                     console.log(response);
                     //创建者信息
                     self.nickname=response.data.user_name;
                     self.contact=response.data.tel;
-                    self.area=response.data.area;
+                    self.area=response.data.user_area;
                     self.dormitory=response.data.dormitory;
                     self.department=response.data.academy;
                     //物品信息
