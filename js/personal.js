@@ -30,7 +30,13 @@ var personal = new Vue({
     },
     methods:{
         to_edit_info:function(){
-            this.edit=true
+            this.edit=true;
+            this.e_nickname=this.nickname;
+            this.e_contact=this.contact;
+            this.e_area=this.area;
+            this.e_dormitory=this.dormitory;
+            this.e_department=this.department;
+
         },
         //提交修改的个人信息
         edit_submit:function(){
@@ -204,6 +210,7 @@ var personal = new Vue({
         else{
             //获取用户信息
             var userInfoStr=localStorage.userInfo
+            console.log(userInfo.user_area)
             if(userInfoStr){
                 var userInfo = JSON.parse(userInfoStr)
                 this.nickname=userInfo.user_name
