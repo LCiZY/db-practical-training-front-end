@@ -5,6 +5,7 @@
 	<meta charset="utf-8">
 	<script type="text/javascript" src="js/vue.js"></script>
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
 	<link rel="stylesheet" type="text/css" href="css/upload.css">
 </head>
@@ -43,19 +44,20 @@
 		<p>设置二手物品相关信息</p>
 	</div>
 
-	<div class="container">
-		<form class="upload-form" action="server/test.php" method="post" name="sellItem">
+	<div class="container" >
+		<form class="upload-form" id="formContain">
 			<p>
 				<span class="pic-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-				封面图： <input type="file" name="item_cover">
+				封面图：
 			</p>
+			<img src="cover_pic" id="cover_pic"><input  @change='add_img' type="file">
 			<p>
 				<span class="name-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-				物&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：<input type="text" name="item_name">
+				物&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：<input type="text" v-model="commodity_name" name="commodity_name">
 			</p>
 			<p>
 				所属类型：
-				<select name="item_type">
+				<select name="commodity_type" v-model="commodity_type">
 					<option disabled value="">请选择</option>
 					<option value="二手教辅">二手教辅</option>
 					<option value="非教辅类书籍">非教辅类书籍</option>
@@ -71,42 +73,51 @@
 
 			<p>
 				<span class="orign-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-				物&nbsp;品&nbsp;&nbsp;原&nbsp;价：<input type="text" name="item_old_price">
+				物&nbsp;品&nbsp;&nbsp;原&nbsp;价：<input type="text" v-model="commodity_original_price" name="commodity_original_price">
 			</p>
 			<p>
 				<span class="price-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-				物&nbsp;品&nbsp;&nbsp;售&nbsp;价：<input type="text" name="item_now_price">
+				物&nbsp;品&nbsp;&nbsp;售&nbsp;价：<input type="text" v-model="commodity_price" name="commodity_price">
 			</p>			
 
 			<p>
 				<span class="desc-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-				物&nbsp;品&nbsp;&nbsp;描&nbsp;述：<textarea type="text" name="item_desc" ></textarea>
-			</p>
-			<p>
-				<span class="pic-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-				描述图片1： <input type="file" name="item_pci1">
-			</p>
-			<p>
-				<span class="pic-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-				描述图片2： <input type="file" name="item_pci2">
-			</p>
-			<p>
-				<span class="pic-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-				描述图片3： <input type="file" name="item_pci3">
+				物&nbsp;品&nbsp;&nbsp;描&nbsp;述：<textarea type="text" v-model="commodity_description" name="commodity_description" ></textarea>
 			</p>
 
+			<p>
+				校区
+				<select name="area" v-model="area">
+					<option disabled value="">请选择</option>
+					<option value="北校区">北校区</option>
+					<option value="南校区">南校区</option>
+					<option value="国际校区">国际校区</option>
+				</select>
+			</p>
 
-			<input type="submit" class="submit-btn" name="item-submit">															
+			<div>
+				<img src="desc_img1" id="desc_img1"><img src="desc_img2" id="desc_img2"><img src="desc_img3" id="desc_img3">
+				<span class="pic-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+				描述图片1： <input type="file" name="desc_img1"  @change='add_desc_img' >
+				
+				<span class="pic-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+				描述图片2： <input type="file" name="desc_img2"  @change='add_desc_img' >
+				
+				<span class="pic-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+				描述图片3： <input type="file" name="desc_img3"  @change='add_desc_img' >
+			
+		</div>
+			<button type="button"  @click="upload1">发布信息</button>													
 		</form>
 	</div>
 
 	<!-- 模态窗口 -->
-	<div id="modal">
+	<div id="modal" v-show="ifmodal">
 	<dialog id="modal-dialog">
 		提交成功！
 		<img class="modal-close-icon" src="img/close.png">
 		<div  class="modal-close">
-			<img src="img/success.png">
+			<img src="img/success.png" @click="closeModal">
 		</div>
 		
 	</dialog>
@@ -117,10 +128,10 @@
 		<a href="#">意见反馈&nbsp;&nbsp;&nbsp;联系我们&nbsp;&nbsp;&nbsp;隐私权声明&nbsp;&nbsp;&nbsp;使用条款</a>
 	</footer>
 	<!-- javascript- -->
-	<script type="text/javascript" src="js/login_status.js" charset="gb2312"></script>
-	<script type="text/javascript" src="js/search.js" charset="gb2312"></script>
+	<script type="text/javascript" src="js/login_status.js" charset="utf-8"></script>
+	<script type="text/javascript" src="js/search.js" charset="utf-8"></script>
 	<script type="text/javascript" src="js/jquery-3.2.js"></script>
-	
+	<script type="text/javascript" src="js/sellUpload.js"></script>
 
 </body>
 </html>

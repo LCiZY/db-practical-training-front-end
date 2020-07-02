@@ -1,6 +1,7 @@
 /**
  * Created by 14752 on 2020-06-28.
  */
+
 var itemDetail = new Vue({
     el:'#itemDetail',
     data:{

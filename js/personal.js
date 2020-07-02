@@ -1,15 +1,16 @@
 /**
  * Created by 14752 on 2020-06-27.
  */
+
 var personal = new Vue({
     el:'#personal',
     data:{
         //用户信息
-        nickname:'骆小胖',
-        contact:'123',//联系方式
-        area:'南校区',//校区
-        dormitory:'C10',//宿舍
-        department:'软件学院',
+        nickname:'未登录',
+        contact:'',//联系方式
+        area:'',//校区
+        dormitory:'',//宿舍
+        department:'',
 
         edit:false,//个人信息是否为编辑状态
         //下面的是编辑的，用于提交http
@@ -33,31 +34,30 @@ var personal = new Vue({
         },
         //提交修改的个人信息
         edit_submit:function(){
-            axios.get('server/test.php', {
-                params: {
-                    user_id:login_status.id,
-                    operation_code:login_status.operation_code,
-
-                    nickname:this.e_nickname,
-                    contact:this.e_contact,
-                    area:this.e_area,
-                    dormitory:this.e_dormitory,
-                    department:this.e_department
-                }
-            })
+            var self=this
+            let param = new URLSearchParams();
+            param.append("user_id",login_status.id)
+            param.append("user_login_code",login_status.operation_code)
+            param.append("user_name",this.e_nickname)
+            param.append("tel",this.e_contact)
+            param.append("area",this.e_area)
+            param.append("dormitory",this.e_dormitory)
+            param.append("academy",this.e_department)
+            axios.post(localStorage.serverUrl+'User/updateUserInfo',param  )
                 .then(function (response) {
                     console.log(response);
-                    this.nickname=this.e_nickname;
-                    this.contact=this.e_contact;
-                    this.area=this.e_area;
-                    this.dormitory=this.e_dormitory;
-                    this.department=this.e_department
+                    self.nickname=self.e_nickname;
+                    self.contact=self.e_contact;
+                    self.area=self.e_area;
+                    self.dormitory=self.e_dormitory;
+                    self.department=self.e_department
+                    login_status.name=self.nickname
 
                 })
                 .catch(function (error) {
                     console.log(error);
                 });
-            this.edit=false
+                self.edit=false
         },
         //出售、请求物品的切换
         select_sell:function(){
@@ -177,24 +177,15 @@ var personal = new Vue({
         }
         else{
             //获取用户信息
-            axios.get('server/test.php', {
-                params: {
-                    user_id:login_status.id,
-                    operation_code:login_status.operation_code
-                }
-            })
-                .then(function (response) {
-                    console.log(response);
-                    //this.nickname=response.data.
-                    //this.contact=response.data.
-                    //this.area=response.data.
-                    //this.dormitory=response.data.
-                    //this.department=response.data.
-
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
+            var userInfoStr=localStorage.userInfo
+            if(userInfoStr){
+                var userInfo = JSON.parse(userInfoStr)
+                this.nickname=userInfo.user_name
+                this.contact=userInfo.tel//联系方式
+                this.area=userInfo.area//校区
+                this.dormitory=userInfo.dormitory//宿舍
+                this.department=userInfo.academy
+            }
             //用户创建的出售物品列表,select统一设为false
             axios.get('server/test.php', {
                 params: {

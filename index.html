@@ -6,6 +6,9 @@
 	<link rel="stylesheet" type="text/css" href="css/index.css">
 	<script type="text/javascript" src="js/vue.js"></script>
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script>
+		localStorage.setItem('serverUrl','http://124.70.189.210:8080/');
+	</script>
 </head>
 <body>
 	<!-- 导航 -->
@@ -44,7 +47,7 @@
 			<h4>分类导航</h4>
 			<ul class="item-class">
 				<li v-for="(item,index) in classify">
-					<a href="#"  v-on:click="change_classify(index)">{{item.title}}</a>
+					<a href="#"  v-on:click="change_classify(index)">{{item}}</a>
 				</li>
 			</ul>
 		</div><!-- item-guide -->
@@ -67,18 +70,18 @@
 	<!-- 物品分类 -->
 	<div id="container">
 		<div class="item-part"  v-for="(type,index) in classify" v-if="showing==index">
-			<h3 class="item-title"><a href="#">| {{type.title}}</a></h3>
+			<h3 class="item-title"><a href="#">| {{type}}</a></h3>
 			<a class="more" href="#" v-on:click="getMore(index)" > > > 更多</a>	<!--跳转到全部物品页，传下标-->
 			<ul class="item-lists">
-				<li class="item-list" v-for="item in type.itemList" v-on:click="to_detail(item.id)">
+				<li class="item-list" v-for="item in itemList" v-on:click="to_detail(item.commodity_id)">
 					<a href="#" class="item-pic">
-						<img :src="item.cover">
+						<img :src="item.commodity_cover_pic_url">
 					</a>
 					<a href="#" class="item-info">
-						<h5 class="item-name">{{item.title}}</h5>
+						<h5 class="item-name">{{item.commodity_name}}</h5>
 						<span class="item-detail">校区：{{item.area}}</span>
 					</a>
-					<span class="item-price">￥{{item.price}}
+					<span class="item-price">￥{{item.commodity_price}}
 						<a href="#" class="item-buy">查看详情</a>
 					</span>
 				</li>
@@ -96,19 +99,19 @@
 
 	<script type="text/javascript" src="js/jquery-3.2.js"></script>
 	<script type="text/javascript" src="js/xSlider.js"></script>
-	<script type="text/javascript" src="js/login_status.js" charset="gb2312"></script>
-	<script type="text/javascript" src="js/search.js" charset="gb2312"></script>
-	<script type="text/javascript" src="js/index.js" charset="gb2312"></script>
+	<script type="text/javascript" src="js/login_status.js" charset="utf-8"></script>
+	<script type="text/javascript" src="js/search.js" charset="utf-8"></script>
+	<script type="text/javascript" src="js/index.js" charset="utf-8"></script>
 	<script type="text/javascript">
-		$(function(){
+		// $(function(){
 
-			$(".item-class li a").on("click",function(){
-				var classId = $(this).prop("title");
-				console.log(classId);
-				var classTop =  $("#container").find(("#"+classId)).offset().top;
-				$("html,body").animate({scrollTop:classTop+ "px"}, 500);
-			});
-		})
+		// 	$(".item-class li a").on("click",function(){
+		// 		var classId = $(this).prop("title");
+		// 		console.log(classId);
+		// 		var classTop =  $("#container").find(("#"+classId)).offset().top;
+		// 		$("html,body").animate({scrollTop:classTop+ "px"}, 500);
+		// 	});
+		// })
 	</script>
 
 	<footer>
