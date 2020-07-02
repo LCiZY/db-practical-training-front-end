@@ -1,119 +1,126 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>物品详情</title>
-	<meta charset="utf-8">
-	<script type="text/javascript" src="js/vue.js"></script>
-	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="css/reset.css">
-	<link rel="stylesheet" type="text/css" href="css/itemDetail.css">
+    <title>物品详情</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="js/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/itemDetail.css">
 </head>
+
 <body>
-<script>
+    <script>
+    </script>
 
+    <!-- 导航条 -->
+    <nav class="navbar">
+        <div class="nav-menu">
+            <ul class="menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="allItems.html">全部物品</a></li>
+                <li><a href="askItem.html">求物品</a></li>
+                <li><a href="shoppingCart.html">购物车</a></li>
+                <li><a class="active" href="personal.html">个人中心</a></li>
+            </ul>
+        </div>
+        <!-- nav-menu -->
 
-</script>
+        <!--搜索框-->
+        <div class="nav-search" id="search">
+            <input type="search" class="searchIn" placeholder="搜物品" v-model="keyWord">
+            <button class="search-logo" v-on:click="search"><img src="img/search2.png"></button>
+        </div>
 
-<!-- 导航条 -->
-<nav class="navbar">
-	<div class="nav-menu">
-		<ul class="menu">
-			<li><a href="index.html">首页</a></li>
-			<li><a href="allItems.html">全部物品</a></li>
-			<li><a href="askItem.html">求物品</a></li>
-			<li><a href="shoppingCart.html">购物车</a></li>
-			<li><a class="active" href="personal.html">个人中心</a></li>
-		</ul>
-	</div><!-- nav-menu -->
-
-	<!--搜索框-->
-	<div class="nav-search" id="search">
-		<input type="search" class="searchIn" placeholder="搜物品" v-model="keyWord">
-		<button class="search-logo" v-on:click="search"><img src="img/search2.png"></button>
-	</div>
-
-	<div class="nav-info" id="login_status">
-			<span v-if="id==''">
+        <div class="nav-info" id="login_status">
+            <span v-if="id==''">
 				<a href="login.html" class="username">前往登录</a>
 			</span>
-			<span v-else>
+            <span v-else>
 				<a href="personal.html" class="username">{{name}}</a>
 				<a href="#" class="logout" v-on:click="logout()">[ 退出登录 ]</a>
 			</span>
-	</div> <!-- nav-info -->
-</nav>
+        </div>
+        <!-- nav-info -->
+    </nav>
 
-<div id="itemDetail">
-	<div class="titleName">
-		<h3 v-if="open_type=='sell'">查看物品详情</h3>
-		<h3 v-else>所求物品详情</h3>
-	</div>
+    <div id="itemDetail">
+        <div class="titleName">
+            <h3 v-if="open_type=='sell'">查看物品详情</h3>
+            <h3 v-else>所求物品详情</h3>
+        </div>
 
-	<div class="container">
-		<div id="item-pic">
-			<div class="item-big">
-				<img :src="cover">
-			</div>
-			<span class="tip"></span>
-		</div> <!-- item-pic-end -->
+        <div class="container">
+            <div id="item-pic">
+                <div class="item-big">
+                    <img :src="cover">
+                </div>
+                <span class="tip"></span>
+            </div>
+            <!-- item-pic-end -->
 
-		<div id="item-info">
-			<span class="item-name">{{title}}</span>
-			<span class="item-publish">所属类型：{{item_type}}</span>
-			<span class="item-price" v-if="open_type=='sell'">
+            <div id="item-info">
+                <span class="item-name">{{title}}</span>
+                <span class="item-publish">所属类型：{{item_type}}</span>
+                <span class="item-price" v-if="open_type=='sell'">
 				<p>售价 <a class="final-price">￥{{now_price}}</a></p>
 				<p>原价 <a class="orignal-price">￥{{old_price}} </a></p>
-			</span>
-			<span class="item-descr">
+				</span>
+                <span class="item-descr">
 				<p>物品描述<a class="item-desc">{{description}}</a></p>
 				<!--<p>上书时间<a class="upload-time">2018-03-20</a></p>-->
-			</span>
+				</span>
+                <a>
+                    <span class="buy-now" style="float: left; width: 200px">立即联系</span>
+                    <span class="buy-now" style="float: left; width: 200px" v-if="open_type=='sell'" v-on:click="addCart">{{cart_status}}</span>
+                </a>
 
+            </div>
+            <!-- item-info-end -->
 
-
-			<span class="buy-now">立即联系</span>
-			<span class="buy-now" v-if="open_type=='sell'" v-on:click="addCart">{{cart_status}}</span>
-		</div> <!-- item-info-end -->
-
-		<div id="seller-info">
-			<a class="seller-name">{{nickname}}</a>
-			<span class="seller-span1">
+            <div id="seller-info">
+                <a class="seller-name">{{nickname}}</a>
+                <span class="seller-span1">
 				在线联系<a class="seller-chat">在线联系</a>
 			</span>
-			<span class="seller-span2">
+                <span class="seller-span2">
 				<p>其他联系<a class="seller-num">{{contact}}</a></p>
 				<p>校区<a class="seller-adr">{{area}}</a></p>
 				<p>宿舍<a class="seller-adr">{{dormitory}}</a></p>
 				<p>学院<a class="seller-adr">{{department}}</a></p>
 				<!--<p>好评率<a class="seller-appraise">90.5%</a></p>-->
 			</span>
-			<!--
+                <!--
 			<span class="seller-span3">
 				<p>[ 去看看卖家的其他商品 ]</p>
 			</span>
 			-->
-		</div><!-- seller-info-end -->
+            </div>
+            <!-- seller-info-end -->
 
-		<h3>其他描述图片：</h3><br>
-		<p v-for="item in other_pic"><img  :src="item"><br></p>
+            <h3>其他描述图片：</h3><br>
+            <p v-for="item in other_pic"><img :src="item"><br></p>
 
 
 
-		<!--
+            <!--
 		<div id="item-content">
 			<span class="item-tip">目送共由七十四篇散文组成，是为一本极具亲情、感人至深的文集。由父亲的逝世、母亲的苍老、儿子的离开、朋友的牵挂、兄弟的携手共行，写出失败和脆弱、失落和放手，写出缠绵不舍和绝然的虚无。正如作者所说：“我慢慢地、慢慢地了解到，所谓父女母子一场，只不过意味着，你和他的缘分就是今生今世不断地在目送他的背影。</span>
 		</div>
 		-->
-	</div><!--  container -->
-</div>
+        </div>
+        <!--  container -->
+    </div>
 
-	<footer>
-		<a href="#">©2018-2019 二手书交易</a>
-		<a href="#">意见反馈&nbsp;&nbsp;&nbsp;联系我们&nbsp;&nbsp;&nbsp;隐私权声明&nbsp;&nbsp;&nbsp;使用条款</a>
-	</footer>
-	<!-- javascript- -->
-	<script type="text/javascript" src="js/login_status.js" charset="utf-8"></script>
-	<script type="text/javascript" src="js/search.js" charset="utf-8"></script>
-	<script type="text/javascript" src="js/itemDetail.js" charset="utf-8"></script>
+    <footer>
+        <a href="#">©2018-2019 二手书交易</a>
+        <a href="#">意见反馈&nbsp;&nbsp;&nbsp;联系我们&nbsp;&nbsp;&nbsp;隐私权声明&nbsp;&nbsp;&nbsp;使用条款</a>
+    </footer>
+    <!-- javascript- -->
+    <script type="text/javascript" src="js/login_status.js" charset="utf-8"></script>
+    <script type="text/javascript" src="js/search.js" charset="utf-8"></script>
+    <script type="text/javascript" src="js/itemDetail.js" charset="utf-8"></script>
 </body>
+
 </html>

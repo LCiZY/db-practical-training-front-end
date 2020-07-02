@@ -1,180 +1,187 @@
 <!DOCTYPE html>
 <html xmlns:v-on="http://www.w3.org/1999/xhtml">
+
 <head>
-	<title>个人中心</title>
-	<meta charset="utf-8">
-	<script type="text/javascript" src="js/vue.js"></script>
-	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="css/reset.css">
-	<link rel="stylesheet" type="text/css" href="css/personal.css">
+    <title>个人中心</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="js/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/personal.css">
 
 </head>
-<body>
-	<!-- 导航条 -->
-	<nav class="navbar">
-		<div class="nav-menu">
-			<ul class="menu">
-				<li><a href="index.html">首页</a></li>
-				<li><a href="allItems.html">全部物品</a></li>
-				<li><a href="askItem.html">求物品</a></li>
-				<li><a href="shoppingCart.html">购物车</a></li>
-				<li><a class="active" href="personal.html">个人中心</a></li>
-			</ul>				
-		</div><!-- nav-menu -->
-		<!--搜索框-->
-		<div class="nav-search" id="search">
-			<input type="search" class="searchIn" placeholder="搜物品" v-model="keyWord">
-			<button class="search-logo" v-on:click="search"><img src="img/search2.png"></button>
-		</div>
 
-		<div class="nav-info" id="login_status">
-			<span v-if="id==''">
+<body>
+    <!-- 导航条 -->
+    <nav class="navbar">
+        <div class="nav-menu">
+            <ul class="menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="allItems.html">全部物品</a></li>
+                <li><a href="askItem.html">求物品</a></li>
+                <li><a href="shoppingCart.html">购物车</a></li>
+                <li><a class="active" href="personal.html">个人中心</a></li>
+            </ul>
+        </div>
+        <!-- nav-menu -->
+        <!--搜索框-->
+        <div class="nav-search" id="search">
+            <input type="search" class="searchIn" placeholder="搜物品" v-model="keyWord">
+            <button class="search-logo" v-on:click="search"><img src="img/search2.png"></button>
+        </div>
+
+        <div class="nav-info" id="login_status">
+            <span v-if="id==''">
 				<a href="login.html" class="username">前往登录</a>
 			</span>
-			<span v-else>
+            <span v-else>
 				<a href="personal.html" class="username">{{name}}</a>
 				<a href="#" class="logout" v-on:click="logout()">[ 退出登录 ]</a>
 			</span>
-		</div> <!-- nav-info -->
-	</nav>
+        </div>
+        <!-- nav-info -->
+    </nav>
 
-	<div id="personal">
+    <div id="personal">
 
-		<!-- 个人信息编辑 -->
-		<form class="person-info" v-if="edit">
+        <!-- 个人信息编辑 -->
+        <form class="person-info" v-if="edit">
 
-			<p>
-				<a href="#" class="name">{{nickname}}</a>
-			</p>
-			<p>
-				<a href="#" class="title">编辑个人信息</a>
-			</p>
-			<p class="set">
-				<a href="#" class="edit" v-on:click="edit_submit">提交</a>
-				<img class="set-icon" src="img/setting.png">
-			</p>
-			<div class="contact">
-				<p>
-					用&nbsp;&nbsp;&nbsp;户&nbsp;&nbsp;&nbsp;名：
-					<input class="num" type="text" v-model="e_nickname"></p>
-				<p>
-				<p>
-					联&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;系：
-					<input class="num" type="text" v-model="e_contact"></p>
-				<p>
-					校&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;区：
-					<select  class="address" v-model="e_area">
+            <p>
+                <a href="#" class="name">{{nickname}}</a>
+            </p>
+            <p>
+                <a href="#" class="title">编辑个人信息</a>
+            </p>
+            <p class="set">
+                <a href="#" class="edit" v-on:click="edit_submit">提交</a>
+                <img class="set-icon" src="img/setting.png">
+            </p>
+            <div class="contact">
+                <p>
+                    用&nbsp;&nbsp;&nbsp;户&nbsp;&nbsp;&nbsp;名：
+                    <input class="num" type="text" v-model="e_nickname"></p>
+                <p>
+                    <p>
+                        联&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;系：
+                        <input class="num" type="text" v-model="e_contact"></p>
+                    <p>
+                        校&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;区：
+                        <select class="address" v-model="e_area">
 						<option disabled value="">请选择校区</option>
 						<option value="北校区">北校区</option>
 						<option value="南校区">南校区</option>
 						<option value="国际校区">国际校区</option>
 					</select>
-				</p>
-				<p>
-					宿&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;舍：
-					<input class="address" type="text" v-model="e_dormitory">
-				</p>
-				<p>
-					学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;院：
-					<input class="major" type="text" v-model="e_department">
-				</p>
-			</div>
-		</form><!-- person-info-end -->
+                    </p>
+                    <p>
+                        宿&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;舍：
+                        <input class="address" type="text" v-model="e_dormitory">
+                    </p>
+                    <p>
+                        学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;院：
+                        <input class="major" type="text" v-model="e_department">
+                    </p>
+            </div>
+        </form>
+        <!-- person-info-end -->
 
-	<!-- 个人信息展示 -->
-	<div class="person-info" v-else>
+        <!-- 个人信息展示 -->
+        <div class="person-info" v-else>
 
-		<p>
-			<a href="#" class="name">{{nickname}}</a>
-		</p>
-		<p>
-			<a href="#" class="title">用户信息</a>
-		</p>
-		<p class="set">
-			<a href="#" class="edit" v-on:click="to_edit_info">编辑个人信息</a>
-			<img class="set-icon" src="img/setting.png">
-		</p>
-		<div class="contact">
-			<p>
-				<span class="call-icon"></span>
-				联&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;系：
-				<a href="#" class="num">{{contact}}</a></p>
-			<p>
-				<span class="address-icon"></span>
-				校&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;区：<a href="#"  class="address">{{user_area}}</a>
-			</p>
-			<p>
-				<span class="dorm-icon"></span>
-				宿&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;舍：<a href="#"  class="address">{{dormitory}}</a>
-			</p>
-			<p>
-				<span class="major-icon"></span>
-				学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;院：<a  href="#" class="major">{{department}}</a>
-			</p>
-		</div>
-	</div><!-- person-info-end -->
+            <p>
+                <a href="#" class="name">{{nickname}}</a>
+            </p>
+            <p>
+                <a href="#" class="title">&nbsp;&nbsp;&nbsp;&nbsp;用户信息</a>
+            </p>
+            <p class="set">
+                <a href="#" class="edit" v-on:click="to_edit_info">编辑个人信息</a>
+                <img class="set-icon" src="img/setting.png">
+            </p>
+            <div class="contact">
+                <p>
+                    <span class="call-icon"></span> 联&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;系：
+                    <a href="#" class="num">{{contact}}</a></p>
+                <p>
+                    <span class="address-icon"></span> 校&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;区：
+                    <a href="#" class="address">{{user_area}}</a>
+                </p>
+                <p>
+                    <span class="dorm-icon"></span> 宿&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;舍：
+                    <a href="#" class="address">{{dormitory}}</a>
+                </p>
+                <p>
+                    <span class="major-icon"></span> 学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;院：
+                    <a href="#" class="major">{{department}}</a>
+                </p>
+            </div>
+        </div>
+        <!-- person-info-end -->
 
 
 
-	<!-- 出售、求物品选项卡 -->
-	<div class="card-btn">
-		<span title="sell-item" id="sell-btn" v-bind:class="{active:sellItem}" v-on:click="select_sell">我的出售</span>
-		<span title="ask-item" id="ask-btn" v-bind:class="{active:!sellItem}" v-on:click="select_ask">我的求物品</span>
-		<p class="upload-icon"></p>
-		<!--
+        <!-- 出售、求物品选项卡 -->
+        <div class="card-btn">
+            <span title="sell-item" id="sell-btn" v-bind:class="{active:sellItem}" v-on:click="select_sell">我的出售</span>
+            <span title="ask-item" id="ask-btn" v-bind:class="{active:!sellItem}" v-on:click="select_ask">我的求物品</span>
+            <p class="upload-icon"></p>
+            <!--
 		<a id="sell-upload" href="#" hidden="true">上传出售物品</a>
 		<a id="ask-upload" href="#" v-if="sellItem" >上传求物品信息</a>
 		<a id="delete-item" href="#" hidden="true">删除二手物品</a>
 		-->
 
-		<a class="upload" href="sellUpload.html" v-if="sellItem" >上传出售物品</a>
-		<a class="upload" href="askUpload.html" v-else>上传求物品信息</a>
-		<a class="delete" href="#" v-on:click="delete_item">删除二手物品</a>
+            <a class="upload" href="sellUpload.html" v-if="sellItem">上传出售物品</a>
+            <a class="upload" href="askUpload.html" v-else>上传求物品信息</a>
+            <a class="delete" href="#" v-on:click="delete_item">删除二手物品</a>
 
-	</div>
-
-
-	<div id="container" >
-		<!-- 物品 -->
-		<div class="sell-item" >
-			<ul class="item-ul">
-
-				<li class="item-list" v-for="(item,index) in showingList">
-					<p class="item-pic">
-						<img :src="item.commodity_cover_pic_url" v-on:click="to_detail(item.commodity_id)">
-					</p>
-					<h5 class="item-name">{{item.commodity_name}}</h5>
-					<span class="delete-btn-select" v-if="item.select" v-on:click="select_item(index)"></span>
-					<span class="delete-btn-blank" v-else v-on:click="select_item(index)"></span>
-
-					<span class="edit-btn" v-on:click="to_edit_item(item.commodity_id)"></span>
-
-					<div class="item-detail" v-on:click="to_detail(item.commodity_id)">
-						<p v-if="sellItem">原&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="original-price">￥{{item.commodity_original_price}}</span></p>
-						<p v-if="sellItem">售&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="item-price">￥{{item.commodity_price}}</span></p>
-						<p v-if="item.finished=='N'">交易进度：<span class="item-condition">未完成交易</span></p>
-						<p v-if="item.finished=='Y'">交易进度：<span class="item-condition">已完成交易</span></p>
-						<p>类&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;型：<span class="item-desc">{{item.commodity_type}}</span></p>
-						<button v-if="item.finished=='N'" v-on:click="deal_finished(index)">完成交易</button>
-					</div>
-				</li>
-
-			</ul>
-		</div>
+        </div>
 
 
-	</div> <!-- container-end -->
+        <div id="container">
+            <!-- 物品 -->
+            <div class="sell-item">
+                <ul class="item-ul">
 
-</div>
-	<footer>
-		<a href="#">©2018-2019 二手书交易</a>
-		<a href="#">意见反馈&nbsp;&nbsp;&nbsp;联系我们&nbsp;&nbsp;&nbsp;隐私权声明&nbsp;&nbsp;&nbsp;使用条款</a>
-	</footer>
-	
-	<!-- javascript- -->
-	<script type="text/javascript" src="js/jquery-3.2.js"></script>
-	<script type="text/javascript" src="js/login_status.js" charset="utf-8"></script>
-	<script type="text/javascript" src="js/search.js" charset="utf-8"></script>
-	<script type="text/javascript" src="js/personal.js" charset="utf-8"></script>
+                    <li class="item-list" v-for="(item,index) in showingList">
+                        <p class="item-pic">
+                            <img :src="item.commodity_cover_pic_url" v-on:click="to_detail(item.commodity_id)">
+                        </p>
+                        <h5 class="item-name">{{item.commodity_name}}</h5>
+                        <span class="delete-btn-select" v-if="item.select" v-on:click="select_item(index)"></span>
+                        <span class="delete-btn-blank" v-else v-on:click="select_item(index)"></span>
+
+                        <span class="edit-btn" v-on:click="to_edit_item(item.commodity_id)"></span>
+
+                        <div class="item-detail" v-on:click="to_detail(item.commodity_id)">
+                            <p v-if="sellItem">原&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="original-price">￥{{item.commodity_original_price}}</span></p>
+                            <p v-if="sellItem">售&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="item-price">￥{{item.commodity_price}}</span></p>
+                            <p v-if="item.finished=='N'">交易进度：<span class="item-condition">未完成交易</span></p>
+                            <p v-if="item.finished=='Y'">交易进度：<span class="item-condition">已完成交易</span></p>
+                            <p>类&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;型：<span class="item-desc">{{item.commodity_type}}</span></p>
+                            <button v-if="item.finished=='N'" v-on:click="deal_finished(index)">完成交易</button>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+
+
+        </div>
+        <!-- container-end -->
+
+    </div>
+    <footer>
+        <a href="#">©2018-2019 二手书交易</a>
+        <a href="#">意见反馈&nbsp;&nbsp;&nbsp;联系我们&nbsp;&nbsp;&nbsp;隐私权声明&nbsp;&nbsp;&nbsp;使用条款</a>
+    </footer>
+
+    <!-- javascript- -->
+    <script type="text/javascript" src="js/jquery-3.2.js"></script>
+    <script type="text/javascript" src="js/login_status.js" charset="utf-8"></script>
+    <script type="text/javascript" src="js/search.js" charset="utf-8"></script>
+    <script type="text/javascript" src="js/personal.js" charset="utf-8"></script>
 </body>
+
 </html>
