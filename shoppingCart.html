@@ -44,16 +44,16 @@
         <h3 class="item-title"><a href="#">| 购物车</a></h3>
 
         <ul class="item-lists">
-            <li class="item-list" v-for="item in itemList" >
-                <a href="#" class="item-pic" v-on:click="to_detail(item.id)">
-                    <img :src="item.cover">
+            <li class="item-list" v-for="(item,index) in itemList" >
+                <a href="#" class="item-pic" v-on:click="to_detail(item.commodity_id)">
+                    <img :src="item.commodity_cover_pic_url">
                 </a>
-                <a href="#" class="item-info askitem-info" v-on:click="to_detail(item.id)">
-                    <h5 class="item-name">{{item.title}}</h5>
+                <a href="#" class="item-info askitem-info" v-on:click="to_detail(item.commodity_id)">
+                    <h5 class="item-name">{{item.commodity_name}}</h5>
                     <span class="item-auto"><b>校区：</b>{{item.area}}</span>
-                    <span class="item-press"><b>类型：</b>{{item.type}}</span>
+                    <span class="item-press"><b>类型：</b>{{item.commodity_type}}</span>
                 </a>
-                <a href="#" class="item-contact" v-on:click="outCart(item.id)">移出购物车</a>
+                <a href="#" class="item-contact" v-on:click="outCart(index)">移出购物车</a>
             </li>
 
         </ul><!--  item-list end -->

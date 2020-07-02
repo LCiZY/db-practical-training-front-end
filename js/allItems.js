@@ -40,17 +40,18 @@ var allItems = new Vue({
         },
         //改变分类
         change_classify:function(index){
-            if(this.chooseIndex==index) return
-            this.chooseIndex=index
-            this.alreadyGot=0
-            this.count=0
-            var self=this
+            if(this.chooseIndex==index) return;
+            this.chooseIndex=index;
+            this.alreadyGot=0;
+            this.count=0;
+            var self=this;
             //index是classify的下标，发送请求，获取itemList信息.requestType统一设为sell
             if(index==0) {
                 //获取全部类型的全部物品信息，
                 axios.get(localStorage.serverUrl+'commodity/getCommodities')  
                     .then(function (response) {
-                        self.itemList=response.data.list; self.count=response.data.count; if(response.data.list.length) self.alreadyGot+=response.data.list.length 
+                        self.itemList=response.data.list; self.count=response.data.count;
+                        if(response.data.list.length) self.alreadyGot+=response.data.list.length;
                        //console.log(response);
                        console.log( self.itemList);
                     })
@@ -62,7 +63,8 @@ var allItems = new Vue({
                 //否则获取某一类型的全部物品信息
                 axios.get(localStorage.serverUrl+'commodity/queryCommoditiesByType?commodity_type='+self.classify[self.chooseIndex] )  
                     .then(function (response) {
-                       self.itemList=response.data ; if(response.data.length) self.alreadyGot+=response.data.length
+                       self.itemList=response.data ;
+                        if(response.data.length) self.alreadyGot+=response.data.length;
                        console.log(response);
                     })
                     .catch(function (error) {
@@ -71,25 +73,22 @@ var allItems = new Vue({
             }
 
         },
-        to_detail:function(id,requestType){
+        to_detail:function(id){
             //requestType为sell或ask
-            window.location.href="itemDetail.html?open_type="+requestType+"&id="+id
+            window.location.href="itemDetail.html?open_type=sell&id="+id
         }
     },
     created:function(){
         if(this.getParams("open_type")=='search'){
             //通过搜索跳转的
-            var keyWord=this.getCookie("keyWord");
+            var keyWord=this.getParams("keyWord");
+            var self=this;
             search.keyWord=keyWord;
-            //发送关键字，搜索物品，获取物品列表，requestType为sell或ask
-            axios.get(localStorage.serverUrl+'commodity/queryCommoditiesByKeyword', {
-                params: {
-                    keyword:keyWord
-                }
-            })
+            //发送关键字，搜索物品，获取物品列表，requestType为sell或ask!!!!!!!!!!??????keyWord????????
+            axios.get(localStorage.serverUrl+'commodity/queryCommoditiesByKeyword?keyWord='+keyWord)
                 .then(function (response) {
                    // console.log(response);
-                    this.itemList=response.data
+                    self.itemList=response.data;
                 })
                 .catch(function (error) {
                   //  console.log(error);

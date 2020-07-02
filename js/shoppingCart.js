@@ -5,25 +5,20 @@
 var shoppingCart = new Vue({
     el:'#container',
     data:{
-        itemList:[{id:0,title:'白夜行',area:'南校区',type:'非教辅类书籍',
-            cover:'https://img1.doubanio.com/view/subject/l/public/s24514468.jpg',price:'12.9'}]
+        itemList:[]
     },
     methods:{
         to_detail:function(id){
             window.location.href="itemDetail.html?open_type=sell&id="+id
         },
-        outCart:function(){
-            //移出购物车,返回最新的购物车物品列表，页面重新渲染
-            axios.get('server/test.php', {
-                params: {
-                    user_id:login_status.id,
-                    operation_code:login_status.operation_code,
-                    item_id:this.item_id
-                }
-            })
+        outCart:function(index){
+            //移出购物车
+            var self=this;
+            axios.get(localStorage.serverUrl+'?user_id='+login_status.id+'&user_login_code='+login_status.operation_code+'&commodity_id='+this.itemList[index].commodity_id)
                 .then(function (response) {
                     console.log(response);
-                    //this.itemList=
+                    //删除该物品
+                    self.itemList.splice(index,1)
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -36,15 +31,11 @@ var shoppingCart = new Vue({
         }
         else{
             //发送用户id，获取购物车物品列表
-            axios.get('server/test.php', {
-                params: {
-                    user_id:login_status.id,
-                    operation_code:login_status.operation_code,
-                }
-            })
+            var self=this;
+            axios.get(localStorage.serverUrl+'?user_id='+login_status.id+'&user_login_code='+login_status.operation_code)
                 .then(function (response) {
                     console.log(response);
-                    //this.itemList=
+                    self.itemList=response.data;
                 })
                 .catch(function (error) {
                     console.log(error);

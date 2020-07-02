@@ -22,7 +22,7 @@ var personal = new Vue({
 
         sellItem:true,  //出售、求物品, 选择出售物品为true，选择求物品为false
 
-        sellList:[{title:'白夜行',id:123,finished:'N',select:false,old_price:52.0,now_price:13.0,type:'非教辅类书籍',cover:'img/item-list/article/1.jpg'}],
+        sellList:[],
         askList:[],
         showingList:[]
 
@@ -86,23 +86,17 @@ var personal = new Vue({
         },
         //完成交易，发送物品id
         deal_finished:function(index){
-            var type;
+            var self=this;
             var itemID;
             if(this.sellItem){
                 //出售的物品
-                itemID=this.sellList[index].id;
+                itemID=this.sellList[index].commodity_id;
                 //发送用户id，物品id字符串，用空格隔开
-                axios.get('server/test.php', {
-                    params: {
-                        user_id:login_status.id,
-                        operation_code:login_status.operation_code,
-                        itemID:itemID
-                    }
-                })
+                axios.get(localStorage.serverUrl+'?user_id='+login_status.id+'&user_login_code='+login_status.operation_code+'&commodity_id='+itemID)
                     .then(function (response) {
                         console.log(response);
-                        this.sellList[index].finished='Y';
-                        this.showingList = this.sellList
+                        self.sellList[index].finished='Y';
+                        self.showingList = self.sellList
                     })
                     .catch(function (error) {
                         console.log(error);
@@ -110,7 +104,17 @@ var personal = new Vue({
             }
             else{
                 //请求的物品
-                itemID=this.askList[index].id;
+                itemID=this.askList[index].commodity_id;
+                //发送用户id，物品id字符串，用空格隔开
+                axios.get(localStorage.serverUrl+'?user_id='+login_status.id+'&user_login_code='+login_status.operation_code+'&commodity_id='+itemID)
+                    .then(function (response) {
+                        console.log(response);
+                        self.askList[index].finished='Y';
+                        self.showingList = self.askList
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
             }
         },
         to_detail:function(id){
@@ -126,27 +130,21 @@ var personal = new Vue({
 
         //删除，创建个数组记录选择的物品id
         delete_item:function(){
-            var type;
+            var self=this;
+            var idList='';
             if(this.sellItem){
                 //删除出售的物品，返回物品列表
                 //发送用户id，物品id字符串，用空格隔开
-                var idList='';
+
                 for(var i=0; i<this.sellList.length; i++){
                     if(this.sellList[i].select=true){
-                        idList += this.sellList[i].id
+                        idList += this.sellList[i].commodity_id
                     }
                 }
-                axios.get('server/test.php', {
-                    params: {
-                        user_id:login_status.id,
-                        operation_code:login_status.operation_code,
-                        idList:idList
-                    }
-                })
+                axios.get(localStorage.serverUrl+'?user_id='+login_status.id+'&user_login_code='+login_status.operation_code+'&commodity_idList='+idList)
                     .then(function (response) {
                         console.log(response);
-                        //this.sellList=response.data.
-                        //this.showingList = this.sellList
+                        //粘贴created的函数
                     })
                     .catch(function (error) {
                         console.log(error);
@@ -154,6 +152,21 @@ var personal = new Vue({
             }
             else{
                 //删除请求的物品
+                //发送用户id，物品id字符串，用空格隔开
+                idList='';
+                for(var j=0; j<this.sellList.length; j++){
+                    if(this.sellList[j].select=true){
+                        idList += this.sellList[j].commodity_id
+                    }
+                }
+                axios.get(localStorage.serverUrl+'?user_id='+login_status.id+'&user_login_code='+login_status.operation_code+'&commodity_idList='+idList)
+                    .then(function (response) {
+                        console.log(response);
+                        //粘贴created的函数
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
             }
         },
 
@@ -187,30 +200,24 @@ var personal = new Vue({
                 this.department=userInfo.academy
             }
             //用户创建的出售物品列表,select统一设为false
-            axios.get('server/test.php', {
-                params: {
-                    user_id:login_status.id,
-                    operation_code:login_status.operation_code
-                }
-            })
+            var self=this;
+            axios.get(localStorage.serverUrl+'?user_id='+login_status.id+'&user_login_code='+login_status.operation_code)
                 .then(function (response) {
                     console.log(response);
-                    //this.sellList=response.data.
-                    this.showingList = this.sellList
+                    self.sellList=response.data;
+                    self.sellList['select']=false;
+                    self.showingList = self.sellList
                 })
                 .catch(function (error) {
                     console.log(error);
                 });
             //用户创建的请求物品列表,select统一设为false
-            axios.get('server/test.php', {
-                params: {
-                    user_id:login_status.id,
-                    operation_code:login_status.operation_code
-                }
-            })
+            axios.get(localStorage.serverUrl+'?user_id='+login_status.id+'&user_login_code='+login_status.operation_code)
                 .then(function (response) {
                     console.log(response);
-                    //this.askList=response.data.
+                    self.askList=response.data;
+                    self.askList['select']=false;
+                    self.showingList = self.askList
                 })
                 .catch(function (error) {
                     console.log(error);
