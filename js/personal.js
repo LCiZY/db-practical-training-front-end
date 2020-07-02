@@ -51,7 +51,16 @@ var personal = new Vue({
                     self.user_area=self.e_area;
                     self.dormitory=self.e_dormitory;
                     self.department=self.e_department
+
                     login_status.name=self.nickname
+                    var userInfo={}
+                    userInfo['user_name']=self.nickname
+                    userInfo['tel']=self.contact//联系方式
+                    userInfo['user_area']= self.user_area//校区
+                    userInfo['dormitory']=self.dormitory//宿舍
+                    userInfo['academy']= self.department
+                    localStorage.setItem('nickname',userInfo.user_name);
+                    localStorage.setItem('userInfo',JSON.stringify(userInfo));
 
                 })
                 .catch(function (error) {
@@ -199,7 +208,7 @@ var personal = new Vue({
                 var userInfo = JSON.parse(userInfoStr)
                 this.nickname=userInfo.user_name
                 this.contact=userInfo.tel//联系方式
-                this.area=userInfo.area//校区
+                this.area=userInfo.user_area//校区
                 this.dormitory=userInfo.dormitory//宿舍
                 this.department=userInfo.academy
             }
@@ -212,15 +221,12 @@ var personal = new Vue({
                     self.sellList=response.data;
                     for(i=0;i<self.sellList.length;i++) self.sellList[i]['select']=false;
                     self.showingList = self.sellList
-                    console.log('***************************')
-                    console.log(self.showingList)
-                    self.sellItem = true;
+
                 })
                 .catch(function (error) {
                     console.log(error);
                 });
-               
-               setTimeout(this.select_sell(),2000)
+
            
             //用户创建的请求物品列表,select统一设为false
             axios.get(localStorage.serverUrl+'User/getUsersRequiredCommodities?user_id='+login_status.id+'&user_login_code='+login_status.operation_code)
