@@ -201,7 +201,7 @@ var personal = new Vue({
             }
             //用户创建的出售物品列表,select统一设为false
             var self=this;
-            axios.get(localStorage.serverUrl+'?user_id='+login_status.id+'&user_login_code='+login_status.operation_code)
+            axios.get(localStorage.serverUrl+'getUsersCommodities?user_id='+login_status.id+'&user_login_code='+login_status.operation_code)
                 .then(function (response) {
                     console.log(response);
                     self.sellList=response.data;
@@ -212,7 +212,7 @@ var personal = new Vue({
                     console.log(error);
                 });
             //用户创建的请求物品列表,select统一设为false
-            axios.get(localStorage.serverUrl+'?user_id='+login_status.id+'&user_login_code='+login_status.operation_code)
+            axios.get(localStorage.serverUrl+'getUsersRequiredCommodities?user_id='+login_status.id+'&user_login_code='+login_status.operation_code)
                 .then(function (response) {
                     console.log(response);
                     self.askList=response.data;
