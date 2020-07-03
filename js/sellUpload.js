@@ -1,19 +1,4 @@
 
-var modal = new Vue({
-    el:'#modal',
-    data:{
-        ifmodal:false
-    },
-    methods:{
-        closeModal:function(){
-
-            this.ifmodal = false
-        }
-        
-    
-    }
-
-})
 
 var formContain = new Vue({
     el:'#formContain',
@@ -29,6 +14,9 @@ var formContain = new Vue({
         desc_img3:'',
         area:'北校区' ,
         user_id:'',
+
+        spinShow:true,
+        modalVisible:false
     },
     methods:{
         add_img:function(event){
@@ -65,24 +53,40 @@ var formContain = new Vue({
             form.append('area',this.area)
             form.append('user_id',localStorage.user_id)
             form.append('user_login_code',localStorage.operation_code)
+
+            const msg = this.$Message.loading({
+                content: 'Loading...',
+                duration: 0
+            });
+            setTimeout(msg, 10000);
+            var self = this
             axios.post(localStorage.serverUrl+'commodity/addCommodity', form, {headers: {'Content-Type': 'multipart/form-data'}})
                 .then(function (response) {
                     if(response.data=='0'){}
                     else{
-                        modal.ifmodal = true
+                        setTimeout(msg, 1);
+                        self.$Modal.success({
+                            title: '发布结果',
+                            content: '发布成功！'
+                        });
                     }
                 })
                 .catch(function (error) {
                     console.log(error);
                 });
 
+        },
+        success:function(response, file, fileList){
+            console.log(response)
+            console.log(file)
+            console.log(fileList)
         }
     },
     created:function(){
 
     },
     mounted:function(){
-        
+       
     }
 
 })

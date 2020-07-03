@@ -66,6 +66,15 @@
     color: #ccc;
 }
 
+button{
+    width: 20%;
+}
+
+button > span {
+    display: inline!important;
+    color:white!important;
+}
+
 .container input {
     border-radius: 5px;
     border: 1px solid #ccc;
@@ -192,3 +201,6 @@ p:last-child input {
     border-radius: 7px;
     /*box-sizing: border-box;*/
 }
+
+
+

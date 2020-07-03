@@ -9,6 +9,9 @@
 
     <link rel="stylesheet" type="text/css" href="css/reset.css">
     <link rel="stylesheet" type="text/css" href="css/upload.css">
+
+    <link rel="stylesheet" type="text/css" href="http://unpkg.com/view-design/dist/styles/iview.css">
+    <script type="text/javascript" src="http://unpkg.com/view-design/dist/iview.min.js"></script>
 </head>
 
 <body>
@@ -113,22 +116,19 @@
                 <!-- <img src="desc_img3" id="desc_img3"> -->
             </p>
 
-
-            <input type="submit" class="submit-btn" name="item-submit">
+                <i-button type="primary" @click="upload1">发布</i-button>
+               
         </form>
+
+        <Spin size="large" fix v-if="spinShow"></Spin>
+            <!-- 模态窗口 -->
+        <Modal title="View Image" v-model="modalVisible">
+            <img :src="'https://o5wwk8baw.qnssl.com/' + imgName + '/large'" v-if="visible" style="width: 100%">
+        </Modal>
+
+
     </div>
 
-    <!-- 模态窗口 -->
-    <div id="modal" v-show="ifmodal">
-        <dialog id="modal-dialog">
-            提交成功！
-            <img class="modal-close-icon" src="img/close.png">
-            <div class="modal-close">
-                <img src="img/success.png" @click="closeModal">
-            </div>
-
-        </dialog>
-    </div>
 
     <footer>
         <a href="#">©2019-2020 二手物品交易</a>

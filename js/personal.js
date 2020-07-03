@@ -210,7 +210,6 @@ var personal = new Vue({
         else{
             //获取用户信息
             var userInfoStr=localStorage.userInfo
-            console.log(userInfo.user_area)
             if(userInfoStr){
                 var userInfo = JSON.parse(userInfoStr)
                 this.nickname=userInfo.user_name
