@@ -214,7 +214,7 @@ var personal = new Vue({
                 var userInfo = JSON.parse(userInfoStr)
                 this.nickname=userInfo.user_name
                 this.contact=userInfo.tel//联系方式
-                this.area=userInfo.user_area//校区
+                this.user_area=userInfo.user_area//校区
                 this.dormitory=userInfo.dormitory//宿舍
                 this.department=userInfo.academy
             }
