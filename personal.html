@@ -8,6 +8,8 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/reset.css">
     <link rel="stylesheet" type="text/css" href="css/personal.css">
+    <link rel="stylesheet" type="text/css" href="http://unpkg.com/view-design/dist/styles/iview.css">
+    <script type="text/javascript" src="http://unpkg.com/view-design/dist/iview.min.js"></script>
 
 </head>
 
@@ -132,7 +134,7 @@
 
             <a class="upload" href="sellUpload.html" v-if="sellItem">上传出售物品</a>
             <a class="upload" href="askUpload.html" v-else>上传求物品信息</a>
-            <a class="delete" href="#" v-on:click="delete_item">删除二手物品</a>
+            <a class="delete" href="#" v-on:click="modal1show">删除二手物品</a>
 
         </div>
 
@@ -168,7 +170,15 @@
 
         </div>
         <!-- container-end -->
-
+        <Modal
+        v-model="modal1"
+        title="删除确认"
+        @on-ok="delete_item"
+        @on-cancel="modal1cancel">
+        <p></p>
+        <p>确认删除选中的物品吗</p>
+        <p></p>
+       </Modal>
     </div>
     <footer>
         <a href="#">©2019-2020 二手物品交易</a>

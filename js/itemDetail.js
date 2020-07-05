@@ -40,19 +40,18 @@ var itemDetail = new Vue({
 
         addCart:function(){
             //加入购物车
-            if(login_status.id=''){
+            if(login_status.id==null||login_status.id==''){
                 alert('请先登录')
             }
             else{
                 //发送用户id和code，物品id，加入/移出购物车
                 var self=this;
                 if(this.cart_status=='加入购物车'){
+                    console.log('login_status.id:'+login_status.id)
                     //加入购物车
-                    axios.get(localStorage.serverUrl+'shop/addShopCartItem?user_id='+login_status.id+'&user_login_code='+login_status.operation_code+'&commodity_id='+this.itemList[index].commodity_id)
+                    axios.get(localStorage.serverUrl+'shop/addShopCartItem?user_id='+login_status.id+'&user_login_code='+login_status.operation_code+'&commodity_id='+this.item_id)
                         .then(function (response) {
                             console.log(response);
-                            //删除该物品
-                            self.itemList.splice(index,1);
                             self.cart_status='移出购物车'
                         })
                         .catch(function (error) {
@@ -62,11 +61,9 @@ var itemDetail = new Vue({
                 }
                 else{
                     //移出购物车
-                    axios.get(localStorage.serverUrl+'shop/deleteShopCartItem?user_id='+login_status.id+'&user_login_code='+login_status.operation_code+'&commodity_id='+this.itemList[index].commodity_id)
+                    axios.get(localStorage.serverUrl+'shop/deleteShopCartItem?user_id='+login_status.id+'&user_login_code='+login_status.operation_code+'&commodity_id='+this.item_id)
                         .then(function (response) {
                             console.log(response);
-                            //删除该物品
-                            self.itemList.splice(index,1);
                             self.cart_status='加入购物车'
                         })
                         .catch(function (error) {

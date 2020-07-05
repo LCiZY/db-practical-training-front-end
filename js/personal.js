@@ -24,7 +24,9 @@ var personal = new Vue({
 
         sellList:[],
         askList:[],
-        showingList:[]
+        showingList:[],
+
+        modal1:false
 
 
     },
@@ -76,10 +78,12 @@ var personal = new Vue({
         },
         //出售、请求物品的切换
         select_sell:function(){
+            localStorage.setItem('sellItem','1');
             this.sellItem = true;
             this.showingList = this.sellList
         },
         select_ask:function(){
+            localStorage.setItem('sellItem','0');
             this.sellItem = false;
             this.showingList = this.askList
         },
@@ -113,27 +117,26 @@ var personal = new Vue({
                 //发送用户id，物品id字符串，用空格隔开
                 axios.get(localStorage.serverUrl+'commodity/transactionDone?user_id='+login_status.id+'&user_login_code='+login_status.operation_code+'&commodity_id='+itemID)
                     .then(function (response) {
-                        console.log(response);
-                        self.sellList[index].finished='Y';
+                        self.sellList.splice(index,1)
                         self.showingList = self.sellList
                     })
                     .catch(function (error) {
                         console.log(error);
                     });
+                    
             }
             else{
-                //请求的物品
-                itemID=this.askList[index].commodity_id;
-                //发送用户id，物品id字符串，用空格隔开
-                axios.get(localStorage.serverUrl+'?user_id='+login_status.id+'&user_login_code='+login_status.operation_code+'&commodity_id='+itemID)
-                    .then(function (response) {
-                        console.log(response);
-                        self.askList[index].finished='Y';
-                        self.showingList = self.askList
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
+                // //请求的物品
+                // itemID=this.askList[index].commodity_id;
+                // //发送用户id，物品id字符串，用空格隔开
+                // axios.get(localStorage.serverUrl+'?user_id='+login_status.id+'&user_login_code='+login_status.operation_code+'&commodity_id='+itemID)
+                //     .then(function (response) {
+                //         self.askList.splice(index,1)
+                //         self.showingList = self.askList
+                //     })
+                //     .catch(function (error) {
+                //         console.log(error);
+                //     });
             }
         },
         to_detail:function(id){
@@ -147,19 +150,20 @@ var personal = new Vue({
             }
         },
 
-        //删除，创建个数组记录选择的物品id
+        //删除
         delete_item:function(){
             var self=this;
-            var idList='';
             if(this.sellItem){
                 //删除出售的物品，返回物品列表
                 
                 for(var i=0; i<this.sellList.length; i++){
                     if(this.sellList[i].select){
+                        console.log('index:'+i)
                         axios.get(localStorage.serverUrl+'commodity/deleteUsersCommodity?user_id='+login_status.id+'&user_login_code='+login_status.operation_code+'&commodity_id='+this.sellList[i].commodity_id)
                         .then(function (response) {
-                            console.log(response);
-                            //粘贴created的函数
+                            console.log(response)
+                            self.sellList.splice(i,1)
+                            self.showingList = self.sellList
                         })
                         .catch(function (error) {
                             console.log(error);
@@ -171,14 +175,14 @@ var personal = new Vue({
             }
             else{
                 //删除请求的物品
-            
-                idList='';
-                for(var j=0; j<this.sellList.length; j++){
-                    if(this.sellList[j].select){
-                        axios.get(localStorage.serverUrl+'commodity/deleteUsersRequiredCommodity?user_id='+login_status.id+'&user_login_code='+login_status.operation_code+'&commodity_id='+this.sellList[j].commodity_id)
+                for(var j=0; j<this.askList.length; j++){
+                    if(this.askList[j].select){
+                        console.log('index:'+i)
+                        axios.get(localStorage.serverUrl+'commodity/deleteUsersRequiredCommodity?user_id='+login_status.id+'&user_login_code='+login_status.operation_code+'&commodity_id='+this.askList[j].commodity_id)
                         .then(function (response) {
-                            console.log(response);
-                            //粘贴created的函数
+                            console.log(response)
+                            self.askList.splice(j,1)
+                            self.showingList = self.askList
                         })
                         .catch(function (error) {
                             console.log(error);
@@ -198,6 +202,12 @@ var personal = new Vue({
             else{
                 //编辑请求的物品
             }
+        },
+        modal1show:function(){
+            this.modal1=true
+        },
+        modal1cancel:function(){
+            this.modal1=false
         }
 
 
@@ -207,7 +217,10 @@ var personal = new Vue({
        
 
     },
-    mounted:function(){
+    mounted:function(){ 
+        if(localStorage.getItem('sellItem')=='0')
+           this.sellItem=false
+
         if(login_status.id==''){
             alert('当前未登录！')
         }
