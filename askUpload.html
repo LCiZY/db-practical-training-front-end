@@ -9,6 +9,8 @@
 
     <link rel="stylesheet" type="text/css" href="css/reset.css">
     <link rel="stylesheet" type="text/css" href="css/upload.css">
+    <link rel="stylesheet" type="text/css" href="http://unpkg.com/view-design/dist/styles/iview.css">
+    <script type="text/javascript" src="http://unpkg.com/view-design/dist/iview.min.js"></script>
 </head>
 
 <body>
@@ -76,11 +78,6 @@
             </select>
         </p>
 
-        <p>
-            <span class="orign-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 物&nbsp;品&nbsp;&nbsp;原&nbsp;价：
-            <input type="text" v-model="commodity_original_price" name="commodity_original_price">
-        </p>
-
 
         <p>
             <span class="desc-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 物&nbsp;品&nbsp;&nbsp;描&nbsp;述：
@@ -97,11 +94,10 @@
             </select>
         </p>
 
-
-
-
-        <input type="submit" class="submit-btn" name="item-submit">
+            <i-button type="primary" @click="uploadToServer">发布</i-button>
+           
     </form>
+
 </div>
 
 <!-- 模态窗口 -->

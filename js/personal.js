@@ -91,11 +91,15 @@ var personal = new Vue({
                 //为出售的物品
                 this.sellList[index].select = !this.sellList[index].select;
                 this.showingList[index].select = this.sellList[index].select
+
+                this.$set(this.showingList, index,  this.showingList[index])
+                
             }
             else{
                 //为请求的物品
                 this.askList[index].select = !this.askList[index].select;
                 this.showingList[index].select = this.askList[index].select
+                this.$set(this.showingList, index,  this.showingList[index])
             }
 
         },
