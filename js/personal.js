@@ -152,43 +152,45 @@ var personal = new Vue({
 
         //删除
         delete_item:function(){
+            var indexArray = []
             var self=this;
             if(this.sellItem){
                 //删除出售的物品，返回物品列表
                 
                 for(var i=0; i<this.sellList.length; i++){
                     if(this.sellList[i].select){
-                        console.log('index:'+i)
+                        indexArray.push(i)
                         axios.get(localStorage.serverUrl+'commodity/deleteUsersCommodity?user_id='+login_status.id+'&user_login_code='+login_status.operation_code+'&commodity_id='+this.sellList[i].commodity_id)
                         .then(function (response) {
-                            console.log(response)
-                            self.sellList.splice(i,1)
-                            self.showingList = self.sellList
+                         
                         })
                         .catch(function (error) {
                             console.log(error);
                         });
-
+                        
+                        
                     }
                 }
-               
+               for(i = indexArray.length-1;i>=0;i--) this.sellList.splice(indexArray[i],1)
+               this.showingList = this.sellList
             }
             else{
                 //删除请求的物品
-                for(var j=0; j<this.askList.length; j++){
-                    if(this.askList[j].select){
-                        console.log('index:'+i)
-                        axios.get(localStorage.serverUrl+'commodity/deleteUsersRequiredCommodity?user_id='+login_status.id+'&user_login_code='+login_status.operation_code+'&commodity_id='+this.askList[j].commodity_id)
+                for(var i=0; i<this.askList.length; i++){
+                    if(this.askList[i].select){
+                        indexArray.push(i)
+                        axios.get(localStorage.serverUrl+'commodity/deleteUsersRequiredCommodity?user_id='+login_status.id+'&user_login_code='+login_status.operation_code+'&commodity_id='+this.askList[i].commodity_id)
                         .then(function (response) {
-                            console.log(response)
-                            self.askList.splice(j,1)
-                            self.showingList = self.askList
+                            
                         })
                         .catch(function (error) {
                             console.log(error);
                         });
+                      
                     }
                 }
+                for(i = indexArray.length-1;i>=0;i--) this.askList.splice(indexArray[i],1)
+                this.showingList = this.askList
                
             }
         },

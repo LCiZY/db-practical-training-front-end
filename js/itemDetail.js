@@ -10,20 +10,20 @@ var itemDetail = new Vue({
 
 
         //创建者信息
-        nickname:'骆小胖',
-        contact:213432,
-        area:'南校区',
-        dormitory:'C10',
-        department:'软件学院',
+        nickname:'',
+        contact:0,
+        area:'',
+        dormitory:'',
+        department:'',
 
         //物品信息
-        title:'二手书《目送》',
-        cover:'img/item-detail/1.jpg',
-        item_type:'非教辅类书籍',
-        now_price:13.00,
-        old_price:39.00,
-        description:'有点水印,但并不影响阅读',
-        other_pic:['img/item-detail/1.jpg','img/item-detail/1.jpg','img/item-detail/1.jpg'],
+        title:'',
+        cover:'',
+        item_type:'',
+        now_price:0,
+        old_price:0,
+        description:'',
+        other_pic:[],
         cart_status:'加入购物车'
 
     },
@@ -92,19 +92,19 @@ var itemDetail = new Vue({
                 .then(function (response) {
                     console.log(response);
                     //创建者信息
-                    self.nickname=response.data.user_name;
-                    self.contact=response.data.tel;
-                    self.area=response.data.user_area;
-                    self.dormitory=response.data.dormitory;
-                    self.department=response.data.academy;
+                    self.nickname=response.data.map.user_name;
+                    self.contact=response.data.map.tel;
+                    self.area=response.data.map.user_area;
+                    self.dormitory=response.data.map.dormitory;
+                    self.department=response.data.map.academy;
                     //物品信息
-                    self.title=response.data.commodity_name;
-                    self.cover=response.data.commodity_cover_pic_url;
-                    self.item_type=response.data.commodity_type;
-                    self.now_price=response.data.commodity_price;
-                    self.old_price=response.data.commodity_original_price;
-                    self.description=response.data.commodity_description;
-                    self.other_pic=response.data.image_url;
+                    self.title=response.data.map.commodity_name;
+                    self.cover=response.data.map.commodity_cover_pic_url;
+                    self.item_type=response.data.map.commodity_type;
+                    self.now_price=response.data.map.commodity_price;
+                    self.old_price=response.data.map.commodity_original_price;
+                    self.description=response.data.map.commodity_description;
+                    self.other_pic=response.data.imgList;
                     self.cart_status='加入购物车'
 
 
@@ -129,10 +129,7 @@ var itemDetail = new Vue({
                     self.title=response.data.commodity_name;
                     self.cover=response.data.commodity_cover_pic_url;
                     self.item_type=response.data.commodity_type;
-                    //self.now_price=response.data.commodity_price;
-                    //self.old_price=response.data.commodity_original_price;
                     self.description=response.data.commodity_description;
-                    self.other_pic=response.data.image_url;
                     //self.cart_status='加入购物车'
 
 
