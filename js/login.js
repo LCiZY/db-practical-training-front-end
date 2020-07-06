@@ -9,7 +9,11 @@ var login = new Vue({
         type:'login',  //login, signUp,
         userID:null,
         password:null,
-        password2:null
+        password2:null,
+        ifSame:true,
+        hasPassword:true,
+        SignUpHasPassword:true,
+        SignUpHasPassword1:true
 
 
     },
@@ -38,6 +42,9 @@ var login = new Vue({
 
         //登录，发送账号密码，返回操作用的code，和用户nickname
         login:function(){
+            if(this.userID==null){     return}
+            if(this.password==null){this.hasPassword=false; return}
+
             let param = new URLSearchParams();
             param.append("user_id",this.userID)
             param.append("user_password",this.password)
@@ -61,6 +68,9 @@ var login = new Vue({
         },
         //注册，发送账号密码昵称，要判定是否账号已存在
         signUp:function(){
+            if(this.userID==null||this.userID==''){return}
+            if(this.password==null||this.password==''){this.SignUpHasPassword=false;return}
+            if(this.password2==null||this.password2==''){this.SignUpHasPassword1=false;return}
             if(this.password==this.password2){
                 let param = new URLSearchParams();
                 param.append("user_id",this.userID)
@@ -69,7 +79,7 @@ var login = new Vue({
                 axios.post(localStorage.serverUrl+'User/addUser',param)
                     .then(function (response) {
                         if(response.data=='-1') {}     //用户已存在，注册失败
-                        else if(response.data=='0'){}  //注册失败
+                        else if(response.data=='0'){}  //注册失败,账号，密码长度太短
                         else if(response.data=='1')//注册成功
                         //回到登录页
                         window.location.href="login.html";
@@ -79,9 +89,12 @@ var login = new Vue({
                     });
             }
             else{
-                alert('两次输入密码不一致！')
+               
             }
 
+        },
+        passwordConfirmInput:function(){
+                this.ifSame=(this.password==this.password2)
         }
     }
 

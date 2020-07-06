@@ -27,7 +27,6 @@ var shoppingCart = new Vue({
     },
     created:function(){
         if(login_status.id==''){
-            alert('当前未登录')
         }
         else{
             //发送用户id，获取购物车物品列表

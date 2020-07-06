@@ -46,14 +46,48 @@
 
     <div id="personal">
 
-        <!-- 个人信息编辑 -->
-        <form class="person-info" v-if="edit">
+        <!-- 个人信息展示 -->
+        <div class="person-info" v-if="!edit">
 
+            <p>
+                <a href="#" class="name">{{nickname}}</a>
+            </p>
+            <p>
+                <a href="#" class="title">&nbsp;&nbsp;&nbsp;&nbsp;用户信息</a>
+            </p>
+            <p class="set">
+                <a href="#" class="edit" v-on:click="to_edit_info">编辑个人信息</a>
+                <img class="set-icon" src="img/setting.png">
+            </p>
+            <div class="contact">
+                <p>
+                    <span class="call-icon"></span> 联&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;系：
+                    <a href="#" class="num">{{contact}}</a></p>
+                <p>
+                    <span class="address-icon"></span> 校&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;区：
+                    <a href="#" class="address">{{user_area}}</a>
+                </p>
+                <p>
+                    <span class="dorm-icon"></span> 宿&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;舍：
+                    <a href="#" class="address">{{dormitory}}</a>
+                </p>
+                <p>
+                    <span class="major-icon"></span> 学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;院：
+                    <a href="#" class="major">{{department}}</a>
+                </p>
+            </div>
+        </div>
+        <!-- person-info-end -->
+        
+        <!-- 个人信息编辑 -->
+        <form class="person-info" v-else>
 
             <p>
                 <a href="#" class="title">&nbsp;&nbsp;&nbsp;编辑个人信息</a>
             </p>
             <p class="set">
+                <a href="#" class="edit" v-on:click="return_to_info">返回</a>
+                <img class="set-icon" src="img/return.png" style="margin-right: 20px;">
                 <a href="#" class="edit" v-on:click="edit_submit">提交</a>
                 <img class="set-icon" src="img/setting.png">
             </p>
@@ -86,38 +120,7 @@
         </form>
         <!-- person-info-end -->
 
-        <!-- 个人信息展示 -->
-        <div class="person-info" v-else>
-
-            <p>
-                <a href="#" class="name">{{nickname}}</a>
-            </p>
-            <p>
-                <a href="#" class="title">&nbsp;&nbsp;&nbsp;&nbsp;用户信息</a>
-            </p>
-            <p class="set">
-                <a href="#" class="edit" v-on:click="to_edit_info">编辑个人信息</a>
-                <img class="set-icon" src="img/setting.png">
-            </p>
-            <div class="contact">
-                <p>
-                    <span class="call-icon"></span> 联&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;系：
-                    <a href="#" class="num">{{contact}}</a></p>
-                <p>
-                    <span class="address-icon"></span> 校&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;区：
-                    <a href="#" class="address">{{user_area}}</a>
-                </p>
-                <p>
-                    <span class="dorm-icon"></span> 宿&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;舍：
-                    <a href="#" class="address">{{dormitory}}</a>
-                </p>
-                <p>
-                    <span class="major-icon"></span> 学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;院：
-                    <a href="#" class="major">{{department}}</a>
-                </p>
-            </div>
-        </div>
-        <!-- person-info-end -->
+       
 
 
 

@@ -35,10 +35,13 @@ var personal = new Vue({
             this.edit=true;
             this.e_nickname=this.nickname;
             this.e_contact=this.contact;
-            this.e_area=this.area;
+            this.e_area=this.user_area;
             this.e_dormitory=this.dormitory;
             this.e_department=this.department;
 
+        },
+        return_to_info:function(){
+            this.edit=false;
         },
         //提交修改的个人信息
         edit_submit:function(){
@@ -224,7 +227,7 @@ var personal = new Vue({
            this.sellItem=false
 
         if(login_status.id==''){
-            alert('当前未登录！')
+           
         }
         else{
             //获取用户信息
