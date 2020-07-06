@@ -81,6 +81,7 @@ var personal = new Vue({
         },
         //出售、请求物品的切换
         select_sell:function(){
+            console.log('click')
             localStorage.setItem('sellItem','1');
             this.sellItem = true;
             this.showingList = this.sellList
@@ -268,5 +269,8 @@ var personal = new Vue({
                     console.log(error);
                 });
         }
+        
+        setTimeout(' document.getElementById("sell-btn").click()',500)
+       
     },
 })

@@ -48,58 +48,15 @@
 	color:white  !important;
 }
 
-.searchIn{
-	width: 450px;
-	height: 44px;
-	border: 2px solid #4b4d52;
-	position: absolute;
-	left: 49%;
-	top: 27%;
-	outline: none;
-	font-size: 16px;
-	text-indent: 10px;
-}
-
-.searchBtn{
-	width: 90px;
-	height: 44px;
-	border: 2px solid #3f4247;
-	background-color: #4b4d52;
-	position: absolute;
-	right: 12%;
-	top: 26.6%;
-	/*padding-top: 9px;*/
-	text-indent: 5px;
-	outline: none;
 
 
-}
 
-.searchBtn a{
-	text-decoration: none;
-	text-align: center;
-	color: white;
-	font-size: 19px;
-}
 
 .logo{
 	width: 36%;
 	margin-left: 6%;
 }
 
-.search-logo{
-	text-decoration: none;
-	color: #4b4d52;
-	font-size: 30px;
-	position: absolute;
-	left: 45%;
-	top: 27.5%;
-
-}
-.search-logo img{
-	width: 21px;
-	margin-left:-6px; 
-}
 
 .menu{
 	width: 100%;

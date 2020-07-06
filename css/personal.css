@@ -363,3 +363,17 @@
 .item-id {
     display: none;
 }
+
+.nav-p-info{
+position: absolute;
+right: 0px;
+margin-top: 9px;
+margin-right: 10%;
+}
+
+.hover-class:hover {
+    color: white;
+    background-color: #ae6d6a;
+    transition: all 0.5s;
+
+}

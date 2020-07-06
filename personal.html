@@ -8,6 +8,7 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/reset.css">
     <link rel="stylesheet" type="text/css" href="css/personal.css">
+    <link rel="stylesheet" type="text/css" href="css/public.css">
     <link rel="stylesheet" type="text/css" href="http://unpkg.com/view-design/dist/styles/iview.css">
     <script type="text/javascript" src="http://unpkg.com/view-design/dist/iview.min.js"></script>
 
@@ -25,14 +26,9 @@
                 <li><a class="active" href="personal.html">个人中心</a></li>
             </ul>
         </div>
-        <!-- nav-menu -->
-        <!--搜索框-->
-        <div class="nav-search" id="search">
-            <input type="search" class="searchIn" placeholder="搜物品" v-model="keyWord">
-            <button class="search-logo" v-on:click="search"><img src="img/search2.png"></button>
-        </div>
+        
 
-        <div class="nav-info" id="login_status">
+        <div class="nav-p-info" id="login_status">
             <span v-if="id==''">
 				<a href="login.html" class="username">前往登录</a>
 			</span>
@@ -78,7 +74,7 @@
             </div>
         </div>
         <!-- person-info-end -->
-        
+
         <!-- 个人信息编辑 -->
         <form class="person-info" v-else>
 
@@ -135,9 +131,9 @@
 		<a id="delete-item" href="#" hidden="true">删除二手物品</a>
 		-->
 
-            <a class="upload" href="sellUpload.html" v-if="sellItem">上传出售物品</a>
-            <a class="upload" href="askUpload.html" v-else>上传求物品信息</a>
-            <a class="delete" href="#" v-on:click="modal1show">删除二手物品</a>
+            <a class="upload hover-class" href="sellUpload.html" v-if="sellItem">上传出售物品</a>
+            <a class="upload hover-class" href="askUpload.html" v-else>上传求物品信息</a>
+            <a class="delete hover-class" href="#" v-on:click="modal1show">删除二手物品</a>
 
         </div>
 
@@ -183,7 +179,8 @@
         <p></p>
        </Modal>
     </div>
-    <footer>
+
+    <footer class="footer-center">
         <a href="#">©2019-2020 二手物品交易</a>
         <a href="#">意见反馈&nbsp;&nbsp;&nbsp;联系我们&nbsp;&nbsp;&nbsp;隐私权声明&nbsp;&nbsp;&nbsp;使用条款</a>
     </footer>
