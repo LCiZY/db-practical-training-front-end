@@ -218,7 +218,7 @@ a.upload-time {
     margin-top: 20px;
     background-color: #fafafa;
 }
-
+ 
 #seller-info .seller-span3 {
     width: 90%;
     margin-top: 20px;
@@ -249,4 +249,297 @@ a.upload-time {
     color: #000;
     border: 1px solid #e8e2d4;
     border-radius: 8px;
+}
+
+.nav-p-info{
+    position: absolute;
+    right: 0px;
+    margin-top: 9px;
+    margin-right: 10%;
+}
+
+
+
+/*以下是聊天框*/
+
+.wrap-chat{
+    font-family: Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,\\5FAE\8F6F\96C5\9ED1,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #515a6e;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+.mark-layer-up{
+
+    font-family: Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,\\5FAE\8F6F\96C5\9ED1,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #515a6e;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(55,55,55,.6);
+    height: 100%;
+    z-index: 1509;
+}
+
+
+.mark-layer-down{
+    font-family: Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,\\5FAE\8F6F\96C5\9ED1,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #515a6e;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    overflow: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    outline: 0;
+    z-index: 1509;
+}
+
+.modal-row{
+    font-family: Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,\\5FAE\8F6F\96C5\9ED1,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #515a6e;
+    -webkit-font-smoothing: antialiased;
+    padding: 0;
+    margin: 0 auto;
+    position: relative;
+    outline: 0;
+    top: 100px;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+
+}
+
+.modal-content{
+    font-family: Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,\\5FAE\8F6F\96C5\9ED1,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #515a6e;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    position: absolute;
+    background-color: #fff;
+    border: 0;
+    border-radius: 6px;
+    background-clip: padding-box;
+    box-shadow: 0 4px 12px rgba(0,0,0,.15);
+    width: 80%;
+    height: 90%;
+    top: -10%;
+    min-height: 514.2px;
+
+}
+
+
+.ivu-modal-close{
+    font-family: Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,\\5FAE\8F6F\96C5\9ED1,Arial,sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    color: #2d8cf0;
+    background: 0 0;
+    text-decoration: none;
+    outline: 0;
+    transition: color .2s ease;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    z-index: 1;
+    font-size: 12px;
+    position: absolute;
+    right: 8px;
+    top: 0px!important;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+
+.ivu-modal-header{
+    font-family: Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,\\5FAE\8F6F\96C5\9ED1,Arial,sans-serif;
+    font-size: 14px;
+    color: #515a6e;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    border-bottom: 1px solid #e8eaec;
+    padding: 14px 16px;
+    line-height: 1;
+}
+
+.ivu-modal-header-inner{
+    font-family: Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,\\5FAE\8F6F\96C5\9ED1,Arial,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    display: inline-block;
+    width: 100%;
+    height: 20px;
+    line-height: 20px;
+    font-size: 16px;
+    color: #17233d;
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.contain-center{
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;   
+	align-items: center;        
+  }
+
+
+.chat-title-container{
+    text-align: center;
+    display: block;
+}
+
+.chat-title{
+    height: 6.5%;
+    border-bottom: 1px #e8eaec solid;
+    min-height: 42px;
+}
+
+.chat-user-list{
+    width: 20%;
+    height: 100%;
+    overflow-y:scroll;
+    overflow-x: hidden;
+    border-right: 1px #e8eaec solid;
+}
+.chat-user-list::-webkit-scrollbar {
+    /*隐藏滚轮*/
+    display: none;
+}
+
+
+.chat-user-avatar{
+    width: 30%;
+    height: 30%;
+  
+}
+
+.user-ava-info{
+    transition: 0.5s;
+    display: flex;
+    margin-top: 5px;
+}
+
+.user-ava-info:hover {
+    background-color: #e8eaec;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.user-ava-info > span{
+    display: inline-block;
+    vertical-align: middle;
+    width: 30%;
+    overflow: hidden;
+
+}
+.user-ava-info > img{
+    vertical-align: middle;
+    flex: 15%;
+}
+
+.user-ava-info .chat-name-message{
+    flex: 54%;
+}
+
+.user-name{
+    font-weight: bold;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.user-message{
+    font-size: smaller;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.chat-time{
+    position: relative;
+    width: 30%;
+    height: 50%;
+    top: 20%;
+    line-height:25%;
+    font-size: 5px;
+    flex: 31%;
+    text-align: center;
+    display: block;
+    line-height: 200%;
+}
+
+.chat-chat-window{
+    width: 80%;
+    height: 93%;
+    min-height: 478.2px;
+    position: absolute;
+    left: 20%;
+    top: 0px;
+}
+
+.chat-input{
+    height: 7%;
+    min-height: 36px;
+    width: 80%;
+    bottom: 0px;
+    left: 20%;
+    position: absolute;
+    background-color: #f7f7f7;
+}
+
+.chat-input-input{
+    width: 70%;
+    height: 28px;
+    margin-top: 4px;
+    margin-left: 1%;
+    border-width: 0px;
+    border-radius: 6px;
+    border-color: #f7f7f7;
+}
+
+.chat-input-btn{
+    width: 10%;
+    height: 28px;
+    margin-top: 4px;
+    position: absolute;
+    right: 3%;
+    background-color: #6495ed;
+    border-width: 1px;
+    border-color: white;
+    border-radius: 6px;
+    color: white;
 }

@@ -1,6 +1,21 @@
 /**
  * Created by 14752 on 2020-06-28.
  */
+var chat;
+
+
+function getNowTime(){
+    var date = new Date();
+
+    var year = date.getFullYear();
+    var month = date.getMonth()+1; month = month<10?'0'+month:month;
+    var day = date.getDate();        day = day<10?'0'+day:day;
+    var hour = date.getHours();      hour = hour<10?'0'+hour:hour;
+    var minute = date.getMinutes();   minute = minute<10?'0'+minute:minute;
+    var second = date.getSeconds();  second = second<10?'0'+second:second;// String strDateFormat = "yyyy-MM-dd HH:mm:ss";
+    return year+'-'+month+'-'+day+' '+hour+':'+minute+':'+second;
+}
+
 
 var itemDetail = new Vue({
     el:'#itemDetail',
@@ -10,6 +25,7 @@ var itemDetail = new Vue({
 
 
         //创建者信息
+        owner_id:'',
         nickname:'',
         contact:0,
         area:'',
@@ -24,7 +40,9 @@ var itemDetail = new Vue({
         old_price:0,
         description:'',
         other_pic:[],
-        cart_status:'加入购物车'
+        cart_status:'加入购物车',
+
+        socket:undefined
 
     },
     methods:{
@@ -75,7 +93,87 @@ var itemDetail = new Vue({
                 }
 
             }
+        },
+        showChat:function(){
+            chat.ifChat=true
+            if(!this.ifExistId(this.owner_id))
+            chat.userList.push({user_id:this.owner_id,user_name:this.nickname})
+            if(localStorage.user_id==null||localStorage.user_id==''){}
+            else{
+                  this.openSocket()
+            }
+          
+
+
+
+
+        },
+        ifExistId:function(id){
+            for(i=0;i<chat.userList.length;i++){
+                if(chat.userList[i].user_id==id) return true
+            }
+            return false
+        },
+        openSocket:function() {
+        if(typeof(WebSocket) == "undefined") {
+            console.log("您的浏览器不支持WebSocket");
+        }else{
+            console.log("您的浏览器支持WebSocket");
+            //实现化WebSocket对象，指定要连接的服务器地址与端口  建立连接
+            //等同于socket = new WebSocket("ws://localhost:8888/xxxx/im/25");
+            //var socketUrl="${request.contextPath}/im/"+$("#userId").val();
+            var socketUrl=localStorage.serverUrl+"chatServer/"+login_status.id+"/"+login_status.operation_code;
+            socketUrl=socketUrl.replace("https","wss").replace("http","ws");
+            console.log(socketUrl);
+            if(this.socket!=null){
+                this.socket.close();
+                this.socket=null;
+            }
+            this.socket = new WebSocket(socketUrl);
+            //打开事件
+            this.socket.onopen = function() {
+                console.log("websocket已打开");
+                //this.socket.send("这是来自客户端的消息" + location.href + new Date());
+            };
+            //获得消息事件**************************************************************
+            this.socket.onmessage = function(msg) {
+                 //发现消息进入    开始处理前端触发逻辑
+                console.log('接受消息：');
+                console.log(msg.data);
+                // msg.data是字符串，要parse
+                var msgObj=JSON.parse(msg.data)
+                if(chat.chatHistory[msgObj.from_user_id])
+                 {  chat.chatHistory[msgObj.from_user_id].push(msgObj)
+                    chat.$nextTick(() =>{
+                        chat.$refs.chatBox.scrollTop = chat.$refs.chatBox.scrollHeight;
+                      })
+                }
+                chat.setMsgAndTime(chat,msgObj.from_user_id)  
+                
+            };
+            //关闭事件
+            this.socket.onclose = function() {
+                console.log("websocket已关闭");
+            };
+            //发生了错误事件
+            this.socket.onerror = function() {
+                console.log("websocket发生了错误");
+            }
         }
+    },
+    sendMessage:function() {
+        if(typeof(WebSocket) == "undefined") {
+            console.log("您的浏览器不支持WebSocket");
+        }else {
+            console.log("您的浏览器支持WebSocket");
+            var msg={"to_user_id":this.owner_id,"message":chat.message,"from_user_id":localStorage.user_id,"time_stamp":getNowTime()}
+            console.log('发送消息：');
+            console.log(msg);
+            this.socket.send(JSON.stringify(msg));
+            //this.socket.send('{"toUserId":"'+this.owner_id+'","fromUserId":"'+localStorage.user_id+'","contentText":"'+chat.message+'"}');
+        }
+    }
+
     },
 
     created:function(){
@@ -92,6 +190,7 @@ var itemDetail = new Vue({
                 .then(function (response) {
                     console.log(response);
                     //创建者信息
+                    self.owner_id=response.data.map.user_id
                     self.nickname=response.data.map.user_name;
                     self.contact=response.data.map.tel;
                     self.area=response.data.map.user_area;
@@ -145,3 +244,103 @@ var itemDetail = new Vue({
 
 
 })
+
+
+ chat = new Vue({
+    el:'#chat',
+    data:{
+        ifChat:false,
+        self_user_id:'',
+        self_name:'',
+        other_id:'',
+        other_name:'对方',
+        userList:[],
+        msgTimeList:[],
+        chatHistory:[[]],
+        showingChatHistory:[],
+
+        message:''
+
+    },
+    methods:{
+        hideChat:function(){
+            this.ifChat=false
+        },
+        chatWith:function(to_id,theOther){
+            if(!this.checkIfLogin()) return
+            this.other_name = theOther
+            this.other_id=to_id
+            var self=this;
+            //还没有接受信息，发个请求
+            if(!this.chatHistory[to_id])
+            axios.get(localStorage.serverUrl+'chat/getChatHistories?user_id='+localStorage.user_id+'&user_id1='+to_id+'&user_login_code='+localStorage.operation_code)
+                .then(function (response) {
+                    console.log(response);
+                    self.chatHistory[to_id]=response.data;
+                    self.showingChatHistory = self.chatHistory[to_id]
+                    self.$nextTick(() =>{//滚动到底部
+                        self.$refs.chatBox.scrollTop = self.$refs.chatBox.scrollHeight;
+                      })
+                    if(self.chatHistory[to_id].length>0){
+                        //设置最新消息和最新时间
+                        self.setMsgAndTime(self,to_id)                    
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+            else //接受过了，渲染就行了
+            {
+                this.showingChatHistory = this.chatHistory[to_id]
+                this.$nextTick(() =>{//滚动到底部
+                    this.$refs.chatBox.scrollTop = this.$refs.chatBox.scrollHeight;
+                  })
+            }
+            
+
+        },
+        checkIfLogin:function(){
+            if(localStorage.user_id==null||localStorage.user_id=='') {
+                this.$Modal.warning({
+                    title: '未登录',
+                    content: '请先登陆'
+                });
+                return false
+           }
+           return true
+        },
+        sendMessage:function(){
+            if(this.other_id=='') return
+            this.chatHistory[this.other_id].push({"to_user_id":this.other_id,"message":this.message,"from_user_id":localStorage.user_id,"time_stamp":getNowTime()})
+            this.showingChatHistory = this.chatHistory[this.other_id]
+            this.$nextTick(() =>{//滚动到底部
+                this.$refs.chatBox.scrollTop = this.$refs.chatBox.scrollHeight;
+              })
+            this.setMsgAndTime(this,this.other_id)
+            itemDetail.sendMessage()
+        },
+        setMsgAndTime:function(self,id){
+            if(self.chatHistory[id])
+            self.msgTimeList[id]={"latestMsg":self.chatHistory[id][self.chatHistory[id].length-1].message,"latestTime":self.chatHistory[id][self.chatHistory[id].length-1].time_stamp}
+        }
+
+    },
+    mounted:function(){
+       if(!this.checkIfLogin()) return
+       this.self_user_id = localStorage.user_id
+       this.self_name = localStorage.nickname
+       var self=this;
+       axios.get(localStorage.serverUrl+'chat/getChatWithUsers?user_id='+login_status.id+'&user_login_code='+login_status.operation_code)
+                .then(function (response) {
+                    console.log(response);
+                    self.userList=response.data;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+       
+    }
+
+})
+
+

@@ -243,7 +243,6 @@ var personal = new Vue({
             }
             //用户创建的出售物品列表,select统一设为false
             var self=this;
-            console.log(self)
             axios.get(localStorage.serverUrl+'User/getUsersCommodities?user_id='+login_status.id+'&user_login_code='+login_status.operation_code)
                 .then(function (response) {
                     console.log(response);

@@ -59,6 +59,8 @@ var login = new Vue({
                     localStorage.setItem('nickname',response.data.map.user_name);
                     localStorage.setItem('userInfo',JSON.stringify(response.data.map));
 
+                    
+
                     window.location.href="index.html";
                 })
                 .catch(function (error) {
