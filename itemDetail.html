@@ -63,11 +63,11 @@
                 <span class="item-name">{{title}}</span>
                 <span class="item-publish">所属类型：{{item_type}}</span>
                 <span class="item-price" v-if="open_type=='sell'">
-				<p>售价 <a class="final-price">￥{{now_price}}</a></p>
-				<p>原价 <a class="orignal-price">￥{{old_price}} </a></p>
+                    <p>售价 <a class="final-price">￥{{now_price}}</a></p>
+                    <p>原价 <a class="orignal-price">￥{{old_price}} </a></p>
 				</span>
-                <span class="item-descr">
-				<p>物品描述<a class="item-desc">{{description}}</a></p>
+                <span class="item-descr item-desc-scroll">
+				<p >物品描述<a class="item-desc">{{description}}</a></p>
 				<!--<p>上书时间<a class="upload-time">2018-03-20</a></p>-->
 				</span>
                 <a>
@@ -97,15 +97,19 @@
 			-->
             </div>
             <!-- seller-info-end -->
-
-            <h3>其他描述图片：</h3><br>
-            <p v-for="item in other_pic"><img :src="item.image_url"><br></p>
+            
 
 
 
           
         </div>
         <!--  container -->
+        <div class="headline-center" v-if="other_pic.length>0">
+            <h3>其他描述图片：</h3>
+        </div>
+        <div class="item-center">
+            <span v-for="item in other_pic"><img :src="item.image_url"><br></span>
+        </div>
     </div>
 
 
@@ -120,8 +124,9 @@
                   <div class="chat-user-list">
                      <span class="chat-title-container"><h2 class="chat-title">聊天</h2></span>
 
-                     <div class="user-ava-info" v-for="(item,index) in userList" @click="chatWith(item.user_id,item.user_name)">
+                     <div class="user-ava-info" v-for="(item,index) in userList" @click="chatWith(item.user_id,item.user_name)" v-bind:class="{'user-focus':item.user_id==other_id,'user-ava-info-margin':index!=0}">
                          <img class="chat-user-avatar" src="img/avatar.png"/> 
+                         <span class="chat-dot" v-if="item.msg_count>0">{{item.msg_count>0?item.msg_count:''}}</span>
                          <span class="chat-name-message">
                             <span class="user-name">{{item.user_name}}</span><br>
                             <span class="user-message">{{msgTimeList[item.user_id]?msgTimeList[item.user_id].latestMsg:''}}</span>
@@ -139,18 +144,19 @@
                     <a class="ivu-modal-close" style="font-size:xx-large;" @click="hideChat">
                      ×
                     </a> 
-                    <div class="ivu-modal-header" style="height: 7%;min-height: 42px;">
+                    <div class="ivu-modal-header" style="height: 42px;min-height: 42px;background-color: white!important;">
                         <div class="ivu-modal-header-inner">与{{other_name}}的对话</div>
                     </div> 
                    
                        <!--聊天内容区-->
-                    <div class="lite-chatbox" ref="chatBox" style="overflow-y:scroll; height: 93%; background-color: #ededed;"> 
+                    <div class="lite-chatbox" ref="chatBox" style="overflow-y:auto; height: 93%; "> 
 
                         <!-- cleft 左 -->   <!-- cright 右 -->
                         <div v-for="(item,index) in showingChatHistory" class=" cmsg" v-bind:class="{cleft:item.from_user_id!=self_user_id,cright:item.from_user_id==self_user_id}">
                             <img class="headIcon radius" ondragstart="return false;" oncontextmenu="return false;" src="./img/avatar.png">
                             <span class="name">{{item.from_user_id==self_user_id?self_name:other_name}}</span>
-                            <span class="content">{{item.message}}</span>
+                            <span class="content" v-if="item.message.indexOf('https://dbp.scutc10.club/static/')==-1">{{item.message}}</span>
+                            <span class="content" v-else><img :src="item.message"/></span>
                         </div>
 
                     </div>
@@ -159,9 +165,14 @@
                     </div>
 
                     
-                     <!--输入框-->
+                     <!--输入栏-->
                      <div class="chat-input">
-                        <input type="text" v-model="message" class="chat-input-input"/>
+                         <!--输入框-->
+                        <input type="text" v-model="message" class="chat-input-input" v-on:keyup.enter="sendMessage"/>
+                        <!--选择图片-->
+                        <label for="chooseImg" class="chat-input-choose"><img src="img/transfers_image.png" class="chat-input-choose-img" title="选择图片"/></label>
+                        <input type="file" id="chooseImg" style="display: none;" @change='send_img'/>
+                        <!--发送按钮-->
                         <input type="button" @click="sendMessage" class="chat-input-btn" value="发送"/>
                       </div>
                     

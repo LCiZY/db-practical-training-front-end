@@ -100,9 +100,30 @@ var itemDetail = new Vue({
             chat.userList.push({user_id:this.owner_id,user_name:this.nickname})
             if(localStorage.user_id==null||localStorage.user_id==''){}
             else{
+                //设置未读消息数
+                axios.get(localStorage.serverUrl+'chat/getUnreadMsgCount?user_id='+localStorage.user_id+'&user_login_code='+localStorage.operation_code)
+                .then(function (response) {
+                    console.log(response)
+                   if(response.data.length)
+                   for(i=0;i<response.data.length;i++){
+                       for(j=0;j<chat.userList.length;j++){
+                           if(response.data[i].other_user_id==chat.userList[j].user_id){
+                                chat.userList[j]['msg_count']=response.data[i].msg_count
+                                Vue.set(chat.userList, j, chat.userList[j])
+                                break
+                           }
+                       }
+                   }
+                   
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+
+                //打开websocket
                   this.openSocket()
             }
-          
+           
 
 
 
@@ -166,7 +187,7 @@ var itemDetail = new Vue({
             console.log("您的浏览器不支持WebSocket");
         }else {
             console.log("您的浏览器支持WebSocket");
-            var msg={"to_user_id":this.owner_id,"message":chat.message,"from_user_id":localStorage.user_id,"time_stamp":getNowTime()}
+            var msg={"to_user_id":chat.other_id,"message":chat.message,"from_user_id":localStorage.user_id,"time_stamp":getNowTime()}
             console.log('发送消息：');
             console.log(msg);
             this.socket.send(JSON.stringify(msg));
@@ -260,18 +281,18 @@ var itemDetail = new Vue({
         showingChatHistory:[],
 
         message:''
-
     },
     methods:{
         hideChat:function(){
             this.ifChat=false
+            itemDetail.socket.close()
         },
         chatWith:function(to_id,theOther){
             if(!this.checkIfLogin()) return
             this.other_name = theOther
             this.other_id=to_id
             var self=this;
-            //还没有接受信息，发个请求
+            //还没有接收历史信息，发个请求
             if(!this.chatHistory[to_id])
             axios.get(localStorage.serverUrl+'chat/getChatHistories?user_id='+localStorage.user_id+'&user_id1='+to_id+'&user_login_code='+localStorage.operation_code)
                 .then(function (response) {
@@ -283,19 +304,27 @@ var itemDetail = new Vue({
                       })
                     if(self.chatHistory[to_id].length>0){
                         //设置最新消息和最新时间
-                        self.setMsgAndTime(self,to_id)                    
+                        self.setMsgAndTime(self,to_id)    
+                       
+
                     }
                 })
                 .catch(function (error) {
                     console.log(error);
                 });
-            else //接受过了，渲染就行了
+            else //接收过了，渲染就行了
             {
                 this.showingChatHistory = this.chatHistory[to_id]
                 this.$nextTick(() =>{//滚动到底部
                     this.$refs.chatBox.scrollTop = this.$refs.chatBox.scrollHeight;
                   })
             }
+
+            axios.get(localStorage.serverUrl+'chat/readMsg?user_id='+localStorage.user_id+'&other_user_id='+to_id+'&user_login_code='+localStorage.operation_code)
+            .then(function (response) {
+                //设为已读，或者在外面设为已读
+            })
+            .catch(function (error) {console.log(error);});
             
 
         },
@@ -318,6 +347,26 @@ var itemDetail = new Vue({
               })
             this.setMsgAndTime(this,this.other_id)
             itemDetail.sendMessage()
+            this.message=''
+        },
+        send_img:function(event){
+            var pic = event.target.files[0];
+            let form = new FormData();
+            form.append('image',pic,pic.name);
+            form.append('user_id',localStorage.user_id)
+            form.append('user_login_code',localStorage.operation_code)
+            var self = this
+            axios.post(localStorage.serverUrl+'chat/sendImage', form, {headers: {'Content-Type': 'multipart/form-data'}})
+                .then(function (response) {
+                   if(response.data!=''){
+                       self.message = response.data
+                       self.sendMessage()
+                   }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+
         },
         setMsgAndTime:function(self,id){
             if(self.chatHistory[id])
