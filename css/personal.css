@@ -209,6 +209,7 @@
     right: 140px;
     margin-top: 5px;
     font-size: 14px;
+    transition: 0.5s;
 }
 
 #sell-upload:hover,
@@ -245,6 +246,7 @@
     font-size: 14px;
     color: #ae6d6a;
     border-radius: 3px;
+    transition: 0.5s;
 }
 
 .item-ul {
@@ -330,6 +332,18 @@
     background-size: cover;
     background-position: center;
     position: absolute;
+    right: 0px;
+    cursor: pointer;
+}
+
+.done-btn {
+    width: 34px;
+    height: 34px;
+    background-image: url(../img/Done.png);
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top:36px;
     right: 0px;
     cursor: pointer;
 }

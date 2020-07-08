@@ -409,8 +409,7 @@ a.upload-time {
     box-shadow: 0 4px 12px rgba(0,0,0,.15);
     width: 80%;
     height: 90%;
-    top: -10%;
-    min-height: 514.2px;
+    min-height: 349.2px;
 
 }
 
@@ -583,22 +582,29 @@ a.upload-time {
 
 .chat-chat-window{
     width: 80%;
-    height: 93%;
-    min-height: 478.2px;
+    height: 100%;
     position: absolute;
     left: 20%;
     top: 0px;
     background-color: rgb(237, 237, 237);
 }
 
+.chat-margin-top-42{
+    margin-top: 42px!important;
+}
+
+.chat-margin-top-36{
+    margin-top: 36px!important;
+}
+
 .chat-input{
-    height: 7%;
-    min-height: 36px;
+    height: 36px;
     width: 80%;
     bottom: 0px;
     left: 20%;
     position: absolute;
     background-color: #f7f7f7;
+    z-index: 1502;
 }
 
 .chat-input-input{

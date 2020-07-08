@@ -8,11 +8,12 @@ var index = new Vue({
         classify:[ '二手教辅', '非教辅类书籍','学习用具', '技能服务','手机数码',
         '服饰/美妆','未开封食品', '游戏交易','其他'],
         itemList:[],
-        showing:0
+        showing:0,
+        ifLoading:true
     },
     methods:{
         change_classify:function(index){
-
+            this.ifLoading=true
             this.showing=index
             var self=this
             //发送分类类型，获取物品List，信息见上面数据：id,title,area,cover封面图,price是现价。
@@ -20,9 +21,12 @@ var index = new Vue({
             axios.get(localStorage.serverUrl+'commodity/queryCommoditiesByType?commodity_type='+self.classify[self.showing])
                 .then(function (response) {
                     console.log(response);
+                    self.ifLoading=false
                     self.itemList=response.data
+
                 })
                 .catch(function (error) {
+                    self.ifLoading=false
                     console.log(error);
                 });
         },
@@ -41,8 +45,10 @@ var index = new Vue({
         axios.get(localStorage.serverUrl+'commodity/queryCommoditiesByType?commodity_type='+this.classify[0])
             .then(function (response) {
                 self.itemList=response.data
+                self.ifLoading=false
             })
             .catch(function (error) {
+                self.ifLoading=false
                 console.log(error);
             });
             console.log('index created')

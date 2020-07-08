@@ -43,7 +43,7 @@
 <div id="container" >
     <div id="item-container">
         <h3 class="item-title"><a href="#">| 购物车</a></h3>
-
+        <span v-if="itemList.length==0" class="align-center">这里没有内容哦~</span>
         <ul class="item-lists">
             <li class="item-list" v-for="(item,index) in itemList" >
                 <span class="item-center">

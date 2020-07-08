@@ -56,6 +56,7 @@
 
 		<div id="item-container">
 			<h3 class="item-title"><a href="#">| 求物品</a></h3>
+			<span v-if="itemList.length==0" class="align-center">这里没有内容哦~</span>
 			<ul class="item-lists">
 				<li class="item-list" v-for="item in itemList" v-on:click="to_detail(item.commodity_id)">
 					<a href="#" class="item-pic">

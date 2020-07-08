@@ -141,18 +141,18 @@
                    <!--右栏-->
                   <div class="chat-chat-window">
 
-                    <a class="ivu-modal-close" style="font-size:xx-large;" @click="hideChat">
+                    <a class="ivu-modal-close" style="font-size:xx-large;z-index: 1502;" @click="hideChat">
                      ×
                     </a> 
-                    <div class="ivu-modal-header" style="height: 42px;min-height: 42px;background-color: white!important;">
+                    <div class="ivu-modal-header" style="height: 42px;min-height: 42px;background-color: white!important;z-index: 1501; position: relative;">
                         <div class="ivu-modal-header-inner">与{{other_name}}的对话</div>
                     </div> 
                    
                        <!--聊天内容区-->
-                    <div class="lite-chatbox" ref="chatBox" style="overflow-y:auto; height: 93%; "> 
+                    <div class="lite-chatbox" ref="chatBox" style="overflow-y:auto; height: 100%;padding-bottom: 48px;position: relative;top: -42px; z-index: 1500; "> 
 
                         <!-- cleft 左 -->   <!-- cright 右 -->
-                        <div v-for="(item,index) in showingChatHistory" class=" cmsg" v-bind:class="{cleft:item.from_user_id!=self_user_id,cright:item.from_user_id==self_user_id}">
+                        <div v-for="(item,index) in showingChatHistory" class=" cmsg" v-bind:class="{cleft:item.from_user_id!=self_user_id,cright:item.from_user_id==self_user_id,'chat-margin-top-42':index==0,'chat-margin-top-36':index==showingChatHistory.length}">                                      
                             <img class="headIcon radius" ondragstart="return false;" oncontextmenu="return false;" src="./img/avatar.png">
                             <span class="name">{{item.from_user_id==self_user_id?self_name:other_name}}</span>
                             <span class="content" v-if="item.message.indexOf('https://dbp.scutc10.club/static/')==-1">{{item.message}}</span>

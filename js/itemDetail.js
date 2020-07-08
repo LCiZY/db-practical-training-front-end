@@ -96,8 +96,9 @@ var itemDetail = new Vue({
         },
         showChat:function(){
             chat.ifChat=true
+            if(!chat.userList) chat.userList = []
             if(!this.ifExistId(this.owner_id))
-            chat.userList.push({user_id:this.owner_id,user_name:this.nickname})
+            chat.userList.push({user_id:this.owner_id,user_name:this.nickname}); chat.chatWith(this.owner_id,this.nickname)
             if(localStorage.user_id==null||localStorage.user_id==''){}
             else{
                 //设置未读消息数
@@ -285,10 +286,12 @@ var itemDetail = new Vue({
     methods:{
         hideChat:function(){
             this.ifChat=false
+            if(itemDetail.socket)
             itemDetail.socket.close()
         },
         chatWith:function(to_id,theOther){
             if(!this.checkIfLogin()) return
+
             this.other_name = theOther
             this.other_id=to_id
             var self=this;
@@ -339,7 +342,7 @@ var itemDetail = new Vue({
            return true
         },
         sendMessage:function(){
-            if(this.other_id=='') return
+            if(this.other_id==''||!this.checkIfLogin()) return
             this.chatHistory[this.other_id].push({"to_user_id":this.other_id,"message":this.message,"from_user_id":localStorage.user_id,"time_stamp":getNowTime()})
             this.showingChatHistory = this.chatHistory[this.other_id]
             this.$nextTick(() =>{//滚动到底部
@@ -350,6 +353,7 @@ var itemDetail = new Vue({
             this.message=''
         },
         send_img:function(event){
+            if(this.other_id==''||!this.checkIfLogin()) return
             var pic = event.target.files[0];
             let form = new FormData();
             form.append('image',pic,pic.name);

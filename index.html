@@ -75,6 +75,8 @@
 		<div class="item-part"  v-for="(type,index) in classify" v-if="showing==index">
 			<h3 class="item-title"><a href="#">| {{type}}</a></h3>
 			<a class="more" href="#" v-on:click="getMore(index)" > > > 更多</a>	<!--跳转到全部物品页，传下标-->
+			<div v-if="ifLoading" class="align-center"><img src="img/loading.gif"/></div>
+			<div v-if="!ifLoading&&itemList.length==0" class="align-center">这里没有内容哦~</div>
 			<ul class="item-lists">
 				<li class="item-list" v-for="item in itemList" v-on:click="to_detail(item.commodity_id)">
 					<a href="#" class="item-pic">

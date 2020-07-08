@@ -122,8 +122,8 @@
 
         <!-- 出售、求物品选项卡 -->
         <div class="card-btn">
-            <span title="sell-item" id="sell-btn" v-bind:class="{active:sellItem}" v-on:click="select_sell">我的出售</span>
-            <span title="ask-item" id="ask-btn" v-bind:class="{active:!sellItem}" v-on:click="select_ask">我的求物品</span>
+            <span  id="sell-btn" v-bind:class="{active:sellItem}" v-on:click="select_sell">我的出售</span>
+            <span  id="ask-btn" v-bind:class="{active:!sellItem}" v-on:click="select_ask">我的求物品</span>
             <p class="upload-icon"></p>
             <!--
 		<a id="sell-upload" href="#" hidden="true">上传出售物品</a>
@@ -142,7 +142,7 @@
             <!-- 物品 -->
             <div class="sell-item">
                 <ul class="item-ul">
-
+                    <span v-if="showingList.length==0" class="align-center">这里没有内容哦~</span>
                     <li class="item-list" v-for="(item,index) in showingList">
                         <p class="item-pic">
                             <img :src="item.commodity_cover_pic_url" v-on:click="to_detail(item.commodity_id)">
@@ -151,7 +151,8 @@
                         <span class="delete-btn-select" v-if="item.select" v-on:click="select_item(index)"></span>
                         <span class="delete-btn-blank" v-else v-on:click="select_item(index)"></span>
 
-                        <span class="edit-btn" v-on:click="to_edit_item(item.commodity_id)"></span>
+                        <span class="edit-btn" v-on:click="to_edit_item(item.commodity_id)" title="编辑"></span>
+                        <span class="done-btn" v-on:click="to_edit_item(item.commodity_id)" title="设为完成交易状态"></span>
 
                         <div class="item-detail" v-on:click="to_detail(item.commodity_id)">
                             <p v-if="sellItem">原&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="original-price">￥{{item.commodity_original_price}}</span></p>
