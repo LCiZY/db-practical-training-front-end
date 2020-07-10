@@ -243,7 +243,7 @@
 }
 
 .item-list{
-	/*width: 20%;*/
+	width: 212px;
 	min-width: 21%;
 	height: 310px;
 	overflow: hidden;
@@ -274,11 +274,14 @@
 }
 
 .item-name{
-	width: 100%;
+	width: 212px;
 	line-height: 26px;
 	text-align: center;
 	font-size: 17px;
 	color: #ae6d6a;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .item-info{
@@ -315,33 +318,38 @@
 }
 
 .item-price{
-	width: 100%;
-	height: 34px;
-	font-size: 17px;
-	line-height: 60px;
-	margin-left: 27px;
-	color: #880b16;
+	width: 212px;
+    height: 34px;
+    font-size: 17px;
+    line-height: 52px;
+    color: #880b16;
 }
 
 
-.item-buy{
-	width: 40px;
-	height: 36px;
-	padding: 5px;
-	margin-left: 45px; 
-	text-decoration: none;
-	color: white;
-	font-size: 13px;
-	border: 1px solid #4b4d52;
-	border-radius: 2px;
+.to-item-detail{
+	width: 80px;
+	height: 32px;
+	line-height: 32px;
+    text-decoration: none;
+    color: white;
+    font-size: 13px;
+    border: 1px solid #4b4d52;
+    border-radius: 2px;
 	background: #4b4d52;
+	position: absolute;
+    text-align: center;
+    vertical-align: middle;
+    margin-top: 10px;
+    right: 20px;
+
 }
 
-.item-buy:hover{
+
+.to-item-detail:hover{
 	/*font-weight: 600;*/
 	background-color: #626a55;
 	border: 1px solid #626a55;
-	font-weight: 600;
+
 }
 
 .item-contact{

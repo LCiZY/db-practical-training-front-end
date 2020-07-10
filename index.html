@@ -5,6 +5,7 @@
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="css/index.css">
 	<link rel="stylesheet" type="text/css" href="css/public.css">
+	<link rel="stylesheet" type="text/css" href="css/item.css">
 	<script type="text/javascript" src="js/vue.js"></script>
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
@@ -86,8 +87,9 @@
 						<h5 class="item-name">{{item.commodity_name}}</h5>
 						<span class="item-detail">校区：{{item.area}}</span>
 					</a>
-					<span class="item-price">￥{{item.commodity_price}}
-						<a href="#" class="item-buy">查看详情</a>
+					<span class="item-price">
+						<span>￥{{item.commodity_price}}</span>
+						<a href="#" class="to-item-detail">查看详情</a>
 					</span>
 				</li>
 
