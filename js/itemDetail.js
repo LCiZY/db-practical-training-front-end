@@ -94,41 +94,20 @@ var itemDetail = new Vue({
 
             }
         },
+
+        /*以下和聊天模块耦合 */
         showChat:function(){
             chat.ifChat=true
             if(!chat.userList) chat.userList = []
-            if(!this.ifExistId(this.owner_id))
-            chat.userList.push({user_id:this.owner_id,user_name:this.nickname}); chat.chatWith(this.owner_id,this.nickname)
+            if(!this.ifExistId(this.owner_id)) chat.userList.push({user_id:this.owner_id,user_name:this.nickname}); 
+            setTimeout(chat.chatWith(this.owner_id,this.nickname),500)
             if(localStorage.user_id==null||localStorage.user_id==''){}
             else{
-                //设置未读消息数
-                axios.get(localStorage.serverUrl+'chat/getUnreadMsgCount?user_id='+localStorage.user_id+'&user_login_code='+localStorage.operation_code)
-                .then(function (response) {
-                    console.log(response)
-                   if(response.data.length)
-                   for(i=0;i<response.data.length;i++){
-                       for(j=0;j<chat.userList.length;j++){
-                           if(response.data[i].other_user_id==chat.userList[j].user_id){
-                                chat.userList[j]['msg_count']=response.data[i].msg_count
-                                Vue.set(chat.userList, j, chat.userList[j])
-                                break
-                           }
-                       }
-                   }
-                   
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
+                  chat.getUserList()
 
                 //打开websocket
                   this.openSocket()
             }
-           
-
-
-
-
         },
         ifExistId:function(id){
             for(i=0;i<chat.userList.length;i++){
@@ -142,8 +121,6 @@ var itemDetail = new Vue({
         }else{
             console.log("您的浏览器支持WebSocket");
             //实现化WebSocket对象，指定要连接的服务器地址与端口  建立连接
-            //等同于socket = new WebSocket("ws://localhost:8888/xxxx/im/25");
-            //var socketUrl="${request.contextPath}/im/"+$("#userId").val();
             var socketUrl=localStorage.serverUrl+"chatServer/"+login_status.id+"/"+login_status.operation_code;
             socketUrl=socketUrl.replace("https","wss").replace("http","ws");
             console.log(socketUrl);
@@ -164,15 +141,23 @@ var itemDetail = new Vue({
                 console.log(msg.data);
                 // msg.data是字符串，要parse
                 var msgObj=JSON.parse(msg.data)
-                if(chat.chatHistory[msgObj.from_user_id])
-                 {  chat.chatHistory[msgObj.from_user_id].push(msgObj)
+                if(chat.chatHistory[msgObj.from_user_id]){
+                    chat.chatHistory[msgObj.from_user_id].push(msgObj)
                     chat.$nextTick(() =>{
                         chat.$refs.chatBox.scrollTop = chat.$refs.chatBox.scrollHeight;
-                      })
+                    })
+                    console.log('**************************')
+                    console.log(chat.newMsgCount[msgObj.from_user_id])
+                    if(chat.newMsgCount[msgObj.from_user_id]==undefined) chat.newMsgCount[msgObj.from_user_id] = 0
+                    else chat.newMsgCount[msgObj.from_user_id]++
+                    console.log('来自 '+msgObj.from_user_id+' 的消息已经有:'+chat.newMsgCount[msgObj.from_user_id]+'条')
+                    Vue.set(chat.newMsgCount, msgObj.from_user_id, chat.newMsgCount[msgObj.from_user_id])
                 }
                 chat.setMsgAndTime(chat,msgObj.from_user_id)  
+                chat.$forceUpdate(); //强制更新页面
                 
             };
+            //************************************************************************* */
             //关闭事件
             this.socket.onclose = function() {
                 console.log("websocket已关闭");
@@ -280,6 +265,7 @@ var itemDetail = new Vue({
         msgTimeList:[],
         chatHistory:[[]],
         showingChatHistory:[],
+        newMsgCount:{},
 
         message:''
     },
@@ -294,27 +280,9 @@ var itemDetail = new Vue({
 
             this.other_name = theOther
             this.other_id=to_id
-            var self=this;
             //还没有接收历史信息，发个请求
-            if(!this.chatHistory[to_id])
-            axios.get(localStorage.serverUrl+'chat/getChatHistories?user_id='+localStorage.user_id+'&user_id1='+to_id+'&user_login_code='+localStorage.operation_code)
-                .then(function (response) {
-                    console.log(response);
-                    self.chatHistory[to_id]=response.data;
-                    self.showingChatHistory = self.chatHistory[to_id]
-                    self.$nextTick(() =>{//滚动到底部
-                        self.$refs.chatBox.scrollTop = self.$refs.chatBox.scrollHeight;
-                      })
-                    if(self.chatHistory[to_id].length>0){
-                        //设置最新消息和最新时间
-                        self.setMsgAndTime(self,to_id)    
-                       
-
-                    }
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
+            if(!this.chatHistory[to_id]||this.newMsgCount[to_id]>0)
+            this.getHistory(to_id)
             else //接收过了，渲染就行了
             {
                 this.showingChatHistory = this.chatHistory[to_id]
@@ -343,6 +311,7 @@ var itemDetail = new Vue({
         },
         sendMessage:function(){
             if(this.other_id==''||!this.checkIfLogin()) return
+            if(!this.chatHistory[this.other_id]) this.chatHistory[this.other_id]=[]
             this.chatHistory[this.other_id].push({"to_user_id":this.other_id,"message":this.message,"from_user_id":localStorage.user_id,"time_stamp":getNowTime()})
             this.showingChatHistory = this.chatHistory[this.other_id]
             this.$nextTick(() =>{//滚动到底部
@@ -375,6 +344,75 @@ var itemDetail = new Vue({
         setMsgAndTime:function(self,id){
             if(self.chatHistory[id])
             self.msgTimeList[id]={"latestMsg":self.chatHistory[id][self.chatHistory[id].length-1].message,"latestTime":self.chatHistory[id][self.chatHistory[id].length-1].time_stamp}
+
+        },
+        getHistory:function(to_id){
+            var self = this
+            axios.get(localStorage.serverUrl+'chat/getChatHistories?user_id='+localStorage.user_id+'&user_id1='+to_id+'&user_login_code='+localStorage.operation_code)
+                .then(function (response) {
+                    console.log(response);
+                    self.chatHistory[to_id]=response.data;
+                    self.showingChatHistory = self.chatHistory[to_id]
+                    self.$nextTick(() =>{//滚动到底部
+                        self.$refs.chatBox.scrollTop = self.$refs.chatBox.scrollHeight;
+                      })
+                    if(self.chatHistory[to_id].length>0){
+                        //设置最新消息和最新时间
+                        self.setMsgAndTime(self,to_id)    
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        },
+        getUserList:function(){
+            var self=this;
+            axios.get(localStorage.serverUrl+'chat/getChatWithUsers?user_id='+localStorage.user_id+'&user_login_code='+localStorage.operation_code)
+                .then(function (response) {
+                    console.log(response);
+                    if(!response.data||response.data.length==0) return
+                    if(self.userList.length==0)
+                    self.userList=response.data;
+                    else 
+                    for(i=0;i<response.data.length;i++){
+                        var flag=false
+                        for(j=0;j<self.userList.length;j++){
+                            if(self.userList[j].user_id==response.data[i].user_id) {flag = true;break}
+                        }
+                        if(!flag)
+                        self.userList.push(response.data[i])
+                    }
+                        
+                    self.getUnreadCount()
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        },
+        getUnreadCount:function(){
+            var self = this
+            //设置未读消息数
+            axios.get(localStorage.serverUrl+'chat/getUnreadMsgCount?user_id='+localStorage.user_id+'&user_login_code='+localStorage.operation_code)
+            .then(function (response) {
+                console.log(response)
+               if(response.data.length)
+               for(i=0;i<response.data.length;i++){
+                   self.newMsgCount[response.data[i].other_user_id] = response.data[i].msg_count
+                   Vue.set(self.newMsgCount,response.data[i].other_user_id,self.newMsgCount[response.data[i].other_user_id])
+                   self.$forceUpdate();
+                //    for(j=0;j<this.userList.length;j++){
+                //        if(response.data[i].other_user_id==this.userList[j].user_id){
+                //             this.userList[j]['msg_count']=response.data[i].msg_count
+                //             Vue.set(this.userList, j, this.userList[j])
+                //             break
+                //        }
+                //    }
+               }
+               
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
         }
 
     },
@@ -382,15 +420,7 @@ var itemDetail = new Vue({
        if(!this.checkIfLogin()) return
        this.self_user_id = localStorage.user_id
        this.self_name = localStorage.nickname
-       var self=this;
-       axios.get(localStorage.serverUrl+'chat/getChatWithUsers?user_id='+login_status.id+'&user_login_code='+login_status.operation_code)
-                .then(function (response) {
-                    console.log(response);
-                    self.userList=response.data;
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
+       this.getUserList()
        
     }
 

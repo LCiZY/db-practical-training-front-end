@@ -126,7 +126,7 @@
 
                      <div class="user-ava-info" v-for="(item,index) in userList" @click="chatWith(item.user_id,item.user_name)" v-bind:class="{'user-focus':item.user_id==other_id,'user-ava-info-margin':index!=0}">
                          <img class="chat-user-avatar" src="img/avatar.png"/> 
-                         <span class="chat-dot" v-if="item.msg_count>0">{{item.msg_count>0?item.msg_count:''}}</span>
+                         <span class="chat-dot" v-if="newMsgCount[item.user_id]>0">{{newMsgCount[item.user_id]>0?newMsgCount[item.user_id]:''}}</span>
                          <span class="chat-name-message">
                             <span class="user-name">{{item.user_name}}</span><br>
                             <span class="user-message">{{msgTimeList[item.user_id]?msgTimeList[item.user_id].latestMsg:''}}</span>
