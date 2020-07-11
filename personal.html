@@ -133,7 +133,7 @@
 
             <a class="upload hover-class" href="sellUpload.html" v-if="sellItem">上传出售物品</a>
             <a class="upload hover-class" href="askUpload.html" v-else>上传求物品信息</a>
-            <a class="delete hover-class" href="#" v-on:click="modal1show">删除二手物品</a>
+            <a class="delete hover-class" href="#" v-on:click="delete_modal_show">删除二手物品</a>
 
         </div>
 
@@ -152,15 +152,18 @@
                         <span class="delete-btn-blank" v-else v-on:click="select_item(index)"></span>
 
                         <span class="edit-btn" v-on:click="to_edit_item(item.commodity_id)" title="编辑"></span>
-                        <span class="done-btn" v-on:click="to_edit_item(item.commodity_id)" title="设为完成交易状态"></span>
-
+                        <div v-if="sellItem">
+                        <span class="done-btn" v-if="item.finished=='N'" v-on:click="deal_modal_show(index)" title="设为完成交易状态"></span>
+                        <span class="done-btn2" v-if="item.finished=='Y'"  title="已完成交易"></span>
+                        </div>
                         <div class="item-detail" v-on:click="to_detail(item.commodity_id)">
                             <p v-if="sellItem">原&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="original-price">￥{{item.commodity_original_price}}</span></p>
                             <p v-if="sellItem">售&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="item-price">￥{{item.commodity_price}}</span></p>
+                            <p>类&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;型：<span class="item-desc">{{item.commodity_type}}</span></p>
+                            <div v-if="sellItem">
                             <p v-if="item.finished=='N'">交易进度：<span class="item-condition">未完成交易</span></p>
                             <p v-if="item.finished=='Y'">交易进度：<span class="item-condition">已完成交易</span></p>
-                            <p>类&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;型：<span class="item-desc">{{item.commodity_type}}</span></p>
-                            <button v-if="item.finished=='N'" v-on:click="deal_finished(index)">完成交易</button>
+                            </div>
                         </div>
                     </li>
 
@@ -170,15 +173,28 @@
 
         </div>
         <!-- container-end -->
+
+        <!-- 删除模态框 -->
         <Modal
-        v-model="modal1"
+        v-model="delete_modal"
         title="删除确认"
         @on-ok="delete_item"
-        @on-cancel="modal1cancel">
+        @on-cancel="delete_modal_cancel">
         <p></p>
         <p>确认删除选中的物品吗</p>
         <p></p>
        </Modal>
+
+        <!-- 完成交易模态框 -->
+        <Modal
+                v-model="deal_modal"
+                title="完成交易确认"
+                @on-ok="deal_finished"
+                @on-cancel="deal_modal_cancel">
+            <p></p>
+            <p>确认该物品已完成交易？</p>
+            <p></p>
+        </Modal>
     </div>
 
     <footer class="footer-center">

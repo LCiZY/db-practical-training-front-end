@@ -359,6 +359,18 @@
     cursor: pointer;
 }
 
+.done-btn2 {
+    width: 34px;
+    height: 34px;
+    background-image: url(../img/Done2.png);
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top:36px;
+    right: 0px;
+    cursor: pointer;
+}
+
 .delete-btn-blank {
     width: 28px;
     height: 28px;

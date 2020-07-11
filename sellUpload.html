@@ -29,11 +29,7 @@
         </div>
         <!-- nav-menu -->
 
-        <!--搜索框-->
-        <div class="nav-search" id="search">
-            <input type="search" class="searchIn" placeholder="搜物品" v-model="keyWord">
-            <button class="search-logo" v-on:click="search"><img src="img/search2.png"></button>
-        </div>
+
 
         <div class="nav-info" id="login_status">
             <span v-if="id==''">
@@ -117,11 +113,11 @@
                 <!-- <img src="desc_img3" id="desc_img3"> -->
             </p>
 
-                <i-button type="primary" @click="uploadToServer">发布</i-button>
-               
+            <i-button type="primary" @click="uploadToServer">发布</i-button>
+
         </form>
 
-            <!-- 模态窗口 -->
+        <!-- 模态窗口 -->
         <Modal title="View Image" v-model="modalVisible">
             <img :src="'https://o5wwk8baw.qnssl.com/' + imgName + '/large'" v-if="visible" style="width: 100%">
         </Modal>

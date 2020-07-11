@@ -97,17 +97,23 @@ var itemDetail = new Vue({
 
         /*以下和聊天模块耦合 */
         showChat:function(){
-            chat.ifChat=true
-            if(!chat.userList) chat.userList = []
-            if(!this.ifExistId(this.owner_id)) chat.userList.push({user_id:this.owner_id,user_name:this.nickname}); 
-            setTimeout(chat.chatWith(this.owner_id,this.nickname),500)
-            if(localStorage.user_id==null||localStorage.user_id==''){}
-            else{
-                  chat.getUserList()
-
-                //打开websocket
-                  this.openSocket()
+            if(login_status.id==null||login_status.id==''){
+                alert('请先登录');
             }
+            else{
+                chat.ifChat=true
+                if(!chat.userList) chat.userList = []
+                if(!this.ifExistId(this.owner_id)) chat.userList.push({user_id:this.owner_id,user_name:this.nickname});
+                setTimeout(chat.chatWith(this.owner_id,this.nickname),500)
+                if(localStorage.user_id==null||localStorage.user_id==''){}
+                else{
+                    chat.getUserList()
+
+                    //打开websocket
+                    this.openSocket()
+                }
+            }
+
         },
         ifExistId:function(id){
             for(i=0;i<chat.userList.length;i++){
@@ -197,7 +203,7 @@ var itemDetail = new Vue({
                 .then(function (response) {
                     console.log(response);
                     //创建者信息
-                    self.owner_id=response.data.map.user_id
+                    self.owner_id=response.data.map.user_id;
                     self.nickname=response.data.map.user_name;
                     self.contact=response.data.map.tel;
                     self.area=response.data.map.user_area;
@@ -212,12 +218,35 @@ var itemDetail = new Vue({
                     self.description=response.data.map.commodity_description;
                     self.other_pic=response.data.imgList;
                     self.cart_status='加入购物车'
-
-
                 })
                 .catch(function (error) {
                     console.log(error);
                 });
+
+            // 加入购物车按钮的设置
+            if(login_status.id==''){
+            }
+            else{
+                //发送用户id，获取购物车物品列表
+                self=this;
+                var itemList,i;
+                axios.get(localStorage.serverUrl+'shop/getUsersShopCartItems?user_id='+login_status.id+'&user_login_code='+login_status.operation_code)
+                    .then(function (response) {
+                        console.log(response);
+                        itemList=response.data;
+                        for(i=0;i<itemList.length;i++){
+                            if(itemList[i].commodity_id==self.item_id){
+                                self.cart_status='移出购物车';
+                                break;
+                            }
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+
+
+            }
         }
         else{
             //求物品

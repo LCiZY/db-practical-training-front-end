@@ -41,18 +41,7 @@
 <div id="askItem">
 	<!-- 物品分类 -->
 	<div id="container">
-		<div id="item-menu">
-			<ul class="item-class">
-				<li v-for="(item,index) in classify">
-					<a v-on:click="change_classify(index)">{{item}}</a>
-				</li>
-				<!--<li><a href="#">历史 / 地理 / 艺术</a></li>-->
-			</ul>
-		</div>
-		<div id="item-menu-toggle">
-			分 类 筛 选
-			<div id="toggle-btn"></div>
-		</div>
+
 
 		<div id="item-container">
 			<h3 class="item-title"><a href="#">| 求物品</a></h3>
@@ -60,14 +49,14 @@
 			<ul class="item-lists">
 				<li class="item-list" v-for="item in itemList" v-on:click="to_detail(item.commodity_id)">
 					<a href="#" class="item-pic">
-						<img :src="item.commodity_cover_pic_url">
+						<img :src="item.commodity_cover_pic_url?item.commodity_cover_pic_url:item.commodity_cover_pic_url">
 					</a>
 					<a href="#" class="item-info">
 						<h5 class="item-name">{{item.commodity_name}}</h5>
 						<span class="item-detail"><b>校区：</b>{{item.area}}<br> <b>类型：</b>{{item.commodity_type}}</span>
 					</a>
-					<span class="item-price">
-						<a href="#" class="item-buy">查看详情</a>
+					<span class="item-price-todetail-container">
+						<a href="#" class="to-item-detail">查看详情</a>
 					</span>
 				</li>
 
@@ -93,29 +82,7 @@
 <script type="text/javascript" src="js/login_status.js" charset="utf-8"></script>
 <script type="text/javascript" src="js/search.js" charset="utf-8"></script>
 <script type="text/javascript" src="js/askItem.js" charset="utf-8"></script>
-<script type="text/javascript">
-	$(function(){
-		//菜单特效
-		var index = 0
-		$("#item-menu-toggle").on("click",function(){
-			if (index ===0 ) {
-				$("#item-menu").css("left","1px");
-				$(this).css("left","178px");
-				index =1;
-			}else{
-				$("#item-menu").css("left","-180px");
-				$(this).css("left","1px");
-				index=0;
-			}
-		});
 
-		//点击菜单，对应类别颜色加深
-		$(".item-class li").on("click",function(){
-			//加粗当前点击的li
-			$(this).css("font-weight","600").siblings("li").css("font-weight","500");
-		});
-	})
-</script>
 
 </body>
 </html>
