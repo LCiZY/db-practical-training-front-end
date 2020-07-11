@@ -1,140 +1,237 @@
-*{
-	padding: 0px;
-	margin: 0px;
-	font-family: Microsoft Yahei;
-	box-sizing: border-box;
-}
-/*navbar*/
-.navbar{
-	height: 200px;
-	width: 100%;
-	background-color: white;
-	position: relative;
-	display: flex;
-	flex-direction: column;
-	flex-wrap: wrap;
-	justify-content: flex-start;
-}
-
-.nav-info{
-	height: 40px;
-	background-color: #4b4d52;
-	display: flex;
-	justify-content: flex-end;
-	flex-wrap: wrap;
-}
-
-.nav-info a{
-	text-decoration: none;
-	/*color: white;*/
-	color: #d6d2d2 !important;
-	font-size: 14px;
-	line-height: 40px;
-	margin-left: 5px;
-	margin-right:25px; 
-}
-
-.nav-info a:hover{
-	color:white  !important;
-}
-
-
-
-
-
-
-
-.logo{
-	width: 36%;
-	margin-left: 6%;
-}
-
-
-
-.menu{
-	width: 100%;
-	height: 50px;
-	list-style: none;
-	display: flex;
-	justify-content: flex-start;
-	background-color: #f2f1ea;
-	margin-bottom: 0px;
-	padding-left: 11%;
-
-}
-
-.menu li a:hover{
-	font-weight: 600;
-	border: solid #b5aa9a; 
-	border-width: 0 0 2px 0;	
-}
-
-.menu li{
-	height: 50px;
-	display: inline-flex;
-	justify-content: space-around;
-	/*margin-left: 140px;*/
-	padding-top: 18px;
-	margin-right: 100px; 
-
-}
-.menu a{
-	text-decoration: none;
-	color: #3f4247;
-}
-
-.menu li a.active{
-	font-weight: 600;
-	border: solid #b5aa9a; 
-	border-width: 0 0 2px 0;
-}
-
 /*轮播图*/
+
 @charset "UTF-8";
-    .slider, .slider .slider-img {
+.slider,
+.slider .slider-img {
     overflow: hidden;
     height: 295px;
 }
-a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video {
+
+a,
+abbr,
+acronym,
+address,
+applet,
+article,
+aside,
+audio,
+b,
+big,
+blockquote,
+body,
+canvas,
+caption,
+center,
+cite,
+code,
+dd,
+del,
+details,
+dfn,
+div,
+dl,
+dt,
+em,
+embed,
+fieldset,
+figcaption,
+figure,
+footer,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+header,
+hgroup,
+html,
+i,
+iframe,
+img,
+ins,
+kbd,
+label,
+legend,
+li,
+mark,
+menu,
+nav,
+object,
+ol,
+output,
+p,
+pre,
+q,
+ruby,
+s,
+samp,
+section,
+small,
+span,
+strike,
+strong,
+sub,
+summary,
+sup,
+table,
+tbody,
+td,
+tfoot,
+th,
+thead,
+time,
+tr,
+tt,
+u,
+ul,
+var,
+video {
     margin: 0;
     padding: 0;
     border: 0;
     font: inherit;
     vertical-align: baseline;
 }
-article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
     display: block;
 }
 
-ol, ul {
+ol,
+ul {
     list-style: none;
 }
-blockquote, q {
+
+blockquote,
+q {
     quotes: none;
 }
-blockquote:after, blockquote:before, q:after, q:before {
+
+blockquote:after,
+blockquote:before,
+q:after,
+q:before {
     content: '';
     content: none;
 }
+
 table {
     border-collapse: collapse;
     border-spacing: 0;
 }
-.carousel{
+
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Microsoft Yahei;
+    box-sizing: border-box;
+}
+
+
+/*navbar*/
+
+.navbar {
+    height: 200px;
+    width: 100%;
+    background-color: white;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.nav-info {
+    height: 40px;
+    background-color: #4b4d52;
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+.nav-info a {
+    text-decoration: none;
+    /*color: white;*/
+    color: #d6d2d2 !important;
+    font-size: 14px;
+    line-height: 40px;
+    margin-left: 5px;
+    margin-right: 25px;
+}
+
+.nav-info a:hover {
+    color: white !important;
+}
+
+.logo {
+    width: 36%;
+    margin-left: 6%;
+}
+
+.menu {
+    width: 100%;
+    height: 50px;
+    list-style: none;
+    display: flex;
+    justify-content: flex-start;
+    background-color: #f2f1ea;
+    margin-bottom: 0px;
+    padding-left: 11%;
+}
+
+.menu li a:hover {
+    font-weight: 600;
+    border: solid #b5aa9a;
+    border-width: 0 0 2px 0;
+}
+
+.menu li {
+    height: 50px;
+    display: inline-flex;
+    justify-content: space-around;
+    /*margin-left: 140px;*/
+    padding-top: 18px;
+    margin-right: 100px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #3f4247;
+}
+
+.menu li a.active {
+    font-weight: 600;
+    border: solid #b5aa9a;
+    border-width: 0 0 2px 0;
+}
+
+.carousel {
     width: 100%;
     display: flex;
     justify-content: center;
 }
 
-.item-guide{
+.item-guide {
     width: 200px;
-    height: 295px;
+    height: 320px;
     border: 1px solid #ccc;
     display: flex;
     flex-direction: column;
 }
 
-.item-guide h4{
+.item-guide h4 {
     height: 30px;
     width: 200px;
     text-align: center;
@@ -143,7 +240,7 @@ table {
     background-color: #4b4d52;
 }
 
-.item-class li{
+.item-class li {
     width: 150px;
     height: 28px;
     margin: 0 auto;
@@ -152,15 +249,15 @@ table {
     border-bottom: 1px solid #ccc;
 }
 
-.item-class li a{
+.item-class li a {
     text-decoration: none;
     color: gray;
     text-align: left;
     font-size: 14px;
 }
 
-.item-class li a:hover{
-	font-weight: 600;
+.item-class li a:hover {
+    font-weight: 600;
 }
 
 .slider {
@@ -169,32 +266,39 @@ table {
     /*margin: 0 auto;*/
     position: relative;
 }
+
 .slider:hover .slider-btn {
     color: #fff;
     text-shadow: 0 0 5px #666;
 }
+
 .slider .slider-img {
     width: 12000px;
     position: relative;
 }
+
 .slider .slider-img .slider-img-ul {
     position: absolute;
     left: 0;
     top: 0;
     overflow: hidden;
 }
+
 .slider .slider-img .slider-img-ul li {
     float: left;
 }
+
 .slider .slider-img .slider-img-ul li img {
     width: 1000px;
     /*height: 460px;*/
 }
+
 .slider .slider-dot ul {
     position: absolute;
     right: 50px;
     bottom: 30px;
 }
+
 .slider .slider-dot ul li {
     cursor: pointer;
     width: 10px;
@@ -205,9 +309,12 @@ table {
     float: left;
     margin-left: 10px;
 }
-.slider .slider-dot ul li.active, .slider .slider-dot ul li:hover {
+
+.slider .slider-dot ul li.active,
+.slider .slider-dot ul li:hover {
     background: #fff;
 }
+
 .slider .slider-btn {
     position: absolute;
     width: 50px;
@@ -221,13 +328,16 @@ table {
     font-family: '黑体';
     /*color: rgba(255, 255, 255, 0);*/
 }
+
 .slider .slider-btn:hover {
     background: rgba(125, 125, 125, .3);
 }
+
 .slider .slider-btn.slider-btn-left {
     left: 0;
     margin-top: -50px;
 }
+
 .slider .slider-btn.slider-btn-right {
     right: 0;
     margin-top: -50px;
@@ -236,55 +346,48 @@ table {
 
 /*图书分类*/
 
-#container{
-	width: 100%;
-	margin: 20px auto 20px;
-	display: flex;
-	flex-direction: column;
-	flex-wrap: wrap;
-	/*border-left: 1px solid #ccc;*/
-	padding-bottom: 20px;
-	padding-left: 20px;
-	/*background: #ccc;*/
+#container {
+    width: 100%;
+    margin: 20px auto 20px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    /*border-left: 1px solid #ccc;*/
+    padding-bottom: 20px;
+    padding-left: 20px;
+    /*background: #ccc;*/
 }
 
-.item-part{
-	width:90%;
-	height: auto; 
-	display: flex;
-	flex-wrap: wrap;
-	position: relative;
-	margin: 0 auto;
+.item-part {
+    width: 90%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    margin: 0 auto;
 }
 
-.item-part .item-title{
-	text-decoration: none;
-	width: 99%;
-	height: 38px;
-	font-family: Microsoft Yahei;
-	border-bottom: 1px solid #ccc;
-	cursor: pointer;
-}
-.item-part .item-title a{
-	text-decoration: none;
-	font-weight: 600;
-	font-size: 20px;
-	color: #4b4d52;	
+.item-part .item-title {
+    text-decoration: none;
+    width: 99%;
+    height: 38px;
+    font-family: Microsoft Yahei;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
 }
 
-
-
-.item-part .more{
-	text-decoration:none;
-	position: absolute;
-	right: 1%;
-	top: 3%;
-	font-size: 13px;
-	color: #4b4d52;
+.item-part .item-title a {
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 20px;
+    color: #4b4d52;
 }
 
-
-
-
-
-
+.item-part .more {
+    text-decoration: none;
+    position: absolute;
+    right: 1%;
+    top: 3%;
+    font-size: 13px;
+    color: #4b4d52;
+}
