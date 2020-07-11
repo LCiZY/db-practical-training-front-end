@@ -102,4 +102,6 @@ footer a{
 	align-items: center;      
 }
 
-
+.bold-font{
+    font-weight: bold;
+}

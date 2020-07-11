@@ -13,6 +13,7 @@ var allItems = new Vue({
         itemList:[],
         count:0,
         alreadyGot:0,
+        noMore:false,
         chooseIndex:-1
 
 
@@ -50,8 +51,12 @@ var allItems = new Vue({
                 //获取全部类型的全部物品信息，
                 axios.get(localStorage.serverUrl+'commodity/getCommodities')  
                     .then(function (response) {
-                        self.itemList=response.data.list; self.count=response.data.count;
-                        if(response.data.list.length) self.alreadyGot+=response.data.list.length;
+                        if(response.data.list.length>0){
+                            self.itemList=response.data.list;
+                             self.count=response.data.count;
+                            self.alreadyGot+=response.data.list.length;
+                        } 
+                        else if(response.data.length==0) self.noMore=true
                        //console.log(response);
                        console.log( self.itemList);
                     })
@@ -63,8 +68,10 @@ var allItems = new Vue({
                 //否则获取某一类型的全部物品信息
                 axios.get(localStorage.serverUrl+'commodity/queryCommoditiesByType?commodity_type='+self.classify[self.chooseIndex] )  
                     .then(function (response) {
-                       self.itemList=response.data ;
-                        if(response.data.length) self.alreadyGot+=response.data.length;
+                        if(response.data.length>0) {
+                            self.itemList=response.data ;
+                            self.alreadyGot+=response.data.length;
+                        }
                        console.log(response);
                     })
                     .catch(function (error) {
@@ -72,6 +79,21 @@ var allItems = new Vue({
                     });
             }
 
+        },
+        getMore:function(){
+            var self=this
+            axios.get(localStorage.serverUrl+'commodity/getMoreCommodities?count='+this.count+'&alreadyGot='+this.alreadyGot)  
+            .then(function (response) {
+                if(response.data.length>0){
+                     self.itemList=self.itemList.concat(response.data); 
+                     self.alreadyGot+=response.data.length;
+                }else if(response.data.length==0) self.noMore=true
+               console.log(response);
+               //console.log( self.itemList);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
         },
         to_detail:function(id){
             //requestType为sell或ask

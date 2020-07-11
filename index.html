@@ -52,7 +52,7 @@
 			<h4>分类导航</h4>
 			<ul class="item-class">
 				<li v-for="(item,index) in classify">
-					<a href="#"  v-on:click="change_classify(index)">{{item}}</a>
+					<a href="#"  v-on:click="change_classify(index)" :class="{'bold-font':showing==index}">{{item}}</a>
 				</li>
 			</ul>
 		</div>

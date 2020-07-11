@@ -12,9 +12,25 @@ var askItem = new Vue({
         itemList:[],
         count:0,
         alreadyGot:0,
+        noMore:false,
         chooseIndex:-1
     },
     methods:{
+        getMore:function(){
+            var self=this
+            axios.get(localStorage.serverUrl+'commodity/getMoreRequiredCommodities?count='+this.count+'&alreadyGot='+this.alreadyGot)  
+            .then(function (response) {
+                if(response.data.length>0){
+                     self.itemList=self.itemList.concat(response.data); 
+                     self.alreadyGot+=response.data.length;
+                }else if(response.data.length==0) self.noMore=true
+               console.log(response);
+               //console.log( self.itemList);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        },
 
         to_detail:function(id){
             window.location.href="itemDetail.html?open_type=ask&id="+id

@@ -153,7 +153,7 @@
 
                         <span class="edit-btn" v-on:click="to_edit_item(item.commodity_id)" title="编辑"></span>
                         <div v-if="sellItem">
-                        <span class="done-btn" v-if="item.finished=='N'" v-on:click="deal_modal_show(index)" title="设为完成交易状态"></span>
+                        <span class="done-btn" v-if="item.finished=='N'" v-on:click="deal_modal_show(index)" title="设为交易完成状态"></span>
                         <span class="done-btn2" v-if="item.finished=='Y'"  title="已完成交易"></span>
                         </div>
                         <div class="item-detail" v-on:click="to_detail(item.commodity_id)">

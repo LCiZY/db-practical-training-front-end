@@ -412,6 +412,14 @@
 	background: #4b4d52;	
 }
 
+
+.get-more{
+	padding-bottom: 3px;
+    border-bottom: 1px solid;
+    cursor: pointer;
+    font-family: serif;
+}
+
 /*脚步*/
 footer{
 	border-top: 1px solid #ccc;

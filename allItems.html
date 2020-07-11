@@ -41,14 +41,16 @@
 <div id="allItems">
 	<!-- 物品分类 -->
 	<div id="container">
+
 		<div id="item-menu">
 			<ul class="item-class">
 				<li v-for="(item,index) in classify">
-					<a v-on:click="change_classify(index)">{{item}}</a>
+					<a v-on:click="change_classify(index)" :class="{'bold-font':chooseIndex==index}">{{item}}</a>
 				</li>
 				<!--<li><a href="#">历史 / 地理 / 艺术</a></li>-->
 			</ul>			
 		</div>
+
 		<div id="item-menu-toggle">
 			分 类 筛 选
 			<div id="toggle-btn"></div>
@@ -71,19 +73,11 @@
 						<a href="#" class="to-item-detail">查看详情</a>
 					</span>
 				</li>
-
-
-			
 			</ul><!--  item-list end -->
 		</div> <!-- item-container end-->
-		<!--
-		<span class="page-btn">
-			<a href="#" class="page-top">首页</a>
-			<a href="#" class="page-pre">上一页</a>
-			<a href="#" class="page-next">下一页</a>
-			<a href="#" class="page-end">尾页</a>
-		</span>
-		-->
+
+		<div class="align-center" v-show="chooseIndex==0"><span class="get-more" @click="getMore">{{noMore?'我是有底线的':'点击加载更多...'}}</span></div>
+
 	</div><!-- container end-->
 </div>
 
