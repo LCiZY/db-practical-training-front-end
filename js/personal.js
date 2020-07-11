@@ -26,8 +26,9 @@ var personal = new Vue({
         askList:[],
         showingList:[],
 
-        modal1:false
-
+        delete_modal:false,//删除模态框
+        deal_modal:false,//完成交易模态框
+        deal_item_index:null
 
     },
     methods:{
@@ -111,17 +112,29 @@ var personal = new Vue({
             }
 
         },
+        deal_modal_show:function(index){
+            this.deal_item_index=index;
+            this.deal_modal=true
+        },
+        deal_modal_cancel:function(){
+            this.deal_item_index=null;
+            this.deal_modal=false
+        },
         //完成交易，发送物品id
-        deal_finished:function(index){
+        deal_finished:function(){
             var self=this;
             var itemID;
+            var index=this.deal_item_index;
             if(this.sellItem){
                 //出售的物品
                 itemID=this.sellList[index].commodity_id;
-                //发送用户id，物品id字符串，用空格隔开
+                //发送用户id，物品id
                 axios.get(localStorage.serverUrl+'commodity/transactionDone?user_id='+login_status.id+'&user_login_code='+login_status.operation_code+'&commodity_id='+itemID)
                     .then(function (response) {
-                        self.sellList.splice(index,1)
+                        var tempItem=self.sellList[index];
+                        tempItem.finished='Y';
+                        self.sellList.splice(index,1);//删除下标index那个
+                        self.sellList.push(tempItem);
                         self.showingList = self.sellList
                     })
                     .catch(function (error) {
@@ -130,17 +143,8 @@ var personal = new Vue({
                     
             }
             else{
-                // //请求的物品
-                // itemID=this.askList[index].commodity_id;
-                // //发送用户id，物品id字符串，用空格隔开
-                // axios.get(localStorage.serverUrl+'?user_id='+login_status.id+'&user_login_code='+login_status.operation_code+'&commodity_id='+itemID)
-                //     .then(function (response) {
-                //         self.askList.splice(index,1)
-                //         self.showingList = self.askList
-                //     })
-                //     .catch(function (error) {
-                //         console.log(error);
-                //     });
+                // //请求的物品，没有此功能
+
             }
         },
         to_detail:function(id){
@@ -201,7 +205,7 @@ var personal = new Vue({
 
         //编辑功能还没写
         to_edit_item:function(id){
-            alert('编辑')
+            alert('编辑功能尚未开发')
             if(this.sellItem){
                 //编辑出售的物品
             }
@@ -209,11 +213,11 @@ var personal = new Vue({
                 //编辑请求的物品
             }
         },
-        modal1show:function(){
-            this.modal1=true
+        delete_modal_show:function(){
+            this.delete_modal=true
         },
-        modal1cancel:function(){
-            this.modal1=false
+        delete_modal_cancel:function(){
+            this.delete_modal=false
         }
 
 
@@ -247,7 +251,27 @@ var personal = new Vue({
                 .then(function (response) {
                     console.log(response);
                     self.sellList=response.data;
-                    for(i=0;i<self.sellList.length;i++) self.sellList[i]['select']=false;
+                    for(i=0;i<self.sellList.length;i++){
+                        self.sellList[i]['select']=false;
+                        self.sellList[i]['finished']='N';
+                    }
+                    self.showingList = self.sellList
+
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+
+            //用户创建的已完成的出售物品列表,select统一设为false，用push放到sellList列表后面去
+            axios.get(localStorage.serverUrl+'?user_id='+login_status.id+'&user_login_code='+login_status.operation_code)
+                .then(function (response) {
+                    console.log(response);
+                    var tempList=response.data;
+                    for(i=0;i<tempList.length;i++){
+                        tempList[i]['select']=false;
+                        tempList[i]['finished']='Y';
+                        self.sellList.push(tempList[i]);
+                    }
                     self.showingList = self.sellList
 
                 })
@@ -261,7 +285,10 @@ var personal = new Vue({
                 .then(function (response) {
                     console.log(response);
                     self.askList=response.data;
-                    for(i=0;i<self.askList.length;i++) self.askList[i]['select']=false;
+                    for(i=0;i<self.askList.length;i++){
+                        self.askList[i]['select']=false;
+                        self.askList[i]['finished']='N';
+                    }
                     self.showingList = self.askList
                 })
                 .catch(function (error) {

@@ -49,14 +49,14 @@
 			<ul class="item-lists">
 				<li class="item-list" v-for="item in itemList" v-on:click="to_detail(item.commodity_id)">
 					<a href="#" class="item-pic">
-						<img :src="item.commodity_cover_pic_url">
+						<img :src="item.commodity_cover_pic_url?item.commodity_cover_pic_url:item.commodity_cover_pic_url">
 					</a>
 					<a href="#" class="item-info">
 						<h5 class="item-name">{{item.commodity_name}}</h5>
 						<span class="item-detail"><b>校区：</b>{{item.area}}<br> <b>类型：</b>{{item.commodity_type}}</span>
 					</a>
-					<span class="item-price">
-						<a href="#" class="item-buy">查看详情</a>
+					<span class="item-price-todetail-container">
+						<a href="#" class="to-item-detail">查看详情</a>
 					</span>
 				</li>
 
