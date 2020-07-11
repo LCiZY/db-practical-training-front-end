@@ -37,6 +37,11 @@
     font-size: 16px;
 }
 
+.aside-right{
+    position: absolute;
+
+}
+
 .input-radius{
     border-radius: 3px;
     border-width: 1px!important;
@@ -385,10 +390,14 @@
 }
 
 .nav-p-info{
-position: absolute;
-right: 0px;
-margin-top: 9px;
-margin-right: 10%;
+    position: absolute;
+    right: 0px;
+    margin-top: 9px;
+    margin-right: 25px;
+}
+
+.username{
+    margin-right: 30px;
 }
 
 .hover-class:hover {

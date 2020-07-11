@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+	<title>轮播</title>
+	<meta charset="utf-8">
+
+	<link rel="stylesheet" type="text/css" href="css/banner.css">
+	
+	<script type="text/javascript" src="js/vue.js"></script>
+</head>
+<body>
+
+
+<div class="banner-container">
+<div class="banner" id="banner">
+  <div style="overflow: hidden;position: relative;height: 325px;">
+	<img v-for="(item,index) in dataList" :src="item" class="banner-img" 
+	:class="{'banner-img-scroll-3-2':(index==currentIndex)&right,'banner-img-scroll-2-1':(index==currentIndex-1)&right,'banner-img-scroll-2-3':(index==currentIndex+1)&left,'banner-img-scroll-1-2':(index==currentIndex)&left}">
+  </div>
+  <div class="banner-page" v-if="this.dataList.length > 1">
+    <ul>
+      <li @click="gotoPage(prevIndex)">&lt;</li>
+      <li v-for="(item,index) in dataList" @click="gotoPage(index)" :class="{'banner-current':currentIndex == index}">  {{index+1}}</li>
+      <li @click="gotoPage(nextIndex)">&gt;</li>
+    </ul>
+  </div>
+</div>
+</div>
+
+<script type="text/javascript" src="js/banner.js"></script>
+
+</body>
+</html>

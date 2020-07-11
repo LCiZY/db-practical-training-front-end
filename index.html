@@ -6,6 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="css/index.css">
 	<link rel="stylesheet" type="text/css" href="css/public.css">
 	<link rel="stylesheet" type="text/css" href="css/item.css">
+	<link rel="stylesheet" type="text/css" href="css/banner.css">
 	<script type="text/javascript" src="js/vue.js"></script>
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
@@ -45,7 +46,7 @@
 	</header>
 
 	<div id="index" >
-	<!-- 轮播 -->
+	<!-- item-guide -->
 	<div class="carousel">
 		<div class="item-guide">
 			<h4>分类导航</h4>
@@ -54,21 +55,23 @@
 					<a href="#"  v-on:click="change_classify(index)">{{item}}</a>
 				</li>
 			</ul>
-		</div><!-- item-guide -->
-
-		<div class="slider">
-			<div class="slider-img">
-				<ul class="slider-img-ul">
-					<li><img src="img/carousel/5.jpg"></li>
-					<li><img src="img/carousel/1.jpg"></li>
-					<li><img src="img/carousel/2.jpg"></li>
-					<li><img src="img/carousel/3.jpg"></li>
-					<li><img src="img/carousel/4.jpg"></li>
-					<li><img src="img/carousel/5.jpg"></li>
-					<li><img src="img/carousel/1.jpg"></li>
+		</div>
+	    <!-- 轮播 -->
+		<div class="banner-container">
+			<div class="banner">
+			  <div style="overflow: hidden;position: relative;height: 295px;">
+				<img v-for="(item,index) in dataList" :src="item" class="banner-img" 
+				:class="{'banner-img-scroll-3-2':(index==currentIndex)&right,'banner-img-scroll-2-1':(index==currentIndex-1)&right,'banner-img-scroll-2-3':(index==currentIndex+1)&left,'banner-img-scroll-1-2':(index==currentIndex)&left}">
+			  </div>
+			  <div class="banner-page" v-if="this.dataList.length > 1">
+				<ul>
+				  <li @click="gotoPage(prevIndex)">&lt;</li>
+				  <li v-for="(item,index) in dataList" @click="gotoPage(index)" :class="{'banner-current':currentIndex == index}">  {{index+1}}</li>
+				  <li @click="gotoPage(nextIndex)">&gt;</li>
 				</ul>
+			  </div>
 			</div>
-		</div><!-- 	slider -->
+		</div>
 	</div><!-- carousel -->
 
 	<!-- 物品分类 -->
@@ -105,7 +108,6 @@
 
 
 	<script type="text/javascript" src="js/jquery-3.2.js"></script>
-	<script type="text/javascript" src="js/xSlider.js"></script>
 	<script type="text/javascript" src="js/login_status.js" charset="utf-8"></script>
 	<script type="text/javascript" src="js/search.js" charset="utf-8"></script>
 	<script type="text/javascript" src="js/index.js" charset="utf-8"></script>

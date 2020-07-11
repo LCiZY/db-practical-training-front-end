@@ -53,6 +53,7 @@
 
     // 右点击事件
     slider_btn_right.on('click', function(event) {
+      console.log('right')
       event.preventDefault()
       if(_this.config.current < slider_img_length - 2){
         toggleInterval ()
@@ -74,6 +75,7 @@
 
     // 左点击事件
     slider_btn_left.on('click', function(event) {
+      console.log('left')
       event.preventDefault()
       if(_this.config.current > -1){
         toggleInterval ()

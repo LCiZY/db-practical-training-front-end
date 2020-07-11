@@ -9,7 +9,14 @@ var index = new Vue({
         '服饰/美妆','未开封食品', '游戏交易','其他'],
         itemList:[],
         showing:0,
-        ifLoading:true
+        ifLoading:true,
+
+
+        dataList:["https://i1.mifile.cn/a4/xmad_15535933141925_ulkYv.jpg","https://i1.mifile.cn/a4/xmad_15532384207972_iJXSx.jpg","https://i1.mifile.cn/a4/xmad_15517939170939_oiXCK.jpg"],
+        currentIndex: 0,   //默认显示图片
+        timer: null,
+        right:true,
+        left:false    //定时器
     },
     methods:{
         change_classify:function(index){
@@ -37,8 +44,38 @@ var index = new Vue({
         },
         to_detail:function(id){
             window.location.href="itemDetail.html?open_type=sell&id="+id
-        }
+        },
+
+        gotoPage(index) {
+            this.left = !(this.right=this.currentIndex<index)
+            this.currentIndex = index;
+            console.log('right:'+this.right)
+            console.log('left:'+this.left)
+          },
+          runInv() {
+            this.timer = setInterval(() => {
+              this.gotoPage(this.nextIndex)
+            }, 3000)
+          }
     },
+    computed:{
+                //上一张
+        prevIndex() {
+            if(this.currentIndex == 0) {
+            return this.dataList.length - 1;
+            }else{
+            return this.currentIndex - 1;
+            }
+        },
+        //下一张
+        nextIndex() {
+            if(this.currentIndex == this.dataList.length - 1) {
+            return 0;
+            }else {
+            return this.currentIndex + 1;
+            }
+        }
+     },
     created:function(){
         var self=this
         //初始化，获取二手教辅分类的itemList
@@ -53,9 +90,9 @@ var index = new Vue({
             });
             console.log('index created')
     },
-    // mounted:function(){
-    //     console.log('index mounted')
-    // },
+    mounted:function(){
+        this.runInv()
+    },
     // beforeMount:function(){
     //     console.log('index beforeMount')
     // },

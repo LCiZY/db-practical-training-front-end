@@ -1,0 +1,93 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.banner-page ul li {
+    list-style: none;
+    float: left;
+    width: 30px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    cursor: pointer;
+    color: rgba(255,255,255,.8);
+    font-size: 14px;
+}
+
+.banner-container{
+    width: 1000px;
+}
+
+.banner {
+    max-width: 1200px;
+    position: relative;
+}
+.banner img {
+    width: 100%;
+    display: block;
+}
+.banner .banner-page {
+    background: rgba(0,0,0,.5);
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+}
+.banner .banner-page ul {
+    float: right;
+}
+.banner-current {
+    color: #ff6700;
+}
+
+.banner-img{
+    position: absolute;
+    top:0px;
+    left: -1000px;
+}
+
+.banner-img-scroll-3-2{
+    -webkit-animation: scroll-3-2 1.5s;
+    left: 0px;
+}
+
+.banner-img-scroll-2-1{
+    -webkit-animation: scroll-2-1 1.5s;
+    left: -1000px;
+}
+
+.banner-img-scroll-1-2{
+    -webkit-animation: scroll-1-2 1.5s;
+    left: 0px;
+}
+
+.banner-img-scroll-2-3{
+    -webkit-animation: scroll-2-3 1.5s;
+    left: 1000px;
+}
+
+@-webkit-keyframes scroll-3-2 /* Safari 和 Chrome */
+{
+    from {left: 1000px;}
+    to {left: 0px;}
+}
+
+@-webkit-keyframes scroll-2-1 /* Safari 和 Chrome */
+{
+    from {left: 0px;}
+    to {left: -1000px;}
+}
+
+@-webkit-keyframes scroll-1-2 /* Safari 和 Chrome */
+{
+    from {left: -1000px;}
+    to {left: 0px;}
+}
+
+@-webkit-keyframes scroll-2-3 /* Safari 和 Chrome */
+{
+    from {left: 0px;}
+    to {left: 1000px;}
+}
+
+
