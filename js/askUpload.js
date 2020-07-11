@@ -31,7 +31,7 @@ var formContain = new Vue({
     },
     methods:{
         add_img:function(event){
-            // this.cover_pic = event.target.files[0];
+            this.cover_pic = event.target.files[0];
             // var fr = new FileReader();
             // fr.onload = function () {
             //     document.getElementById('cover_pic').src = fr.result;
