@@ -244,7 +244,6 @@
 
 .item-list{
 	width: 212px;
-	min-width: 21%;
 	height: 310px;
 	overflow: hidden;
 	border: 1px solid #eae1d2;
@@ -317,12 +316,17 @@
 	word-wrap:break-word;
 }
 
-.item-price{
+.item-price-todetail-container{
 	width: 212px;
     height: 34px;
     font-size: 17px;
     line-height: 52px;
     color: #880b16;
+}
+
+.item-price{
+	position: relative;
+    left: 20px;
 }
 
 
