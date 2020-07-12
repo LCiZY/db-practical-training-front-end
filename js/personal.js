@@ -158,6 +158,7 @@ var personal = new Vue({
                     .catch(function (error) {
                         console.log(error);
                     });
+                self.deal_modal = false
                     
             }
             else{
@@ -233,6 +234,7 @@ var personal = new Vue({
                 this.showingList = this.askList
                
             }
+            self.delete_modal=false
         },
         
         delete_visit_history:function(){

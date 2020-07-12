@@ -1,0 +1,282 @@
+ .init-hide{
+    display: none;
+ }
+ .init-show{
+    display: block;
+ }
+ 
+ 
+ .v-transfer-dom{
+    font-size: 14px;
+    line-height: 1.5;
+    color: #515a6e;
+    -webkit-font-smoothing: antialiased;
+    font-family: Microsoft Yahei;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    margin: 0;
+    padding: 0;
+ }
+
+ .ivu-modal-mask{
+    font-size: 14px;
+    line-height: 1.5;
+    color: #515a6e;
+    -webkit-font-smoothing: antialiased;
+    font-family: Microsoft Yahei;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(55,55,55,.6);
+    height: 100%;
+    z-index: 1005;
+ }
+
+ .ivu-modal-wrap{
+    font-size: 14px;
+    line-height: 1.5;
+    color: #515a6e;
+    -webkit-font-smoothing: antialiased;
+    font-family: Microsoft Yahei;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    overflow: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    outline: 0;
+    z-index: 1005;
+ }
+
+ .ivu-modal{
+    font-size: 14px;
+    line-height: 1.5;
+    color: #515a6e;
+    -webkit-font-smoothing: antialiased;
+    font-family: Microsoft Yahei;
+    padding: 0;
+    margin: 0 auto;
+    position: relative;
+    outline: 0;
+    top: 100px;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    width: 416px;
+ }
+ 
+ .ivu-modal-content{
+    font-size: 14px;
+    line-height: 1.5;
+    color: #515a6e;
+    -webkit-font-smoothing: antialiased;
+    font-family: Microsoft Yahei;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    position: relative;
+    background-color: #fff;
+    border: 0;
+    border-radius: 6px;
+    background-clip: padding-box;
+    box-shadow: 0 4px 12px rgba(0,0,0,.15);
+ }
+
+ .ivu-modal-body{
+    color: #515a6e;
+    -webkit-font-smoothing: antialiased;
+    font-family: Microsoft Yahei;
+    margin: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    padding: 16px;
+    font-size: 14px;
+    line-height: 1.5;
+ }
+
+ .ivu-modal-confirm{
+    color: #515a6e;
+    -webkit-font-smoothing: antialiased;
+    font-size: 14px;
+    line-height: 1.5;
+    font-family: Microsoft Yahei;
+    margin: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    padding: 6px 16px 8px;
+ }
+
+ .ivu-modal-confirm-head{
+    color: #515a6e;
+    -webkit-font-smoothing: antialiased;
+    font-size: 14px;
+    line-height: 1.5;
+    font-family: Microsoft Yahei;
+    margin: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    padding: 0 12px 0 0;
+
+ }
+
+ .ivu-modal-confirm-head-icon{
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+    font-family: Microsoft Yahei;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    display: inline-block;
+    font-size: 28px;
+    vertical-align: middle;
+    position: relative;
+    top: -2px;
+    color: #19be6b;
+ }
+
+.ivu-modal-close{
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    padding: 0px;
+    margin: 0px;
+    font-family: Microsoft Yahei;
+    color: #2d8cf0;
+    background: 0 0;
+    text-decoration: none;
+    outline: 0;
+    transition: color .2s ease;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    z-index: 1;
+    font-size: 12px;
+    position: absolute;
+    right: 8px;
+    font-size: xx-large;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+ .ivu-icon-ios-checkmark-circle{
+    color: #19be6b;
+ }
+
+ .ivu-modal-confirm-head-title{
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+    font-family: Microsoft Yahei;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 12px;
+    font-size: 16px;
+    color: #17233d;
+    font-weight: 500;
+ }
+
+ .ivu-modal-confirm-body{
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+    font-family: Microsoft Yahei;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    padding-left: 40px;
+    font-size: 14px;
+    color: #515a6e;
+    position: relative;
+ }
+
+ .ivu-modal-confirm-footer{
+    color: #515a6e;
+    -webkit-font-smoothing: antialiased;
+    font-size: 14px;
+    line-height: 1.5;
+    font-family: Microsoft Yahei;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    margin-top: 20px;
+    text-align: right;
+ }
+
+ .ivu-btn-cancel{
+    -webkit-font-smoothing: antialiased;
+    overflow: visible;
+    text-transform: none;
+    margin: 0;
+    font-family: inherit;
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    line-height: 1.5;
+    user-select: none;
+    height: 32px;
+    padding: 0 15px;
+    font-size: 14px;
+    border-radius: 4px;
+    transition: color .2s linear,background-color .2s linear,border .2s linear,box-shadow .2s linear,-webkit-box-shadow .2s linear;
+    outline: 0;
+    color: #515a6e;
+    background-color: transparent;
+    border-color: transparent;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-appearance: button;
+ }
+
+ .ivu-btn-confirm{
+    -webkit-font-smoothing: antialiased;
+    width: 20%;
+    overflow: visible;
+    text-transform: none;
+    margin: 0;
+    font-family: inherit;
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    line-height: 1.5;
+    user-select: none;
+    height: 32px;
+    padding: 0 15px;
+    font-size: 14px;
+    border-radius: 4px;
+    transition: color .2s linear,background-color .2s linear,border .2s linear,box-shadow .2s linear,-webkit-box-shadow .2s linear;
+    outline: 0;
+    color: #fff;
+    background-color: #2d8cf0;
+    border-color: #2d8cf0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-appearance: button;
+
+ }

@@ -9,7 +9,8 @@
     <link rel="stylesheet" type="text/css" href="css/reset.css">
     <link rel="stylesheet" type="text/css" href="css/personal.css">
     <link rel="stylesheet" type="text/css" href="css/public.css">
-    <link rel="stylesheet" type="text/css" href="css/outer/iview.css">
+
+    <link rel="stylesheet" type="text/css" href="css/modal.css">
     <script type="text/javascript" src="js/outer/iview.min.js"></script>
 
 </head>
@@ -174,7 +175,7 @@
 
                 <!--已完成交易的物品-->
                 <h4  v-if="modelFlag=='0'">♦交易完成</h4>
-                <ul  v-if="modelFlag=='0'">
+                <ul  v-if="modelFlag=='0'" class="item-ul">
                     <span v-if="sellDoneList.length==0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这里没有内容哦~</span>
                     <li class="item-list" v-if="modelFlag=='0'" v-for="(item,index) in sellDoneList">
                         <p class="item-pic">
@@ -205,7 +206,7 @@
         </div>
         <!-- container-end -->
 
-        <!-- 删除模态框 -->
+        <!-- 删除模态框 
         <Modal
         v-model="delete_modal"
         title="删除确认"
@@ -214,9 +215,44 @@
         <p></p>
         <p>确认删除选中的物品吗</p>
         <p></p>
-       </Modal>
+       </Modal>-->
 
-        <!-- 完成交易模态框 -->
+
+
+          <!--删除模态框-->
+    <div data-transfer="true" class="v-transfer-dom init-hide"  v-if="delete_modal" :class="{'init-show':delete_modal}">
+        <div class="ivu-modal-mask" style="z-index: 1005;"></div> 
+        <div class="ivu-modal-wrap" style="z-index: 1005;">
+            <div class="ivu-modal" style="width: 416px;">
+                <div class="ivu-modal-content"><!----> <!----> 
+                    <a class="ivu-modal-close" @click="delete_modal_cancel">×</a>
+                    <div class="ivu-modal-body">
+                        <div class="ivu-modal-confirm">
+                            <div class="ivu-modal-confirm-head">
+                                <div class="ivu-modal-confirm-head-icon">
+                                    <span class="ivu-icon-ios-checkmark-circle" style="color:#2d8cf0;">！</span>
+                                </div>
+                                <div class="ivu-modal-confirm-head-title">删除确认</div>
+                            </div>
+                            <div class="ivu-modal-confirm-body">
+                                <div>确认删除选中的物品吗？</div>
+                            </div>
+                            <div class="ivu-modal-confirm-footer">
+                                <button type="button" class="ivu-btn-cancel" @click="delete_modal_cancel"><!----> <!----> 
+                                    <span>取消</span>
+                                </button>
+                                <button type="button" class="ivu-btn-confirm" @click="delete_item"><!----> <!----> 
+                                    <span>确定</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div> <!---->
+                </div>
+            </div>
+        </div>
+    </div>
+
+           <!-- 完成交易模态框 
         <Modal
                 v-model="deal_modal"
                 title="完成交易确认"
@@ -225,7 +261,43 @@
             <p></p>
             <p>确认该物品已完成交易？</p>
             <p></p>
-        </Modal>
+        </Modal>-->
+
+      <!-- 完成交易模态框 -->
+    <div data-transfer="true" class="v-transfer-dom init-hide"  v-if="deal_modal" :class="{'init-show':deal_modal}">
+        <div class="ivu-modal-mask" style="z-index: 1005;"></div> 
+        <div class="ivu-modal-wrap" style="z-index: 1005;">
+            <div class="ivu-modal" style="width: 416px;">
+                <div class="ivu-modal-content"><!----> <!----> 
+                    <a class="ivu-modal-close" @click="deal_modal_cancel">×</a>
+                    <div class="ivu-modal-body">
+                        <div class="ivu-modal-confirm">
+                            <div class="ivu-modal-confirm-head">
+                                <div class="ivu-modal-confirm-head-icon">
+                                    <span class="ivu-icon-ios-checkmark-circle" style="color:#2d8cf0;">！</span>
+                                </div>
+                                <div class="ivu-modal-confirm-head-title">完成交易确认</div>
+                            </div>
+                            <div class="ivu-modal-confirm-body">
+                                <div>确认该物品已完成交易？</div>
+                            </div>
+                            <div class="ivu-modal-confirm-footer">
+                                <button type="button" class="ivu-btn-cancel" @click="deal_modal_cancel"><!----> <!----> 
+                                    <span>取消</span>
+                                </button>
+                                <button type="button" class="ivu-btn-confirm" @click="deal_finished"><!----> <!----> 
+                                    <span>确定</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div> <!---->
+                </div>
+            </div>
+        </div>
+    </div>
+
+        
+
     </div>
 
     <footer class="footer-center">
