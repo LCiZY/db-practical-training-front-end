@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="565aaa13-d1c3-41f7-8e4b-8c1a8e8f6807" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/personal.html" afterPath="$PROJECT_DIR$/personal.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/askUpload.html" afterPath="$PROJECT_DIR$/askUpload.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sellUpload.html" afterPath="$PROJECT_DIR$/sellUpload.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="db-practical-training-front-end.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -23,21 +25,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="personal.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/personal.html">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4700748">
-              <caret line="144" column="87" selection-start-line="144" selection-start-column="87" selection-end-line="144" selection-end-column="87" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="8" column="22" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="personal.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/personal.js">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="204" column="0" selection-start-line="204" selection-start-column="0" selection-end-line="204" selection-end-column="0" />
+            <state vertical-scroll-proportion="-21.035715">
+              <caret line="113" column="35" selection-start-line="113" selection-start-column="35" selection-end-line="113" selection-end-column="35" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sellUpload.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sellUpload.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-7.3125">
+              <caret line="72" column="47" selection-start-line="72" selection-start-column="47" selection-end-line="72" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -46,8 +58,18 @@
       <file leaf-file-name="askUpload.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/askUpload.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.642858">
-              <caret line="84" column="74" selection-start-line="84" selection-start-column="74" selection-end-line="84" selection-end-column="74" />
+            <state vertical-scroll-proportion="-6.387097">
+              <caret line="71" column="36" selection-start-line="71" selection-start-column="36" selection-end-line="71" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="allItems.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/js/allItems.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.6363636">
+              <caret line="28" column="24" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -69,10 +91,12 @@
         <option value="$PROJECT_DIR$/js/itemDetail.js" />
         <option value="$PROJECT_DIR$/css/personal.css" />
         <option value="$PROJECT_DIR$/editItem.html" />
-        <option value="$PROJECT_DIR$/askUpload.html" />
-        <option value="$PROJECT_DIR$/sellUpload.html" />
         <option value="$PROJECT_DIR$/js/personal.js" />
         <option value="$PROJECT_DIR$/personal.html" />
+        <option value="$PROJECT_DIR$/askUpload.html" />
+        <option value="$PROJECT_DIR$/sellUpload.html" />
+        <option value="$PROJECT_DIR$/js/index.js" />
+        <option value="$PROJECT_DIR$/js/allItems.js" />
       </list>
     </option>
   </component>
@@ -170,13 +194,7 @@
     <property name="recentsLimit" value="5" />
     <property name="FullScreen" value="false" />
   </component>
-  <component name="RunManager" selected="JavaScript Debug.sellUpload.html">
-    <configuration default="false" name="index.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/db-practical-training-front-end/index.html">
-      <method />
-    </configuration>
-    <configuration default="false" name="askItem.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/db-practical-training-front-end/askItem.html">
-      <method />
-    </configuration>
+  <component name="RunManager" selected="JavaScript Debug.index.html">
     <configuration default="false" name="sellUpload.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/db-practical-training-front-end/sellUpload.html">
       <method />
     </configuration>
@@ -184,6 +202,12 @@
       <method />
     </configuration>
     <configuration default="false" name="personal.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/db-practical-training-front-end/personal.html">
+      <method />
+    </configuration>
+    <configuration default="false" name="index.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-js-file="index.js" working-dir="$PROJECT_DIR$/js">
+      <method />
+    </configuration>
+    <configuration default="false" name="index.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/db-practical-training-front-end/index.html">
       <method />
     </configuration>
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
@@ -225,19 +249,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.index.html" />
-      <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.askItem.html" />
-      <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.sellUpload.html" />
-      <item index="3" class="java.lang.String" itemvalue="JavaScript Debug.itemDetail.html" />
-      <item index="4" class="java.lang.String" itemvalue="JavaScript Debug.personal.html" />
+      <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.sellUpload.html" />
+      <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.itemDetail.html" />
+      <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.personal.html" />
+      <item index="3" class="java.lang.String" itemvalue="Node.js.index.js" />
+      <item index="4" class="java.lang.String" itemvalue="JavaScript Debug.index.html" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.sellUpload.html" />
-        <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.personal.html" />
-        <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.itemDetail.html" />
-        <item index="3" class="java.lang.String" itemvalue="JavaScript Debug.askItem.html" />
-        <item index="4" class="java.lang.String" itemvalue="JavaScript Debug.index.html" />
+        <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.index.html" />
+        <item index="1" class="java.lang.String" itemvalue="Node.js.index.js" />
+        <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.sellUpload.html" />
+        <item index="3" class="java.lang.String" itemvalue="JavaScript Debug.personal.html" />
+        <item index="4" class="java.lang.String" itemvalue="JavaScript Debug.itemDetail.html" />
       </list>
     </recent_temporary>
   </component>
@@ -356,32 +380,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/askItem.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="15" column="6" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/allItems.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.470589">
-          <caret line="83" column="63" selection-start-line="83" selection-start-column="63" selection-end-line="83" selection-end-column="63" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -481,34 +483,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sellUpload.html">
+    <entry file="file://$PROJECT_DIR$/personal.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7747525">
-          <caret line="93" column="78" selection-start-line="93" selection-start-column="78" selection-end-line="93" selection-end-column="78" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/askUpload.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.642858">
-          <caret line="84" column="74" selection-start-line="84" selection-start-column="74" selection-end-line="84" selection-end-column="74" />
+        <state vertical-scroll-proportion="0.4700748">
+          <caret line="144" column="87" selection-start-line="144" selection-start-column="87" selection-end-line="144" selection-end-column="87" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/personal.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="4.3492823">
           <caret line="204" column="0" selection-start-line="204" selection-start-column="0" selection-end-line="204" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/personal.html">
+    <entry file="file://$PROJECT_DIR$/js/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4700748">
-          <caret line="144" column="87" selection-start-line="144" selection-start-column="87" selection-end-line="144" selection-end-column="87" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="22" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sellUpload.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.3125">
+          <caret line="72" column="47" selection-start-line="72" selection-start-column="47" selection-end-line="72" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/askUpload.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.387097">
+          <caret line="71" column="36" selection-start-line="71" selection-start-column="36" selection-end-line="71" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-21.035715">
+          <caret line="113" column="35" selection-start-line="113" selection-start-column="35" selection-end-line="113" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/allItems.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6363636">
+          <caret line="28" column="24" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="24" />
           <folding />
         </state>
       </provider>
