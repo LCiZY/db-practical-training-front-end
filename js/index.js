@@ -49,8 +49,6 @@ var index = new Vue({
         gotoPage(index) {
             this.left = !(this.right=this.currentIndex<index)
             this.currentIndex = index;
-            console.log('right:'+this.right)
-            console.log('left:'+this.left)
           },
           runInv() {
             this.timer = setInterval(() => {

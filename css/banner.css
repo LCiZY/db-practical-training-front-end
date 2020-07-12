@@ -37,7 +37,7 @@
     float: right;
 }
 .banner-current {
-    color: #ff6700;
+    color: #ff6700!important;
 }
 
 .banner-img{
