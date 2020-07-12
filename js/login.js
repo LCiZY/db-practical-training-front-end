@@ -44,7 +44,6 @@ var login = new Vue({
         login:function(){
             if(this.userID==null){     return}
             if(this.password==null){this.hasPassword=false; return}
-
             let param = new URLSearchParams();
             param.append("user_id",this.userID)
             param.append("user_password",this.password)
@@ -58,15 +57,11 @@ var login = new Vue({
                     localStorage.setItem('operation_code',response.data.opcode);
                     localStorage.setItem('nickname',response.data.map.user_name);
                     localStorage.setItem('userInfo',JSON.stringify(response.data.map));
-
-                    
-
                     window.location.href="index.html";
                 })
                 .catch(function (error) {
                     console.log(error);
                 });
-
         },
         //注册，发送账号密码昵称，要判定是否账号已存在
         signUp:function(){
