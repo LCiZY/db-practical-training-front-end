@@ -20,11 +20,12 @@ var personal = new Vue({
         e_dormitory:'',//宿舍
         e_department:'',
 
-        sellItem:true,  //出售、求物品, 选择出售物品为true，选择求物品为false
+        modelFlag:'0',  //出售、求物品, 选择出售物品为true，选择求物品为false
 
         sellList:[],
         sellDoneList:[],
         askList:[],
+        visitedList:[],
         showingList:[],
 
         delete_modal:false,//删除模态框
@@ -84,20 +85,24 @@ var personal = new Vue({
         //出售、请求物品的切换
         select_sell:function(){
             console.log('click')
-            localStorage.setItem('sellItem','1');
-            this.sellItem = true;
+            localStorage.setItem('modelFlag','0');
+            this.modelFlag = '0';
             this.showingList = this.sellList
         },
         select_ask:function(){
-            localStorage.setItem('sellItem','0');
-            this.sellItem = false;
+            localStorage.setItem('modelFlag','1');
+            this.modelFlag = '1';
             this.showingList = this.askList
         },
-
+        select_visit:function(){
+            localStorage.setItem('modelFlag','2');
+            this.modelFlag = '2';
+            this.showingList =this.visitedList
+        },
         //选中物品，用于删除
         select_item:function(index){
 
-            if(this.sellItem){
+            if(this.modelFlag=='0'){
                 //为出售的物品
 
                 //未完成交易的
@@ -106,7 +111,7 @@ var personal = new Vue({
                 this.$set(this.showingList, index,  this.showingList[index])
                 
             }
-            else{
+            else if(this.modelFlag=='1'){
                 //为请求的物品
                 this.askList[index].select = !this.askList[index].select;
                 this.showingList[index].select = this.askList[index].select
@@ -132,7 +137,7 @@ var personal = new Vue({
             var self=this;
             var itemID;
             var index=this.deal_item_index;
-            if(this.sellItem){
+            if(this.modelFlag=='0'){
                 //出售的物品
                 itemID=this.sellList[index].commodity_id;
                 //发送用户id，物品id
@@ -156,13 +161,12 @@ var personal = new Vue({
             }
         },
         to_detail:function(id){
-            if(this.sellItem){
-                //出售的物品
-                window.location.href="itemDetail.html?open_type=sell&id="+id
-            }
-            else{
-                //请求的物品
+            if(this.modelFlag=='1'){
+              //出售的物品
                 window.location.href="itemDetail.html?open_type=ask&id="+id
+            }else{
+              //请求的物品
+                window.location.href="itemDetail.html?open_type=sell&id="+id
             }
         },
 
@@ -170,7 +174,7 @@ var personal = new Vue({
         delete_item:function(){
             var indexArray = []
             var self=this;
-            if(this.sellItem){
+            if(this.modelFlag=='0'){
                 //删除出售的物品，返回物品列表
                 for(var i=0; i<this.sellList.length; i++){
                     if(this.sellList[i].select){
@@ -208,7 +212,7 @@ var personal = new Vue({
                 }
 
             }
-            else{
+            else if(this.modelFlag=='1'){
                 //删除请求的物品
                 for(var i=0; i<this.askList.length; i++){
                     if(this.askList[i].select){
@@ -227,12 +231,15 @@ var personal = new Vue({
                 this.showingList = this.askList
                
             }
+            else  if(this.modelFlag=='2'){
+                //删除历史记录
+            }
         },
 
         //编辑功能还没写
         to_edit_item:function(id){
             alert('编辑功能尚未开发')
-            if(this.sellItem){
+            if(this.modelFlag=='0'){
                 //编辑出售的物品
             }
             else{
@@ -244,6 +251,9 @@ var personal = new Vue({
         },
         delete_modal_cancel:function(){
             this.delete_modal=false
+        },
+        delete_visit_history:function(){
+            
         }
 
 
@@ -254,8 +264,7 @@ var personal = new Vue({
 
     },
     mounted:function(){ 
-        if(localStorage.getItem('sellItem')=='0')
-           this.sellItem=false
+        this.modelFlag=localStorage.getItem('modelFlag')
 
         if(login_status.id==''){
            

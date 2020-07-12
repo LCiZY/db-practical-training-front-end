@@ -122,19 +122,20 @@
 
         <!-- 出售、求物品选项卡 -->
         <div class="card-btn">
-            <span  id="sell-btn" v-bind:class="{active:sellItem}" v-on:click="select_sell">我的出售</span>
-            <span  id="ask-btn" v-bind:class="{active:!sellItem}" v-on:click="select_ask">我的求物品</span>
-            <p class="upload-icon"></p>
+            <span  id="sell-btn" v-bind:class="{active:modelFlag=='0'}" v-on:click="select_sell">我的出售</span>
+            <span  id="ask-btn" v-bind:class="{active:modelFlag=='1'}" v-on:click="select_ask">我的求物品</span>
+            <span  id="ask-btn" v-bind:class="{active:modelFlag=='2'}" v-on:click="select_visit">浏览历史</span>
+            
             <!--
 		<a id="sell-upload" href="#" hidden="true">上传出售物品</a>
-		<a id="ask-upload" href="#" v-if="sellItem" >上传求物品信息</a>
+		<a id="ask-upload" href="#" v-if="modelFlag" >上传求物品信息</a>
 		<a id="delete-item" href="#" hidden="true">删除二手物品</a>
 		-->
-
-            <a class="upload hover-class" href="sellUpload.html" v-if="sellItem">上传出售物品</a>
-            <a class="upload hover-class" href="askUpload.html" v-else>上传求物品信息</a>
-            <a class="delete hover-class" href="#" v-on:click="delete_modal_show">删除二手物品</a>
-
+            <p class="upload-icon" v-if="modelFlag!='2'"></p>
+            <a class="upload hover-class" href="sellUpload.html" v-if="modelFlag=='0'">上传出售物品</a>
+            <a class="upload hover-class" href="askUpload.html" v-else-if="modelFlag=='1'">上传求物品信息</a>
+            <a class="delete hover-class" href="#" v-if="modelFlag!='2'" v-on:click="delete_modal_show">删除二手物品</a>
+            <a class="delete hover-class" href="#" v-else v-on:click="delete_visit_history">删除历史记录</a>
         </div>
 
 
@@ -152,14 +153,14 @@
                         <span class="delete-btn-blank" v-else v-on:click="select_item(index)"></span>
 
                         <span class="edit-btn" v-on:click="to_edit_item(item.commodity_id)" title="编辑"></span>
-                        <div v-if="sellItem">
+                        <div v-if="modelFlag=='0'">
                             <span class="done-btn"  v-on:click="deal_modal_show(index)" title="设为完成交易状态"></span>
                         </div>
                         <div class="item-detail" v-on:click="to_detail(item.commodity_id)">
-                            <p v-if="sellItem">原&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="original-price">￥{{item.commodity_original_price}}</span></p>
-                            <p v-if="sellItem">售&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="item-price">￥{{item.commodity_price}}</span></p>
+                            <p v-if="modelFlag=='0'">原&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="original-price">￥{{item.commodity_original_price}}</span></p>
+                            <p v-if="modelFlag=='0'">售&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="item-price">￥{{item.commodity_price}}</span></p>
                             <p>类&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;型：<span class="item-desc">{{item.commodity_type}}</span></p>
-                            <div v-if="sellItem">
+                            <div v-if="modelFlag=='0'">
                                 <p >交易进度：<span class="item-condition">未完成交易</span></p>
                             </div>
                         </div>
