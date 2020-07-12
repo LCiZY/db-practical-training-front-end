@@ -71,8 +71,8 @@
 				<!--<p>上书时间<a class="upload-time">2018-03-20</a></p>-->
 				</span>
                 <a>
-                    <span class="buy-now" style="float: left; width: 200px" @click="showChat">立即联系</span>
-                    <span class="buy-now" style="float: left; width: 200px" v-if="open_type=='sell'" v-on:click="addCart">{{cart_status}}</span>
+                    <span class="buy-now" style="float: left; width: 45%" @click="showChat">在线联系</span>
+                    <span class="buy-now" style="float: left; width: 45%" v-if="open_type=='sell'" v-on:click="addCart">{{cart_status}}</span>
                 </a>
 
             </div>
@@ -80,16 +80,14 @@
 
             <div id="seller-info">
                 <a class="seller-name">{{nickname}}</a>
-                <span class="seller-span1">
-				在线联系<a class="seller-chat">在线联系</a>
-			</span>
+                
                 <span class="seller-span2">
-				<p>其他联系<a class="seller-num">{{contact}}</a></p>
 				<p>校区<a class="seller-adr">{{area}}</a></p>
 				<p>宿舍<a class="seller-adr">{{dormitory}}</a></p>
-				<p>学院<a class="seller-adr">{{department}}</a></p>
+                <p>学院<a class="seller-adr">{{department}}</a></p>
+                <p>其他联系方式<a class="seller-num">{{contact}}</a></p>
 				<!--<p>好评率<a class="seller-appraise">90.5%</a></p>-->
-			</span>
+		    	</span>
                 <!--
 			<span class="seller-span3">
 				<p>[ 去看看卖家的其他商品 ]</p>

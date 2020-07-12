@@ -103,8 +103,9 @@ var allItems = new Vue({
     created:function(){
         if(this.getParams("open_type")=='search'){
             //通过搜索跳转的
-            var keyWord=this.getParams("keyWord");
+            var keyWord=localStorage.getItem('keyWord')
             var self=this;
+            console.log(keyWord)
             search.keyWord=keyWord;
             //发送关键字，搜索物品，获取物品列表，requestType为sell或ask
             axios.get(localStorage.serverUrl+'commodity/queryCommoditiesByKeyword?keyword='+keyWord)

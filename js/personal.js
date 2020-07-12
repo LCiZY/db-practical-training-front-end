@@ -84,7 +84,6 @@ var personal = new Vue({
         },
         //出售、请求物品的切换
         select_sell:function(){
-            console.log('click')
             localStorage.setItem('modelFlag','0');
             this.modelFlag = '0';
             this.showingList = this.sellList
