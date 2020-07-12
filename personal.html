@@ -142,7 +142,7 @@
             <!-- 物品 -->
             <div class="sell-item">
                 <ul class="item-ul">
-                    <span v-if="showingList.length==0" class="align-center">这里没有内容哦~</span>
+                    <span v-if="showingList.length==0" class="align-center">这里没有正在交易物品的内容哦~</span>
                     <li class="item-list" v-for="(item,index) in showingList">
                         <p class="item-pic">
                             <img :src="item.commodity_cover_pic_url" v-on:click="to_detail(item.commodity_id)">
