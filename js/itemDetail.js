@@ -96,7 +96,7 @@ var itemDetail = new Vue({
         },
         addVisits:function(){
             if(localStorage.user_id==null||localStorage.user_id=='')return
-            axios.get(localStorage.serverUrl+'commodity/addUsersVisitsCommodityHistory?user_id='+localStorage.user_id+'&user_login_code='+localStorage.operation_code+'&commodity_id='+this.item_id)
+            axios.get(localStorage.serverUrl+'User/addUsersVisitsCommodityHistory?user_id='+localStorage.user_id+'&user_login_code='+localStorage.operation_code+'&commodity_id='+this.item_id)
             .then(function (response) {})
             .catch(function (error) {});
         },

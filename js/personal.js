@@ -116,6 +116,12 @@ var personal = new Vue({
                 this.askList[index].select = !this.askList[index].select;
                 this.showingList[index].select = this.askList[index].select
                 this.$set(this.showingList, index,  this.showingList[index])
+            } 
+            else if(this.modelFlag=='2'){
+                //为请求的物品
+                this.visitedList[index].select = !this.visitedList[index].select;
+                this.showingList[index].select = this.visitedList[index].select
+                this.$set(this.showingList, index,  this.showingList[index])
             }
 
         },
@@ -186,8 +192,6 @@ var personal = new Vue({
                         .catch(function (error) {
                             console.log(error);
                         });
-                        
-                        
                     }
                 }
                 for(i = indexArray.length-1;i>=0;i--) self.sellList.splice(indexArray[i],1);
@@ -200,16 +204,15 @@ var personal = new Vue({
                         indexArray.push(i)
                         axios.get(localStorage.serverUrl+'commodity/removeUsersDoneCommodities?user_id='+login_status.id+'&user_login_code='+login_status.operation_code+'&commodity_id='+this.sellDoneList[i].commodity_id)
                             .then(function (response) {
-                                for(i = indexArray.length-1;i>=0;i--) self.sellDoneList.splice(indexArray[i],1);
-                                //for(i=0;i<self.sellDoneList.length;i++) self.showingList.push(self.sellDoneList[i])
+                              
                             })
                             .catch(function (error) {
                                 console.log(error);
                             });
-
-
                     }
                 }
+                for(i = indexArray.length-1;i>=0;i--) self.sellDoneList.splice(indexArray[i],1);
+
 
             }
             else if(this.modelFlag=='1'){
@@ -231,11 +234,26 @@ var personal = new Vue({
                 this.showingList = this.askList
                
             }
-            else  if(this.modelFlag=='2'){
-                //删除历史记录
-            }
         },
+        
+        delete_visit_history:function(){
+            var indexArray = []
+            var self=this;
+            for(var i=0; i<this.visitedList.length; i++){
+                if(this.visitedList[i].select){
+                    indexArray.push(i);
+                    axios.get(localStorage.serverUrl+'User/removeUsersVisitsCommodityHistory?user_id='+login_status.id+'&user_login_code='+login_status.operation_code+'&commodity_id='+this.visitedList[i].commodity_id)
+                    .then(function (response) {
 
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+                }
+            }
+            for(i = indexArray.length-1;i>=0;i--) self.visitedList.splice(indexArray[i],1);
+            self.showingList = self.visitedList;
+        },
         //编辑功能还没写
         to_edit_item:function(id){
             alert('编辑功能尚未开发')
@@ -251,9 +269,6 @@ var personal = new Vue({
         },
         delete_modal_cancel:function(){
             this.delete_modal=false
-        },
-        delete_visit_history:function(){
-            
         }
 
 
@@ -302,7 +317,7 @@ var personal = new Vue({
                 .then(function (response) {
                     console.log(response);
                     self.sellDoneList=response.data;
-                    for(i=0;i<tempList.length;i++){
+                    for(i=0;i<self.sellDoneList.length;i++){
                         self.sellDoneList[i]['select']=false;
                         //self.sellDoneList[i]['finished']='Y';
                         //self.showingList.push(self.sellDoneList[i])
@@ -322,6 +337,21 @@ var personal = new Vue({
                     self.askList=response.data;
                     for(i=0;i<self.askList.length;i++){
                         self.askList[i]['select']=false;
+                        //self.askList[i]['finished']='N';
+                    }
+                    //self.showingList = self.askList
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+
+            //用户浏览历史,select统一设为false
+            axios.get(localStorage.serverUrl+'User/getUsersVisitsCommoditiesHistories?user_id='+login_status.id+'&user_login_code='+login_status.operation_code)
+                .then(function (response) {
+                    console.log(response);
+                    self.visitedList=response.data;
+                    for(i=0;i<self.visitedList.length;i++){
+                        self.visitedList[i]['select']=false;
                         //self.askList[i]['finished']='N';
                     }
                     //self.showingList = self.askList

@@ -142,8 +142,10 @@
         <div id="container">
             <!-- 物品 -->
             <div class="sell-item">
+                <!--正在出售-->
+                <h4 v-if="modelFlag=='0'">♦正在出售</h4>
                 <ul class="item-ul">
-                    <span v-if="showingList.length==0" class="align-center">这里没有正在交易物品的内容哦~</span>
+                    <span v-if="showingList.length==0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这里没有内容哦~</span>
                     <li class="item-list" v-for="(item,index) in showingList">
                         <p class="item-pic">
                             <img :src="item.commodity_cover_pic_url" v-on:click="to_detail(item.commodity_id)">
@@ -152,7 +154,7 @@
                         <span class="delete-btn-select" v-if="item.select" v-on:click="select_item(index)"></span>
                         <span class="delete-btn-blank" v-else v-on:click="select_item(index)"></span>
 
-                        <span class="edit-btn" v-on:click="to_edit_item(item.commodity_id)" title="编辑"></span>
+                        <!--  <span class="edit-btn" v-on:click="to_edit_item(item.commodity_id)" title="编辑"></span>  -->
                         <div v-if="modelFlag=='0'">
                             <span class="done-btn"  v-on:click="deal_modal_show(index)" title="设为完成交易状态"></span>
                         </div>
@@ -163,11 +165,18 @@
                             <div v-if="modelFlag=='0'">
                                 <p >交易进度：<span class="item-condition">未完成交易</span></p>
                             </div>
+                            <div v-if="modelFlag=='2'">
+                                <p class="last-visit-time">上次访问时间：{{item.visit_time}}</p>
+                            </div>
                         </div>
                     </li>
-                    <!--已完成交易的物品-->
-                    <span  class="align-center">以下为已完成交易的物品</span>
-                    <li class="item-list" v-if="sellItem" v-for="(item,index) in sellDoneList">
+                </ul>
+
+                <!--已完成交易的物品-->
+                <h4  v-if="modelFlag=='0'">♦交易完成</h4>
+                <ul  v-if="modelFlag=='0'">
+                    <span v-if="sellDoneList.length==0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这里没有内容哦~</span>
+                    <li class="item-list" v-if="modelFlag=='0'" v-for="(item,index) in sellDoneList">
                         <p class="item-pic">
                             <img :src="item.commodity_cover_pic_url" v-on:click="to_detail(item.commodity_id)">
                         </p>
@@ -175,20 +184,21 @@
                         <span class="delete-btn-select" v-if="item.select" v-on:click="select_DoneItem(index)"></span>
                         <span class="delete-btn-blank" v-else v-on:click="select_DoneItem(index)"></span>
 
-                        <span class="edit-btn" v-on:click="to_edit_item(item.commodity_id)" title="编辑"></span>
+                         <!-- <span class="edit-btn" v-on:click="to_edit_item(item.commodity_id)" title="编辑"></span> -->
 
                         <span class="done-btn2"   title="已完成交易"></span>
 
                         <div class="item-detail" v-on:click="to_detail(item.commodity_id)">
-                            <p v-if="sellItem">原&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="original-price">￥{{item.commodity_original_price}}</span></p>
-                            <p v-if="sellItem">售&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="item-price">￥{{item.commodity_price}}</span></p>
+                            <p>原&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="original-price">￥{{item.commodity_original_price}}</span></p>
+                            <p>售&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="item-price">￥{{item.commodity_price}}</span></p>
                             <p>类&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;型：<span class="item-desc">{{item.commodity_type}}</span></p>
                             <p >交易进度：<span class="item-condition">已完成交易</span></p>
 
                         </div>
                     </li>
-
                 </ul>
+
+
             </div>
 
 

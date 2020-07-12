@@ -269,7 +269,8 @@
     justify-content: flex-start;
     flex-direction: row;
     padding-left: 20px;
-    margin-top: 35px;
+    margin-top: 5px;
+    margin-bottom: 35px;
 }
 
 .item-list {
@@ -354,7 +355,7 @@
     background-size: cover;
     background-position: center;
     position: absolute;
-    top:36px;
+    top:0px;
     right: 0px;
     cursor: pointer;
 }
@@ -417,4 +418,9 @@
     background-color: #ae6d6a;
     transition: all 0.5s;
 
+}
+
+.last-visit-time{
+    font-size: xx-small;
+    color: grey;
 }
