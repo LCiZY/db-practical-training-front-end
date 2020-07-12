@@ -51,17 +51,17 @@
     <div class="container">
         <form class="upload-form" id="formContain">
             <p>
-                <span class="pic-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 封&nbsp;&nbsp;&nbsp;&nbsp;面&nbsp;&nbsp;&nbsp;&nbsp;图：
+                <span class="pic-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>*封&nbsp;&nbsp;&nbsp;&nbsp;面&nbsp;&nbsp;&nbsp;&nbsp;图：
                 <input @change='add_img' type="file">
                 <!-- <img src="cover_pic" id="cover_pic"> -->
             </p>
 
             <p>
-                <span class="author-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 物&nbsp;&nbsp;&nbsp;&nbsp;品&nbsp;&nbsp;&nbsp;&nbsp;名：
+                <span class="author-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>*物&nbsp;&nbsp;&nbsp;&nbsp;品&nbsp;&nbsp;&nbsp;&nbsp;名：
                 <input type="text" v-model="commodity_name" name="commodity_name">
             </p>
             <p>
-                <span class="name-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 所&nbsp;属&nbsp;&nbsp;类&nbsp;型：
+                <span class="name-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>*所&nbsp;属&nbsp;&nbsp;类&nbsp;型：
                 <select name="commodity_type" v-model="commodity_type">
 					<option disabled value="">请选择</option>
 					<option value="二手教辅">二手教辅</option>
@@ -70,7 +70,7 @@
 					<option value="技能服务" >技能服务</option>
 					<option value="手机数码">手机数码</option>
 					<option value="服饰/美妆">服饰/美妆</option>
-					<option value="零食/饮品/水果">未开封食品</option>
+					<option value="未开封食品">未开封食品</option>
 					<option value="玩具/游戏交易">游戏交易</option>
 					<option value="其他">其他</option>
 				</select>
@@ -81,17 +81,17 @@
                 <input type="text" v-model="commodity_original_price" name="commodity_original_price">
             </p>
             <p>
-                <span class="price-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 物&nbsp;品&nbsp;&nbsp;售&nbsp;价：
+                <span class="price-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>*物&nbsp;品&nbsp;&nbsp;售&nbsp;价：
                 <input type="text" v-model="commodity_price" name="commodity_price">
             </p>
 
             <p>
-                <span class="desc-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 物&nbsp;品&nbsp;&nbsp;描&nbsp;述：
+                <span class="desc-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>*物&nbsp;品&nbsp;&nbsp;描&nbsp;述：
                 <textarea type="text" v-model="commodity_description" name="commodity_description"></textarea>
             </p>
 
             <p>
-                <span class="name-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 校&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;区：
+                <span class="name-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>*校&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;区：
                 <select name="area" v-model="area">
 					<option disabled value="">请选择</option>
 					<option value="北校区">北校区</option>

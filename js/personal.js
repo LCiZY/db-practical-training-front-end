@@ -23,6 +23,7 @@ var personal = new Vue({
         modelFlag:'0',  //出售、求物品, 选择出售物品为true，选择求物品为false
 
         sellList:[],
+        sellDoneList:[],
         askList:[],
         visitedList:[],
         showingList:[],
@@ -103,9 +104,10 @@ var personal = new Vue({
 
             if(this.modelFlag=='0'){
                 //为出售的物品
+
+                //未完成交易的
                 this.sellList[index].select = !this.sellList[index].select;
                 this.showingList[index].select = this.sellList[index].select
-
                 this.$set(this.showingList, index,  this.showingList[index])
                 
             }
@@ -116,6 +118,11 @@ var personal = new Vue({
                 this.$set(this.showingList, index,  this.showingList[index])
             }
 
+        },
+        //选择已完成交易的物品
+        select_DoneItem:function(index){
+            this.sellDoneList[index].select = !this.sellDoneList[index].select;
+            this.$set(this.sellDoneList, index,  this.sellDoneList[index])
         },
         deal_modal_show:function(index){
             this.deal_item_index=index;
@@ -137,10 +144,11 @@ var personal = new Vue({
                 axios.get(localStorage.serverUrl+'commodity/transactionDone?user_id='+login_status.id+'&user_login_code='+login_status.operation_code+'&commodity_id='+itemID)
                     .then(function (response) {
                         var tempItem=self.sellList[index];
-                        tempItem.finished='Y';
+                        //tempItem.finished='Y';
                         self.sellList.splice(index,1);//删除下标index那个
-                        self.sellList.push(tempItem);
-                        self.showingList = self.sellList
+                        self.sellDoneList.push(tempItem);
+                        self.showingList = self.sellList;
+                        //for(i=0;i<self.sellDoneList.length;i++) self.showingList.push(self.sellDoneList[i])
                     })
                     .catch(function (error) {
                         console.log(error);
@@ -168,13 +176,12 @@ var personal = new Vue({
             var self=this;
             if(this.modelFlag=='0'){
                 //删除出售的物品，返回物品列表
-                
                 for(var i=0; i<this.sellList.length; i++){
                     if(this.sellList[i].select){
-                        indexArray.push(i)
+                        indexArray.push(i);
                         axios.get(localStorage.serverUrl+'commodity/deleteUsersCommodity?user_id='+login_status.id+'&user_login_code='+login_status.operation_code+'&commodity_id='+this.sellList[i].commodity_id)
                         .then(function (response) {
-                         
+
                         })
                         .catch(function (error) {
                             console.log(error);
@@ -183,8 +190,27 @@ var personal = new Vue({
                         
                     }
                 }
-               for(i = indexArray.length-1;i>=0;i--) this.sellList.splice(indexArray[i],1)
-               this.showingList = this.sellList
+                for(i = indexArray.length-1;i>=0;i--) self.sellList.splice(indexArray[i],1);
+                self.showingList = self.sellList;
+
+                //删除出售完成的物品，返回物品列表
+                indexArray = [];
+                for(var i=0; i<this.sellDoneList.length; i++){
+                    if(this.sellDoneList[i].select){
+                        indexArray.push(i)
+                        axios.get(localStorage.serverUrl+'commodity/removeUsersDoneCommodities?user_id='+login_status.id+'&user_login_code='+login_status.operation_code+'&commodity_id='+this.sellDoneList[i].commodity_id)
+                            .then(function (response) {
+                                for(i = indexArray.length-1;i>=0;i--) self.sellDoneList.splice(indexArray[i],1);
+                                //for(i=0;i<self.sellDoneList.length;i++) self.showingList.push(self.sellDoneList[i])
+                            })
+                            .catch(function (error) {
+                                console.log(error);
+                            });
+
+
+                    }
+                }
+
             }
             else if(this.modelFlag=='1'){
                 //删除请求的物品
@@ -262,7 +288,7 @@ var personal = new Vue({
                     self.sellList=response.data;
                     for(i=0;i<self.sellList.length;i++){
                         self.sellList[i]['select']=false;
-                        self.sellList[i]['finished']='N';
+                        //self.sellList[i]['finished']='N';
                     }
                     self.showingList = self.sellList
 
@@ -272,16 +298,16 @@ var personal = new Vue({
                 });
 
             //用户创建的已完成的出售物品列表,select统一设为false，用push放到sellList列表后面去
-            axios.get(localStorage.serverUrl+'?user_id='+login_status.id+'&user_login_code='+login_status.operation_code)
+            axios.get(localStorage.serverUrl+'commodity/getUsersDoneCommodities?user_id='+login_status.id+'&user_login_code='+login_status.operation_code)
                 .then(function (response) {
                     console.log(response);
-                    var tempList=response.data;
+                    self.sellDoneList=response.data;
                     for(i=0;i<tempList.length;i++){
-                        tempList[i]['select']=false;
-                        tempList[i]['finished']='Y';
-                        self.sellList.push(tempList[i]);
+                        self.sellDoneList[i]['select']=false;
+                        //self.sellDoneList[i]['finished']='Y';
+                        //self.showingList.push(self.sellDoneList[i])
                     }
-                    self.showingList = self.sellList
+
 
                 })
                 .catch(function (error) {
@@ -296,9 +322,9 @@ var personal = new Vue({
                     self.askList=response.data;
                     for(i=0;i<self.askList.length;i++){
                         self.askList[i]['select']=false;
-                        self.askList[i]['finished']='N';
+                        //self.askList[i]['finished']='N';
                     }
-                    self.showingList = self.askList
+                    //self.showingList = self.askList
                 })
                 .catch(function (error) {
                     console.log(error);
