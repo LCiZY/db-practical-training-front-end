@@ -50,17 +50,17 @@
 <div class="container">
     <form class="upload-form" id="formContain">
         <p>
-            <span class="pic-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 封&nbsp;&nbsp;&nbsp;&nbsp;面&nbsp;&nbsp;&nbsp;&nbsp;图：
+            <span class="pic-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>*封&nbsp;&nbsp;&nbsp;&nbsp;面&nbsp;&nbsp;&nbsp;&nbsp;图：
             <input @change='add_img' type="file">
             <!-- <img src="cover_pic" id="cover_pic"> -->
         </p>
 
         <p>
-            <span class="author-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 物&nbsp;&nbsp;&nbsp;&nbsp;品&nbsp;&nbsp;&nbsp;&nbsp;名：
+            <span class="author-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>*物&nbsp;&nbsp;&nbsp;&nbsp;品&nbsp;&nbsp;&nbsp;&nbsp;名：
             <input type="text" v-model="commodity_name" name="commodity_name">
         </p>
         <p>
-            <span class="name-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 所&nbsp;属&nbsp;&nbsp;类&nbsp;型：
+            <span class="name-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>*所&nbsp;属&nbsp;&nbsp;类&nbsp;型：
             <select name="commodity_type" v-model="commodity_type">
                 <option disabled value="">请选择</option>
                 <option value="二手教辅">二手教辅</option>
@@ -77,12 +77,12 @@
 
 
         <p>
-            <span class="desc-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 物&nbsp;品&nbsp;&nbsp;描&nbsp;述：
+            <span class="desc-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>*物&nbsp;品&nbsp;&nbsp;描&nbsp;述：
             <textarea type="text" v-model="commodity_description" name="commodity_description"></textarea>
         </p>
 
         <p>
-            <span class="name-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 校&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;区：
+            <span class="name-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>*校&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;区：
             <select name="area" v-model="area">
                 <option disabled value="">请选择</option>
                 <option value="北校区">北校区</option>
