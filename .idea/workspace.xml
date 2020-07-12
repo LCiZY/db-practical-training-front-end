@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="565aaa13-d1c3-41f7-8e4b-8c1a8e8f6807" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/上交文档/~$弘 _数据库实训项目报告.docx" afterPath="$PROJECT_DIR$/上交文档/~$弘 _数据库实训项目报告.docx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/上交文档/马熙弘 _数据库实训项目报告.docx" afterPath="$PROJECT_DIR$/上交文档/马熙弘 _数据库实训项目报告.docx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/login.js" afterPath="$PROJECT_DIR$/js/login.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="565aaa13-d1c3-41f7-8e4b-8c1a8e8f6807" name="Default" comment="" />
     <ignored path="db-practical-training-front-end.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -79,8 +74,8 @@
       <file leaf-file-name="login.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/login.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7894737">
-              <caret line="66" column="26" selection-start-line="66" selection-start-column="26" selection-end-line="69" selection-end-column="94" />
+            <state vertical-scroll-proportion="0.6602871">
+              <caret line="62" column="39" selection-start-line="62" selection-start-column="39" selection-end-line="62" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -635,8 +630,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/login.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7894737">
-          <caret line="66" column="26" selection-start-line="66" selection-start-column="26" selection-end-line="69" selection-end-column="94" />
+        <state vertical-scroll-proportion="0.6602871">
+          <caret line="62" column="39" selection-start-line="62" selection-start-column="39" selection-end-line="62" selection-end-column="39" />
           <folding />
         </state>
       </provider>
