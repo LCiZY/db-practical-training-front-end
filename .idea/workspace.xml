@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="565aaa13-d1c3-41f7-8e4b-8c1a8e8f6807" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/askUpload.html" afterPath="$PROJECT_DIR$/askUpload.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sellUpload.html" afterPath="$PROJECT_DIR$/sellUpload.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="565aaa13-d1c3-41f7-8e4b-8c1a8e8f6807" name="Default" comment="" />
     <ignored path="db-practical-training-front-end.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -68,7 +64,7 @@
       <file leaf-file-name="allItems.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/allItems.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6363636">
+            <state vertical-scroll-proportion="0.63755983">
               <caret line="28" column="24" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="24" />
               <folding />
             </state>
@@ -533,7 +529,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/allItems.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6363636">
+        <state vertical-scroll-proportion="0.63755983">
           <caret line="28" column="24" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="24" />
           <folding />
         </state>
