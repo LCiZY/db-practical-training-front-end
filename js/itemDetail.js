@@ -94,6 +94,12 @@ var itemDetail = new Vue({
 
             }
         },
+        addVisits:function(){
+            if(localStorage.user_id==null||localStorage.user_id=='')return
+            axios.get(localStorage.serverUrl+'commodity/addUsersVisitsCommodityHistory?user_id='+localStorage.user_id+'&user_login_code='+localStorage.operation_code+'&commodity_id='+this.item_id)
+            .then(function (response) {})
+            .catch(function (error) {});
+        },
 
         /*以下和聊天模块耦合 */
         showChat:function(){
@@ -191,14 +197,14 @@ var itemDetail = new Vue({
 
     created:function(){
         this.item_id = this.getParams("id");
-        console.log(this.item_id);
         this.open_type = this.getParams("open_type");
-        console.log(this.open_type);
+
         var self=this;
         //发送类型：请求物品ask/出售物品sell，和物品id，获取创建者信息和物品信息。请求物品没有价格信息
         if(this.open_type=='sell'){
             //出售物品
 
+            this.addVisits()//添加到浏览历史，只有出售物品有浏览历史
             axios.get(localStorage.serverUrl+'commodity/getCommodityById?commodity_id='+self.item_id)
                 .then(function (response) {
                     console.log(response);
